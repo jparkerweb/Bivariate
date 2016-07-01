@@ -1,0 +1,16 @@
+{
+  "name": "example-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example-reference-site": "ws -p 2222 -d ./unchanged",
+    "example-test-site": "ws -p 4444 -d ./changed"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "local-web-server": "1.2.6"
+  }
+}

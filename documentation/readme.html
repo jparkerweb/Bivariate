@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<title>Bivariate (An opinionated interface for writing, running, and saving BackstopJS tests)</title>
+
+<xmp theme="slate" style="display:none;">
+
+![Bivariate](bivariate.png)
+##### *An opinionated interface for writing, running, and saving BackstopJS tests*
+
+
+## Goal
+**Bivariate**'s ultimate goal is to allow for an approachable Visual Regression Testing suite that can be organized to accommodate small and large projects without overwhelming complexity.
+
+
+## Installation
+**Bivariate** runs in [Node](https://nodejs.org) and also requires [Python](https://www.python.org/) for it's DOM manipulation capabilities (leveraging CasperJS).
+
+* Download the Latest version of Bivariate
+
+* Install [NodeJS](https://nodejs.org)
+
+* Install [Python](https://www.python.org/)
+
+* Run the following from the command line (in the Bivariate directory):
+`npm install`
+
+
+## Folder Structure
+
+*All tests, scripts, and configuration files are stored in the `bivariate_data` parent folder.*
+
+`bivariate_data`  
+|
++---- `test_scripts` holds user defined configuration and tests for to instruct BackstopJS
+|
++---- `casper_scripts` holds user defined CasperJS scripts for interacting with the DOM before saving a screen shot
+|
++---- `bitmaps_reference_archive` holds archived *references* that can be restored and tested against
+
+
+### test_scripts
+
+Out of the box, BackstopJS gets all of its config and test data from a single JSON file, which isn't very maintainable over time.  Luckily, **Bivariate** takes advantage of Node's module system to break this all apart and just return what is needed (*a simple array of objects*).
+
+##### Configuration files
+
+All configuration files are prefixed with a double underscore: \_\_
+
+###### \_\_config-baseURLs.js
+holds the *base* URLs for all References and Tests to be run.
+```
+...
+  // do not use a trailing slash in the base URLs
+  theURLS.baseURL = "http://your-base-url";
+  theURLS.baseRefURL = "http://your-base-reference-url";
+...
+```
+
+###### \_\_config-common.js
+set of *common* config values (rendering engine, ports, etc.) that shouldn't need to be adjusted in most cases.
+
+###### \_\_config-viewports.js
+ configure any number of *viewports* to test against (this can include any number of defined screen resolutions).
+
+
+##### Individual Tests
+All individual tests are prefixed with a single underscore: \_
+
+
+##### Test Groups
+...
+
+# *further documentation to come...*
+
+</xmp>
+
+<script src="strapdown.js"></script>
+</html>
