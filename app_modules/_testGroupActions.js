@@ -29,6 +29,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
         return questionsTestGroup(matchArr, matchPrefix, onlyShowMatch)
             .then(function([question, matchedPrefix]) {
                 blank();
+
                 inquirer.prompt(question).then(function (answerTestGroup) {
                     var exitMessage = "";
 

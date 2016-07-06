@@ -152,7 +152,7 @@ function abracadabra(msg) {
 
                 // LIST existing tests
                 case 'list-tests':
-                    checkForExistingTests(true)
+                    checkForExistingTests(true, true)
                         .then(function(){
                             pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
                         });
@@ -275,8 +275,9 @@ function abracadabra(msg) {
                     break;
 
                 case 'delete-testgroup-tests':
-                    checkForExistingTests(false)
+                    checkForExistingTests(false, true)
                         .then(function(existingTests) {
+
                             testGroupActions(answerAction.testType, existingTests, spinner)
                                 .then(function(message){
                                     pressAnyKeyToContinue('press any key to continue...', function(){

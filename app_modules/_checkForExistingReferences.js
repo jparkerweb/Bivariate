@@ -36,15 +36,15 @@ function checkForExistingReferences(logit) {
             if (logit) {
                 if (existingReferenceList.length > 0) {
                     blank();
-                    console.log(('-----------------------').bgBlue.white);
-                    console.log(('- Existing References -').bgBlue.white);
+                    console.log(('------------------------').bgBlue.white);
+                    console.log(('- Generated References -').bgBlue.white);
 
                     if(isLocked) {
                         console.log(('-                     -').bgBlue.white);
                         console.log(('-       ').bgBlue.white + ('LOCKED').bgRed.white + ('        -').bgBlue.white);
                     }
 
-                    console.log(('-----------------------').bgBlue.white);
+                    console.log(('------------------------').bgBlue.white);
 
 
                     forEach(existingReferenceList, function(val){

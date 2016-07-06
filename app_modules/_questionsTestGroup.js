@@ -34,6 +34,9 @@ var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
                         testGroups = sort(testGroups);
                     }
                 }
+                else if(onlyShowMatch) {
+                    testGroups = [];
+                }
 
                 testGroupFileNames = testGroupFileNames.concat(testGroups);
 
