@@ -7,9 +7,9 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = 'Example Test - Home Page'; // test name
-var route = '/index.html';              // the route for this test (start with a '/')
-var selectors = [                       // selectors for elements to be "captured" (CSS selector syntax)
+var label = 'Example Test - Home Page';     // test name
+var route = '/index.html';                  // the route for this test (start with a '/')
+var selectors = [                           // selectors for elements to be "captured" (CSS selector syntax)
     "body",
     "h1",
     ".hero",

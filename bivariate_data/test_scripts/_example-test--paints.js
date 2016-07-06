@@ -7,8 +7,8 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = 'Example Test - Paints'; // test name
-var route = '/paints.html';              // the route for this test (start with a '/')
+var label = 'Example Test - Paints';    // test name
+var route = '/paints.html';             // the route for this test (start with a '/')
 var selectors = [                       // selectors for elements to be "captured" (CSS selector syntax)
     "body",
     ".body-content"
