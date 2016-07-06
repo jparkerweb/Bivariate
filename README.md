@@ -174,4 +174,4 @@ reference `example-site` for a walk through example of **Bivariate** in action.
 #### [Example Site Docs](./example-site/README.md)
 
 
-# *further documentation to come...*
+### *further documentation in progress...*

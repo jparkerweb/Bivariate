@@ -2,6 +2,15 @@
 
 This directory contains a sample site in its original state (`unchanged`), as well as with some css changes applied (`changed`).
 
+The example site is a simple, straight-forward two page site.  
+
+![example site thumbnail](./img/site-thumbnail.png)  
+
+![example site thumbnail](./img/site-thumbnail-2.png)  
+
+
+The only differences applied to the `changed` version is the size of the logo and some misc. padding on a few elements.
+
 You can host the two sites yourself to run the example test that comes with **Bivarate** (`unchanged/index.html`, `changed/index.html`), or run them separately using the following steps (*preferred method*):
 
 * from this directory in your console run: `npm install`  
@@ -42,4 +51,6 @@ In the console run **Bivariate** and select the following entries from the inter
 ![create reference](./img/console-opening-report.png)
 
 ###### A Web Browser should open and display the Report
+by default the report show all `failed` tests with the reference on the left, test in the middle, and pixel differences on the right.  
+
 ![create reference](./img/report.png)
