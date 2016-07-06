@@ -84,7 +84,7 @@ Use the example tests as a template to create your own.  Tests are easy to setup
 //   for better organization
 
 var label = 'Example Test - Home Page'; // test name
-var route = '/index.html';              // the route for this test (must start with a '/')
+var route = '/index.html';              // the route for this test (start with a '/')
 var selectors = [                       // selectors for elements to be "captured" (CSS selector syntax)
     "body",
     "h1",
@@ -109,8 +109,8 @@ var removeSelectors = [];           // remove elements from the DOM before scree
 module.exports = function(baseURLs) {
     return {
         "label": label,
-        "url": baseURLs.baseURL + route,
-        "referenceUrl": baseURLs.baseRefURL + route,
+        "url": (baseURLs.baseURL + route).replace(/\/\//,'/'),
+        "referenceUrl": (baseURLs.baseRefURL + route).replace(/\/\//,'/'),
         "hideSelectors": hideSelectors,
         "removeSelectors": removeSelectors,
         "selectors": selectors,
@@ -149,7 +149,7 @@ module.exports = mixIn(
         // ---------------
         "scenarios": [
             require('./_example-site--home')(baseURLs),
-            require('./_example-site--trees')(baseURLs)
+            require('./_example-site--paints')(baseURLs)
         ],
     },
         configCommon
