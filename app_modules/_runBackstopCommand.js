@@ -29,8 +29,13 @@ var runBackstopCommand = function(backstopCommand, testGroup) {
 
         // -- exit --
         npmRunCmd.on('exit', function (code) {
-            console.log(('child process exited with code ' + code).bgGreen.white);
-            resolve();
+            console.log(('child process exited with code ' + code).bgBlue.white);
+            if(code > 0) {
+                reject();
+            }
+            else {
+                resolve();
+            }
         });
     });
 };

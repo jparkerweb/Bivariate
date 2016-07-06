@@ -44,6 +44,7 @@ function abracadabra(msg) {
         if (answerAction.testType !== '') {
 
             switch(answerAction.testType) {
+                // OPEN REPORT
                 case 'openReport':
                     checkForExistingReferences(false)
                         .then(function([existingReferenceList, isLocked]) {
@@ -77,8 +78,8 @@ function abracadabra(msg) {
 
                     break;
 
+                // DELETE Test directories
                 case 'delete-tests':
-                    // DELETE Test directories
                     spinner.stop();
                     checkForExistingTests(false)
                         .then(function(testList) {
@@ -97,6 +98,7 @@ function abracadabra(msg) {
 
                     break;
 
+                // DELETE REFERENCES
                 case 'delete-reference':
                 case 'delete-testgroup-reference':
                     checkForExistingReferences(false)
@@ -117,8 +119,8 @@ function abracadabra(msg) {
                             }
 
                             else if(!isLocked && existingReferenceList.length > 0) {
+                                // DELETE Refererence Group
                                 if(answerAction.testType === 'delete-testgroup-reference') {
-                                    // DELETE Refererence Group
                                     testGroupActions(answerAction.testType, existingReferenceList, spinner)
                                         .then(function(message){
                                             pressAnyKeyToContinue('press any key to continue...', function(){
@@ -126,8 +128,8 @@ function abracadabra(msg) {
                                             });
                                         });
                                 }
+                                // DELETE Reference directories
                                 else {
-                                    // DELETE Reference directories
                                     deleteFolder('Current References', 'backstop_data/bitmaps_reference')
                                         .then(function() {
                                             pressAnyKeyToContinue('press any key to continue...', abracadabra);
@@ -139,8 +141,8 @@ function abracadabra(msg) {
 
                     break;
 
+                // LIST existing references
                 case 'list-references':
-                    // LIST existing references
                     checkForExistingReferences(true)
                         .then(function() {
                             pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
@@ -148,8 +150,8 @@ function abracadabra(msg) {
 
                     break;
 
+                // LIST existing tests
                 case 'list-tests':
-                    // LIST existing tests
                     checkForExistingTests(true)
                         .then(function(){
                             pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
@@ -157,8 +159,8 @@ function abracadabra(msg) {
 
                     break;
 
+                // ARCHIVE current References
                 case 'archive-reference':
-                    // ARCHIVE current References
                     require('./app_modules/_archiveReference')()
                         .then(function() {
                             blank();
@@ -170,8 +172,8 @@ function abracadabra(msg) {
 
                     break;
 
+                // RESTORE an Archived Reference
                 case 'restore-reference':
-                    // RESTORE an Archived Reference
                     var restoreReference = require('./app_modules/_restoreReference');
                     restoreReference()
                         .then(function() {
@@ -184,9 +186,9 @@ function abracadabra(msg) {
 
                     break;
 
+                // LOCK / UNLOCK Current Reference
                 case 'lock-reference':
                 case 'unlock-reference':
-                    // LOCK / UNLOCK Current Reference
                     checkIfDirectroyExists('./backstop_data/bitmaps_reference')
                         .then(function() {
                             var lockIt = (answerAction.testType === 'lock-reference' ? true : false);
@@ -205,6 +207,7 @@ function abracadabra(msg) {
 
                     break;
 
+                // CREATE REFERENCE
                 case 'reference':
                     checkForExistingReferences(false)
                         .then(function([existingReferenceList, isLocked]) {
@@ -219,12 +222,16 @@ function abracadabra(msg) {
                                 testGroupActions(answerAction.testType, existingReferenceList, spinner)
                                     .then(function(message){
                                         abracadabra(message);
+                                    })
+                                    .catch(function(){
+                                        pressAnyKeyToContinue('An Error Occured, press any key to return to the main menu...', abracadabra);
                                     });
                             }
                         });
 
                     break;
 
+                // RUN TEST
                 case 'bless':
                 case 'test':
                     // test to see if a reference exists

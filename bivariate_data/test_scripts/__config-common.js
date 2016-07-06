@@ -22,6 +22,6 @@ module.exports = function(testGroup) {
         "cliExitOnFail": false,
         "casperFlags": [],
         "debug": false,
-        "port": 3001
+        "port": 3001  // report web server port
     };
 };

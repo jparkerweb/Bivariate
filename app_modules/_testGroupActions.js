@@ -8,9 +8,11 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
     var questionsTestGroup = require('./_questionsTestGroup');
     var runBackstopCommand = require('./_runBackstopCommand');
     var deleteFolder = require('./_deleteFolder');
+    var updateReportName = require('./_updateReportName');
     var blank = require('./_blankLine');
     var cls = require('./_clearConsole');
     var asciiLogo = require('./_asciiLogo');
+    var colors = require("colors");
 
     return new Promise(function(resolve, reject) {
         var matchPrefix = '';
@@ -18,6 +20,9 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
         if(answerTestType === 'reference') {
             matchPrefix = '[EXISTING]  ';
+            onlyShowMatch = false;
+        }
+        else if(answerTestType === 'delete-testgroup-reference') {
             onlyShowMatch = false;
         }
 
@@ -44,6 +49,9 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
                                 exitMessage = 'Opening Report for \"' + answerTestGroup.testGroup +'\" in your Browser.\nIf the Report displays zero results, rerun the Test for the selected Group.';
                                 shortCircuit = true;
 
+                                // update report name
+                                updateReportName(answerTestGroup.testGroup);
+
                                 // run selected action on the test group
                                 runBackstopCommand('start', answerTestGroup.testGroup)
                                     .then(function() {
@@ -58,6 +66,9 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
                             case 'test':
                                 exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.';
+
+                                // update report name
+                                updateReportName(answerTestGroup.testGroup);
 
                                 break;
 
@@ -111,6 +122,11 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
                                 .then(function() {
                                     spinner.stop();
                                     resolve('\n' + exitMessage + ' \n');
+                                })
+                                .catch(function(err) {
+                                    spinner.stop();
+                                    console.log(('ERROR RUNNING BACKSTOPJS COMMAND').bgRed.white.bold);
+                                    reject();
                                 });
                         }
                     }

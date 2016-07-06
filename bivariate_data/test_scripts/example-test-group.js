@@ -14,8 +14,8 @@ module.exports = mixIn(
         // -- Scenarios --
         // ---------------
         "scenarios": [
-            require('./_example-site--home')(baseURLs),
-            require('./_example-site--trees')(baseURLs)
+            require('./_example-test--home')(baseURLs)//,
+            // require('./_example-test--brushes')(baseURLs)
         ],
     },
         configCommon

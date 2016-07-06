@@ -33,8 +33,8 @@ var removeSelectors = [];           // remove elements from the DOM before scree
 module.exports = function(baseURLs) {
     return {
         "label": label,
-        "url": baseURLs.baseURL + route,
-        "referenceUrl": baseURLs.baseRefURL + route,
+        "url": (baseURLs.baseURL + route).replace(/\/\//,'/'),
+        "referenceUrl": (baseURLs.baseRefURL + route).replace(/\/\//,'/'),
         "hideSelectors": hideSelectors,
         "removeSelectors": removeSelectors,
         "selectors": selectors,

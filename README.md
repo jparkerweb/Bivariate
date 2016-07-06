@@ -4,7 +4,12 @@
 
 
 ## Goal
-**Bivariate**'s ultimate goal is to allow for an approachable Visual Regression Testing suite that can be organized to accommodate small and large projects without overwhelming complexity.
+**Bivariate**'s goal is to allow for an approachable Visual Regression Testing suite that can be organized to accommodate small and large projects without overwhelming complexity.
+
+
+![Bivariate App](./documentation/bivariate-menu.gif)  
+
+This goal is achieved by enforcing an opinionated grouping structure, providing a method to easily write tests via manageable object files, as well as allowing for all of BackstopJS's commands to be run from an interface.
 
 
 ## Installation

@@ -1,22 +1,11 @@
-#################
-## NPM
-#################
+# NPM
 node_modules/**/*
-
-
-############
-## Windows
-############
+backstop_data/**/*
 
 # Windows image file caches
 Thumbs.db
-
-# Folder config file
+# Windows Folder config file
 Desktop.ini
 
-
-#######
-## Mac
-#######
-# Mac crap
+# Mac junk
 .DS_Store
