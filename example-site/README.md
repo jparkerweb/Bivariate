@@ -9,7 +9,7 @@ The example site is a simple, straight-forward two page site.
 ![example site thumbnail](./img/site-thumbnail-2.png)  
 
 
-### *The differences applied to the `changed` version is the **size** of the logo and some misc. **padding** on a few elements.*  
+### The differences applied to the `changed` version is the **size** of the logo and some misc. **padding** on a few elements.  
 .
 
 You can host the two sites yourself to run the example test that comes with **Bivarate** (`unchanged/index.html`, `changed/index.html`), or run them separately using the following steps (*preferred method*):
