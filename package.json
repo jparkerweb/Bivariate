@@ -4,6 +4,7 @@
   "description": "An opinionated interface for writing, running, and saving BackstopJS tests",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "app": "node app",
     "main": "node app"
   },
