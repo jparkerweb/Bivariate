@@ -3,7 +3,7 @@
 // -- user to press an key (accepts a message and a callback) --
 // -------------------------------------------------------------
 
-var pressAnyKeyToContinue = function(message, cb) {
+var pressEnterToContinue = function(message, cb) {
     var readline = require('readline');
 
     var rl = readline.createInterface({
@@ -21,4 +21,4 @@ var pressAnyKeyToContinue = function(message, cb) {
 // *************
 // ** Exports **
 // *************
-module.exports = pressAnyKeyToContinue;
+module.exports = pressEnterToContinue;

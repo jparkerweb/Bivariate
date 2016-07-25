@@ -10,7 +10,7 @@
 var label = 'Example Test - Paints';    // test name
 var route = '/paints.html';             // the route for this test (start with a '/')
 var selectors = [                       // selectors for elements to be "captured" (CSS selector syntax)
-    "body",
+    "document",
     ".body-content"
 ];
 var onBeforeScript = null;          // Runs before each scenario

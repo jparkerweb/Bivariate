@@ -9,7 +9,7 @@ var inquirer = require('inquirer');             // prompt questions and gather a
 var Spinner = require('cli-spinner').Spinner;   // cool console spinner (progress indicator)
 var spawn = require('child_process').spawn;     // built in node module for spawing child processes
 
-var pressAnyKeyToContinue = require('./app_modules/_pressAnyKeyToContinue');
+var pressEnterToContinue = require('./app_modules/_pressEnterToContinue');
 var cls = require('./app_modules/_clearConsole');
 var blank = require('./app_modules/_blankLine');
 var asciiLogo = require('./app_modules/_asciiLogo');
@@ -62,7 +62,7 @@ function abracadabra(msg) {
                                         console.log(('Please run a Test before attempting to open a Report.').bgRed.white);
                                         blank();
 
-                                        pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                        pressEnterToContinue('press enter to continue...', abracadabra);
                                     }
                                 });
 
@@ -72,7 +72,7 @@ function abracadabra(msg) {
                                 console.log(('Please create a Reference and run a Test before attempting to open a Report.').bgRed.white);
                                 blank();
 
-                                pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                pressEnterToContinue('press enter to continue...', abracadabra);
                             }
                         });
 
@@ -86,13 +86,13 @@ function abracadabra(msg) {
                             if(testList.length > 0) {
                                 deleteFolder('Test Results', 'backstop_data/bitmaps_test')
                                     .then(function() {
-                                        pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                        pressEnterToContinue('press enter to continue...', abracadabra);
                                     });
                             }
                             else {
                                 blank();
                                 console.log(('!!! No Test Data Exists !!!').bgRed.white);
-                                pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                pressEnterToContinue('press enter to continue...', abracadabra);
                             }
                         });
 
@@ -108,14 +108,14 @@ function abracadabra(msg) {
                             if (existingReferenceList.length === 0) {
                                 console.log(('You do not have a Current Reference to Delete.').bgRed.white);
 
-                                pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                pressEnterToContinue('press enter to continue...', abracadabra);
                             }
 
                             else if (isLocked) {
                                 console.log(('The Current Refererence is Locked.').bgRed.white);
                                 console.log(('You must Unlock is before it can be Deleted or altered.').bgRed.white);
 
-                                pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                pressEnterToContinue('press enter to continue...', abracadabra);
                             }
 
                             else if(!isLocked && existingReferenceList.length > 0) {
@@ -123,7 +123,7 @@ function abracadabra(msg) {
                                 if(answerAction.testType === 'delete-testgroup-reference') {
                                     testGroupActions(answerAction.testType, existingReferenceList, spinner)
                                         .then(function(message){
-                                            pressAnyKeyToContinue('press any key to continue...', function(){
+                                            pressEnterToContinue('press enter to continue...', function(){
                                                 abracadabra(message);
                                             });
                                         });
@@ -132,7 +132,7 @@ function abracadabra(msg) {
                                 else {
                                     deleteFolder('Current References', 'backstop_data/bitmaps_reference')
                                         .then(function() {
-                                            pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                            pressEnterToContinue('press enter to continue...', abracadabra);
                                         });
                                 }
                             }
@@ -145,7 +145,7 @@ function abracadabra(msg) {
                 case 'list-references':
                     checkForExistingReferences(true)
                         .then(function() {
-                            pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
+                            pressEnterToContinue('press enter to continue...', abracadabra); // restart app
                         });
 
                     break;
@@ -154,7 +154,7 @@ function abracadabra(msg) {
                 case 'list-tests':
                     checkForExistingTests(true, true)
                         .then(function(){
-                            pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
+                            pressEnterToContinue('press enter to continue...', abracadabra); // restart app
                         });
 
                     break;
@@ -164,7 +164,7 @@ function abracadabra(msg) {
                     require('./app_modules/_archiveReference')()
                         .then(function() {
                             blank();
-                            pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
+                            pressEnterToContinue('press enter to continue...', abracadabra); // restart app
                         })
                         .catch(function(err) {
                             console.log((err).bgRed.white.bold);
@@ -178,7 +178,7 @@ function abracadabra(msg) {
                     restoreReference()
                         .then(function() {
                             blank();
-                            pressAnyKeyToContinue('press any key to continue...', abracadabra); // restart app
+                            pressEnterToContinue('press enter to continue...', abracadabra); // restart app
                         })
                         .catch(function(err) {
                             console.log((err).bgRed.white.bold);
@@ -195,14 +195,14 @@ function abracadabra(msg) {
 
                             require('./app_modules/_lockReference')(lockIt)
                                 .then(function() {
-                                    pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                    pressEnterToContinue('press enter to continue...', abracadabra);
                                 });
                     })
                     .catch(function() {
                         blank();
                         console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white);
 
-                        pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                        pressEnterToContinue('press enter to continue...', abracadabra);
                     });
 
                     break;
@@ -216,7 +216,7 @@ function abracadabra(msg) {
                                 console.log(('You must first Unlock the Reference before').bgRed.white);
                                 console.log(('adding additional Test Groups to it.').bgRed.white);
 
-                                pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                                pressEnterToContinue('press enter to continue...', abracadabra);
                             }
                             else {
                                 testGroupActions(answerAction.testType, existingReferenceList, spinner)
@@ -224,7 +224,7 @@ function abracadabra(msg) {
                                         abracadabra(message);
                                     })
                                     .catch(function(){
-                                        pressAnyKeyToContinue('An Error Occured, press any key to return to the main menu...', abracadabra);
+                                        pressEnterToContinue('An Error Occured, press enter to return to the main menu...', abracadabra);
                                     });
                             }
                         });
@@ -269,7 +269,7 @@ function abracadabra(msg) {
                             blank();
                             console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white);
 
-                            pressAnyKeyToContinue('press any key to continue...', abracadabra);
+                            pressEnterToContinue('press enter to continue...', abracadabra);
                         });
 
                     break;
@@ -280,7 +280,7 @@ function abracadabra(msg) {
 
                             testGroupActions(answerAction.testType, existingTests, spinner)
                                 .then(function(message){
-                                    pressAnyKeyToContinue('press any key to continue...', function(){
+                                    pressEnterToContinue('press enter to continue...', function(){
                                         abracadabra(message);
                                     });
                                 });
