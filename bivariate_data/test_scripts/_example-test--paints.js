@@ -24,14 +24,16 @@ var removeSelectors = [];           // remove elements from the DOM before scree
 
 
 
-// ---------------------------------------------
-// - advanced options can be overwritten below -
-// ---------------------------------------------
+// -------------------------------------------------------------------
+// - advanced options can be overwritten in the options object below -
+// -------------------------------------------------------------------
 module.exports = function(baseURLs) {
-    return {
+    var url = (baseURLs.baseURL + route);
+    var referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route);
+    var options = {
         "label": label,
-        "url": (baseURLs.baseURL + route).replace(/\/\//,'/'),
-        "referenceUrl": (baseURLs.baseRefURL + route).replace(/\/\//,'/'),
+        "url": url,
+        "referenceUrl": referenceUrl,
         "hideSelectors": hideSelectors,
         "removeSelectors": removeSelectors,
         "selectors": selectors,
@@ -41,4 +43,10 @@ module.exports = function(baseURLs) {
         "onBeforeScript": onBeforeScript,
         "onReadyScript": onReadyScript
     };
+
+    if(baseURLs.baseRefURL === null) {
+        delete options.referenceUrl;
+    }
+
+    return options;
 };
