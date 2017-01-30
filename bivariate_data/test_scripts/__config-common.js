@@ -4,24 +4,30 @@
 
 module.exports = function(testGroup) {
     return {
+        "id": testGroup,
+
         // The Viewports
         "viewports": require('./__config-viewports'),
 
         // Paths
         "paths": {
-            "bitmaps_reference": "../../backstop_data/bitmaps_reference/" + testGroup,
-            "bitmaps_test": "../../backstop_data/bitmaps_test/" + testGroup,
-            "compare_data": "../../backstop_data/bitmaps_test/" + testGroup + "/compare.json",
-            "casper_scripts": "../../bivariate_data/casper_scripts"
+            "bitmaps_reference": "backstop_data/bitmaps_reference/" + testGroup,
+            "bitmaps_test": "backstop_data/bitmaps_test/" + testGroup,
+            "casper_scripts": "bivariate_data/casper_scripts",
+            "html_report": "backstop_data/html_report/" + testGroup,
+            "ci_report": "backstop_data/ci_report/" + testGroup
         },
 
-        //"engine": "slimerjs",
-        "engine": "phantomjs",
-        "report": ["CLI", "browser"],
-        //"report": ["CLI"],
-        "cliExitOnFail": false,
+        // report
+        "ci": {
+            "testSuiteName" :  testGroup
+        },
+
         "casperFlags": [],
+        "engine": "phantomjs",
+        //"engine": "slimerjs",
+        "report": ["browser"],
+        // "report": ["CLI", "browser"],
         "debug": false,
-        "port": 3001  // report web server port
     };
 };

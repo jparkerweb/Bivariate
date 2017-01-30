@@ -12,7 +12,7 @@ var runBackstopCommand = function(backstopCommand, testGroup) {
                 'run',
                 backstopCommand,
                 '--',
-                '--configPath=../../bivariate_data/test_scripts/' + testGroup + '.js'
+                '--configPath=bivariate_data/test_scripts/' + testGroup + '.js'
             ],
             { cwd: './node_modules/backstopjs'}
         );
@@ -30,12 +30,7 @@ var runBackstopCommand = function(backstopCommand, testGroup) {
         // -- exit --
         npmRunCmd.on('exit', function (code) {
             console.log(('child process exited with code ' + code).bgBlue.white);
-            if(code > 0) {
-                reject();
-            }
-            else {
-                resolve();
-            }
+            resolve();
         });
     });
 };

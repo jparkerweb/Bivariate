@@ -8,7 +8,6 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
     var questionsTestGroup = require('./_questionsTestGroup');
     var runBackstopCommand = require('./_runBackstopCommand');
     var deleteFolder = require('./_deleteFolder');
-    var updateReportName = require('./_updateReportName');
     var blank = require('./_blankLine');
     var cls = require('./_clearConsole');
     var asciiLogo = require('./_asciiLogo');
@@ -50,26 +49,17 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
                                 exitMessage = 'Opening Report for \"' + answerTestGroup.testGroup +'\" in your Browser.\nIf the Report displays zero results, rerun the Test for the selected Group.';
                                 shortCircuit = true;
 
-                                // update report name
-                                updateReportName(answerTestGroup.testGroup);
-
                                 // run selected action on the test group
-                                runBackstopCommand('start', answerTestGroup.testGroup)
+                                runBackstopCommand(answerTestType, answerTestGroup.testGroup)
                                     .then(function() {
-                                        return runBackstopCommand(answerTestType, answerTestGroup.testGroup)
-                                            .then(function() {
-                                                spinner.stop();
-                                                resolve('\n' + exitMessage + ' \n');
-                                            });
+                                        spinner.stop();
+                                        resolve('\n' + exitMessage + ' \n');
                                     });
 
                                 break;
 
                             case 'test':
                                 exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.';
-
-                                // update report name
-                                updateReportName(answerTestGroup.testGroup);
 
                                 break;
 

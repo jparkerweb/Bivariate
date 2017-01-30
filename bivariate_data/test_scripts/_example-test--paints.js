@@ -37,8 +37,9 @@ module.exports = function(baseURLs) {
         "hideSelectors": hideSelectors,
         "removeSelectors": removeSelectors,
         "selectors": selectors,
+        "selectorExpansion": true,
         "readyEvent": null,
-        "delay": 100,
+        "delay": 300,
         "misMatchThreshold" : 0.1,
         "onBeforeScript": onBeforeScript,
         "onReadyScript": onReadyScript

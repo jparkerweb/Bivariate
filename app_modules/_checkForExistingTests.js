@@ -8,7 +8,7 @@ var sort = require('mout/array/sort');          // sort array util
 var unique = require('mout/array/unique');      // unique array util
 var blank = require('./_blankLine');
 
-function checkForExistingTests(logit, onlyWithPNGs) {
+function checkForExistingTests(logit) {
     if (typeof logit === 'undefined' ) { logit = false; }
 
     var existingTestList = [];
@@ -22,20 +22,10 @@ function checkForExistingTests(logit, onlyWithPNGs) {
             var currentFile = stat.name;
             var currentDir = root;
 
-            if(onlyWithPNGs) {
-                if(currentFile === "compare.json") {
-                    currentDir = (currentDir.replace(baseDir + '\\', ''));
-                    currentBase = currentDir;
-                }
-                else if(currentFile.substr(-3) === 'png') {
-                    existingTestList.push(currentBase);
-                }
-            }
-            else {
-                if(currentFile === "compare.json") {
-                    currentDir = (currentDir.replace(baseDir + '\\', ''));
-                    existingTestList.push(currentDir);
-                }
+            if(currentFile.substr(-3) === 'png') {
+                currentDir = (currentDir.replace(baseDir + '\\', ''));
+                currentBase = currentDir;
+                existingTestList.push(currentBase);
             }
 
             next();

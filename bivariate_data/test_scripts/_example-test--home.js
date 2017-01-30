@@ -7,8 +7,8 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = 'Example Test - Home Page';     // test name
-var route = '/index.html';                  // the route for this test (start with a '/')
+var label = "Example Test - Home Page";     // test name
+var route = "/index.html";                  // the route for this test (start with a '/')
 var selectors = [                           // selectors for elements to be "captured" (CSS selector syntax)
     "document",
     "h1",
@@ -40,8 +40,9 @@ module.exports = function(baseURLs) {
         "hideSelectors": hideSelectors,
         "removeSelectors": removeSelectors,
         "selectors": selectors,
+        "selectorExpansion": true,
         "readyEvent": null,
-        "delay": 100,
+        "delay": 300,
         "misMatchThreshold" : 0.1,
         "onBeforeScript": onBeforeScript,
         "onReadyScript": onReadyScript
