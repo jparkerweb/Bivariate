@@ -59,7 +59,12 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
                                 break;
 
                             case 'test':
-                                exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.';
+                                deleteFolder('Test: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_test/' + answerTestGroup.testGroup, false)
+                                    .then(function() {
+                                        exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.';
+
+                                        resolve('');
+                                    });
 
                                 break;
 
@@ -79,7 +84,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
                                 cls();
                                 asciiLogo();
 
-                                deleteFolder('Group Test Results: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_test/' + answerTestGroup.testGroup)
+                                deleteFolder('Group Test Results: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_test/' + answerTestGroup.testGroup, true)
                                     .then(function() {
                                         resolve('');
                                     });
@@ -92,7 +97,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
                                 cls();
                                 asciiLogo();
 
-                                deleteFolder('Group References: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_reference/' + answerTestGroup.testGroup)
+                                deleteFolder('Group References: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_reference/' + answerTestGroup.testGroup, true)
                                     .then(function() {
                                         resolve('');
                                     });
