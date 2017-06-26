@@ -3,19 +3,19 @@
 // --------------------------------------
 
 var questionsRestoreArchiveReference = function(archiveReferenceList) {
-    var referenceList = ['<<-- Back --'];
-    referenceList = referenceList.concat(archiveReferenceList);
+	var referenceList = ['<<-- Back --'];
+	referenceList = referenceList.concat(archiveReferenceList);
 
-    var questionsList = [
-        {
-            type: 'list',
-            name: 'restoreReference',
-            message: 'Select a Test Group:',
-            choices: referenceList
-        }
-    ];
+	var questionsList = [
+		{
+			type: 'list',
+			name: 'restoreReference',
+			message: 'Select a Test Group:',
+			choices: referenceList
+		}
+	];
 
-    return questionsList;
+	return questionsList;
 };
 
 

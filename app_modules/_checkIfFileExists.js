@@ -5,19 +5,19 @@
 var walk = require('walk'); // file system walker (get file names)
 
 function checkForExistingFile(checkFile) {
-    var walker = walk.walk(checkFile, { followLinks: false });
-    var exists = false;
+	var walker = walk.walk(checkFile, { followLinks: false });
+	var exists = false;
 
-    return new Promise(function(resolve, reject) {
-        walker.on("file", function (root, fileStats, next) {
-            exists = true;
-            next();
-        });
+	return new Promise(function(resolve, reject) {
+		walker.on("file", function (root, fileStats, next) {
+			exists = true;
+			next();
+		});
 
-        walker.on('end', function() {
-            resolve(exists);
-        });
-    });
+		walker.on('end', function() {
+			resolve(exists);
+		});
+	});
 }
 
 

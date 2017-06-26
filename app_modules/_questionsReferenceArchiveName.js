@@ -3,11 +3,11 @@
 // --------------------------------------------------
 
 var questionsReferenceArchiveName = [
-    {
-        type: 'input',
-        name: 'archiveName',
-        message: 'Give your Reference Archive a name:'
-    }
+	{
+		type: 'input',
+		name: 'archiveName',
+		message: 'Give your Reference Archive a name:'
+	}
 ];
 
 

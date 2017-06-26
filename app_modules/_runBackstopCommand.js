@@ -5,34 +5,34 @@
 var spawn = require('child_process').spawn;
 
 var runBackstopCommand = function(backstopCommand, testGroup) {
-    return new Promise(function(resolve, reject) {
-        var npmRunCmd = spawn(
-            'npm.cmd',
-            [
-                'run',
-                backstopCommand,
-                '--',
-                '--configPath=bivariate_data/test_scripts/' + testGroup + '.js'
-            ],
-            { cwd: './node_modules/backstopjs'}
-        );
+	return new Promise(function(resolve, reject) {
+		var npmRunCmd = spawn(
+			'npm.cmd',
+			[
+				'run',
+				backstopCommand,
+				'--',
+				'--configPath=bivariate_data/test_scripts/' + testGroup + '.js'
+			],
+			{ cwd: './node_modules/backstopjs'}
+		);
 
-        // -- standard output --
-        npmRunCmd.stdout.on('data', function (data) {
-            console.log('' + data);
-        });
+		// -- standard output --
+		npmRunCmd.stdout.on('data', function (data) {
+			console.log('' + data);
+		});
 
-        // -- error output --
-        npmRunCmd.stderr.on('data', function (data) {
-            console.log(('stderr: ' + data).bgRed.white);
-        });
+		// -- error output --
+		npmRunCmd.stderr.on('data', function (data) {
+			console.log(('stderr: ' + data).bgRed.white);
+		});
 
-        // -- exit --
-        npmRunCmd.on('exit', function (code) {
-            console.log(('child process exited with code ' + code).bgBlue.white);
-            resolve();
-        });
-    });
+		// -- exit --
+		npmRunCmd.on('exit', function (code) {
+			console.log(('child process exited with code ' + code).bgBlue.white);
+			resolve();
+		});
+	});
 };
 
 

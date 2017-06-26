@@ -3,12 +3,12 @@
 // --------------
 
 var touchFile = function moveit(fileName) {
-    var touch = require('touch');
+	var touch = require('touch');
 
-    return new Promise(function(resolve, reject) {
-        touch(fileName);
-        resolve();
-    });
+	return new Promise(function(resolve, reject) {
+		touch(fileName);
+		resolve();
+	});
 };
 
 
