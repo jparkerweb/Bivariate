@@ -17,17 +17,10 @@ You can host the two sites yourself to run the example test that comes with **Bi
 * from this directory in your console run: `npm install`  
 (this will install the `local-web-server` package for hosting the example sites)  
 
+* run the following to laungh the `unchanged` and `changed` example sites:  
+`npm run example`  
 
-* in a new console window navigate to this directory and run the following to launch the `unchange` site:  
-`npm run example-reference-site`  
-
-    ![web server: unchanged site](./img/server-unchanged.png)  
-
-
-* in a new console window navigate to this directory and run the following to launch the `change` site:  
-`npm run example-test-site`  
-
-    ![web server: changed site](./img/server-changed.png)  
+    ![web server: unchanged site](./img/server.png)  
 
 
 ### Run Example
