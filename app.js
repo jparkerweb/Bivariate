@@ -221,7 +221,7 @@ function abracadabra(msg) {
                             else {
                                 testGroupActions(answerAction.testType, existingReferenceList, spinner)
                                     .then(function(message){
-                                        abracadabra(message);
+                                        pressEnterToContinue(message + "Press enter to return to the main menu...", abracadabra);
                                     })
                                     .catch(function(){
                                         pressEnterToContinue('An Error Occured, press enter to return to the main menu...', abracadabra);
