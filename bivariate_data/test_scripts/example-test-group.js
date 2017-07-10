@@ -9,14 +9,14 @@ var baseURLs = require("./__config-baseURLs");
 
 
 module.exports = mixIn(
-    {
-        // ---------------
-        // -- Scenarios --
-        // ---------------
-        "scenarios": [
-            require('./_example-test--home')(baseURLs),
-            require('./_example-test--paints')(baseURLs)
-        ],
-    },
-        configCommon
+	{
+		// ---------------
+		// -- Scenarios --
+		// ---------------
+		"scenarios": [
+			require('./_example-test--home')(baseURLs),
+			require('./_example-test--paints')(baseURLs)
+		],
+	},
+		configCommon
 );
