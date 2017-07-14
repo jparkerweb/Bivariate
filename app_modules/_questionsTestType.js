@@ -12,14 +12,6 @@ var questionsTestType = [
 				value: ''
 			},
 			{
-				name: '- LIST generated References',
-				value: 'list-references'
-			},
-			{
-				name: '- LIST generated Tests',
-				value: 'list-tests'
-			},
-			{
 				name: '- Run TEST on Reference',
 				value: 'test'
 			},
@@ -32,8 +24,12 @@ var questionsTestType = [
 				value: 'openReport'
 			},
 			{
-				name: '- BLESS existing Reference',
-				value: 'bless'
+				name: '- LIST generated References',
+				value: 'list-references'
+			},
+			{
+				name: '- LIST generated Tests',
+				value: 'list-tests'
 			},
 			{
 				name: '- ARCHIVE current Reference',
@@ -50,6 +46,10 @@ var questionsTestType = [
 			{
 				name: '- UNLOCK current Reference',
 				value: 'unlock-reference'
+			},
+			{
+				name: '- BLESS existing Reference',
+				value: 'bless'
 			},
 			{
 				name: '- DELETE a Test Group from generated Tests',
