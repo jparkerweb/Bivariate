@@ -25,9 +25,9 @@ module.exports = function(testGroup) {
 
 		"casperFlags": [],
 		"engine": "phantomjs",
-		//"engine": "slimerjs",
 		"report": ["browser"],
 		// "report": ["CLI", "browser"],
 		"debug": false,
+		"cliExitOnFail": false
 	};
 };
