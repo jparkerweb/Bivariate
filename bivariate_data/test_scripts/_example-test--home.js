@@ -19,7 +19,7 @@ var selectors = [                           // selectors for elements to be "cap
 var onBeforeScript = null;          // Runs before each scenario
 									// -- use for setting cookies or other env state
 									// (.js suffix is optional / looks for file in 'casper_script' dir)
-var onReadyScript = null;           // Runs after onReady event on all scenarios
+var onReadyScript = 'onReady-Example.js'; //null;           // Runs after onReady event on all scenarios
 									// -- use for simulating interactions
 									// (.js suffix is optional / looks for file in 'casper_script' dir)
 var hideSelectors = [];             // hide elements from view by changing its "visibility" to "hidden"

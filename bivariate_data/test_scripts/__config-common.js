@@ -11,11 +11,11 @@ module.exports = function(testGroup) {
 
 		// Paths
 		"paths": {
-			"bitmaps_reference": "backstop_data/bitmaps_reference/" + testGroup,
-			"bitmaps_test": "backstop_data/bitmaps_test/" + testGroup,
-			"casper_scripts": "bivariate_data/casper_scripts",
-			"html_report": "backstop_data/html_report/" + testGroup,
-			"ci_report": "backstop_data/ci_report/" + testGroup
+			"bitmaps_reference": "./backstop_data/bitmaps_reference/" + testGroup,
+			"bitmaps_test": "./backstop_data/bitmaps_test/" + testGroup,
+			"engine_scripts": "./bivariate_data/engine_scripts",
+			"html_report": "./backstop_data/html_report/" + testGroup,
+			"ci_report": "./backstop_data/ci_report/" + testGroup
 		},
 
 		// report
@@ -23,11 +23,10 @@ module.exports = function(testGroup) {
 			"testSuiteName" :  testGroup
 		},
 
-		"casperFlags": [],
-		"engine": "phantomjs",
+		"engine": "chromy",
 		"report": ["browser"],
-		// "report": ["CLI", "browser"],
 		"debug": false,
-		"cliExitOnFail": false
+		"cliExitOnFail": true,
+		"debugWindow": false
 	};
 };
