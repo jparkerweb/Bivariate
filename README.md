@@ -13,15 +13,15 @@ This goal is achieved by enforcing an opinionated grouping structure, providing 
 
 
 ## Installation
-**Bivariate** runs in [Node](https://nodejs.org) and also requires [Python](https://www.python.org/) for it's DOM manipulation capabilities (leveraging CasperJS).
+**Bivariate** runs in [Node](https://nodejs.org).
 
-* Download the Latest version of Bivariate
+* Download the Latest version of [Bivariate](https://github.com/jparkerweb/Bivariate/archive/master.zip)
+
+* Ensure you have the latest version of [Chrome](https://www.google.com/chrome/browser/) installed
 
 * Install [NodeJS](https://nodejs.org)
 
-* Install [Python](https://www.python.org/)
-
-* Run the following from the command line (in the Bivariate directory):  
+* Run the following from the command line (in the extracted Bivariate directory):  
 `npm install`
 
 
@@ -31,9 +31,9 @@ This goal is achieved by enforcing an opinionated grouping structure, providing 
 
 `bivariate_data`  
 |  
-+---- `test_scripts` holds user defined configuration and tests for to instruct BackstopJS  
++---- `test_scripts` holds user defined configuration and tests used to instruct BackstopJS  
 |  
-+---- `casper_scripts` holds user defined CasperJS scripts for interacting with the DOM before saving a screen shot  
++---- `engine_scripts` holds user defined Chromy scripts for interacting with the Chrome DOM before saving a screen shot  
 |  
 +---- `bitmaps_reference_archive` holds archived *references* that can be restored and tested against  
 
@@ -166,9 +166,9 @@ module.exports = mixIn(
 
 
 
-### casper_scripts
+### engine_scripts
 
-CasperJS scripts are used to interact with your web pages using the `before` and `on ready` events.  Each test you create has an optional parameter of `onBeforeScript` & `onReadyScript`.  These can simply point to script files in the 'casper_scripts' directory.  The two example scripts found in the `casper_scripts` directory should be self explanitory (`onBefore-Example.js` & `onReady-Example.js`).  In addition you can refer to the [CasterJS Docs](http://docs.casperjs.org/en/latest/) for more advanced examples.
+engine scripts are used to interact with your web pages using the `before` and `on ready` events.  Each test you create has an optional parameter of `onBeforeScript` & `onReadyScript`.  These can simply point to script files in the 'engine_scripts' directory.  The two example scripts found in the `engine_scripts` directory should be self explanitory (`onBefore-Example.js` & `onReady-Example.js`).  In addition you can refer to the [Chromy Docs](https://github.com/OnetapInc/chromy/) for more advanced examples.
 
 
 ### bitmaps_reference_archive
