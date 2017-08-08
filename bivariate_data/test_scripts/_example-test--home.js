@@ -7,23 +7,23 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = "Example Test - Home Page";     // test name
-var route = "/index.html";                  // the route for this test (start with a '/')
-var selectors = [                           // selectors for elements to be "captured" (CSS selector syntax)
+var label = "Example Test - Home Page";		// test name
+var route = "/index.html";					// the route for this test (start with a '/')
+var selectors = [							// selectors for elements to be "captured" (CSS selector syntax)
 	"document",
 	"h1",
 	".hero",
 	".nav",
 	".body-content"
 ];
-var onBeforeScript = null;          // Runs before each scenario
-									// -- use for setting cookies or other env state
-									// (.js suffix is optional / looks for file in 'casper_script' dir)
-var onReadyScript = 'onReady-Example.js'; //null;           // Runs after onReady event on all scenarios
-									// -- use for simulating interactions
-									// (.js suffix is optional / looks for file in 'casper_script' dir)
-var hideSelectors = [];             // hide elements from view by changing its "visibility" to "hidden"
-var removeSelectors = [];           // remove elements from the DOM before screen capture
+var onBeforeScript = null;					// Runs before each scenario
+											// -- use for setting cookies or other env state
+											// (.js suffix is optional / looks for file in 'casper_script' dir)
+var onReadyScript = 'onReady-Example.js';	// Runs after onReady event on all scenarios
+											// -- use for simulating interactions
+											// (.js suffix is optional / looks for file in 'casper_script' dir)
+var hideSelectors = [];						// hide elements from view by changing its "visibility" to "hidden"
+var removeSelectors = [];					// remove elements from the DOM before screen capture
 
 
 
