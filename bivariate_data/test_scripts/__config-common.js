@@ -26,7 +26,9 @@ module.exports = function(testGroup) {
 		"engine": "chromy",
 		"report": ["browser"],
 		"debug": false,
-		"cliExitOnFail": true,
-		"debugWindow": false
+		"debugWindow": false,
+		
+		// bivariate options
+		"runcmdoutput": false
 	};
 };

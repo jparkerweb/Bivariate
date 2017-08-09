@@ -4,7 +4,7 @@
 
 var spawn = require('child_process').spawn;
 
-var runBackstopCommand = function(backstopCommand, testGroup) {
+var runBackstopCommand = function(backstopCommand, testGroup, testConfig) {
 	return new Promise(function(resolve, reject) {
 		var npmRunCmd = spawn(
 			'npm.cmd',
@@ -17,21 +17,30 @@ var runBackstopCommand = function(backstopCommand, testGroup) {
 			{ cwd: './node_modules/backstopjs'}
 		);
 
-		// -- standard output --
-		npmRunCmd.stdout.on('data', function (data) {
-			console.log('' + data);
-		});
+		if(testConfig.runcmdoutput) {
+			// -- standard output --
+			npmRunCmd.stdout.on('data', function (data) {
+				console.log('' + data);
+			});
+	
+			// -- error output --
+			npmRunCmd.stderr.on('data', function (data) {
+				console.log(('stderr: ' + data).bgRed.white);
+			});
 
-		// -- error output --
-		npmRunCmd.stderr.on('data', function (data) {
-			console.log(('stderr: ' + data).bgRed.white);
-		});
+			// -- exit --
+			npmRunCmd.on('exit', function (code) {
+				console.log(('child process exited with code ' + code).bgBlue.white);
+				resolve();
+			});
+		}
+		else {
+			// -- exit --
+			npmRunCmd.on('exit', function (code) {
+				resolve();
+			});
+		}
 
-		// -- exit --
-		npmRunCmd.on('exit', function (code) {
-			console.log(('child process exited with code ' + code).bgBlue.white);
-			resolve();
-		});
 	});
 };
 

@@ -1,7 +1,7 @@
-// ***********************************************************************
-// ** Bivariate is an interface for BackstopJS, which uses CasperJS and **
-// ** requres Python to be installed on your machine                    **
-// ***********************************************************************
+// **********************************************
+// ** Bivariate is an opinionated interface    **
+// ** for writing and running BackstopJS tests **
+// **********************************************
 // jshint esversion: 6
 
 var colors = require("colors");                 // pretty console colors
@@ -19,6 +19,11 @@ var checkForExistingReferences = require('./app_modules/_checkForExistingReferen
 var testGroupActions = require('./app_modules/_testGroupActions');
 var getTestGroups = require('./app_modules/_getTestGroups');
 var deleteFolder = require('./app_modules/_deleteFolder');
+
+var testConfig = require('./bivariate_data/test_scripts/__config-common.js')();
+// options:
+//		runcmdoutput: true / false <-- log stdout/stderr
+
 
 
 // -----------------
@@ -52,7 +57,7 @@ function abracadabra(msg) {
 							if(existingReferenceList.length > 0) {
 								checkForExistingTests(false).then(function(testList){
 									if(testList.length > 0) {
-										testGroupActions(answerAction.testType, existingReferenceList, spinner)
+										testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 											.then(function(message){
 												abracadabra(message);
 											});
@@ -121,7 +126,7 @@ function abracadabra(msg) {
 							else if(!isLocked && existingReferenceList.length > 0) {
 								// DELETE Refererence Group
 								if(answerAction.testType === 'delete-testgroup-reference') {
-									testGroupActions(answerAction.testType, existingReferenceList, spinner)
+									testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 										.then(function(message){
 											pressEnterToContinue('press enter to continue...', function(){
 												abracadabra(message);
@@ -130,9 +135,10 @@ function abracadabra(msg) {
 								}
 								// DELETE Reference directories
 								else {
-									deleteFolder('Current References', 'backstop_data/bitmaps_reference')
+									console.log("deleting references:", existingReferenceList);
+									deleteFolder('Current References', 'backstop_data/bitmaps_reference', true)
 										.then(function() {
-											pressEnterToContinue('press enter to continue...', abracadabra);
+											pressEnterToContinue('Press enter to continue...', abracadabra);
 										});
 								}
 							}
@@ -219,7 +225,7 @@ function abracadabra(msg) {
 								pressEnterToContinue('press enter to continue...', abracadabra);
 							}
 							else {
-								testGroupActions(answerAction.testType, existingReferenceList, spinner)
+								testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 									.then(function(message){
 										pressEnterToContinue(message + "Press enter to return to the main menu...", abracadabra);
 									})
@@ -242,7 +248,7 @@ function abracadabra(msg) {
 								.then(function([existingReferenceList, isLocked]) {
 									// BLESS
 									if(answerAction.testType === 'bless') {
-										testGroupActions(answerAction.testType, existingReferenceList, spinner)
+										testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 											.then(function(message){
 												abracadabra(message);
 											});
@@ -252,9 +258,9 @@ function abracadabra(msg) {
 										getTestGroups()
 											.then(function(testGroups) {
 												if(testGroups.length > 0) {
-													testGroupActions(answerAction.testType, existingReferenceList, spinner)
+													testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 														.then(function(message){
-															abracadabra(message);
+															pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
 														});
 												}
 												else {
@@ -278,7 +284,7 @@ function abracadabra(msg) {
 					checkForExistingTests(false)
 						.then(function(existingTests) {
 
-							testGroupActions(answerAction.testType, existingTests, spinner)
+							testGroupActions(answerAction.testType, existingTests, spinner, testConfig)
 								.then(function(message){
 									pressEnterToContinue('press enter to continue...', function(){
 										abracadabra(message);
@@ -289,7 +295,7 @@ function abracadabra(msg) {
 					break;
 
 				default:
-					testGroupActions(answerAction.testType, [], spinner)
+					testGroupActions(answerAction.testType, [], spinner, testConfig)
 						.then(function(message){
 							abracadabra(message);
 						});

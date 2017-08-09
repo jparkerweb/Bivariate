@@ -3,7 +3,7 @@
 // --------------------------------------------------------
 // jshint esversion: 6
 
-var testGroupActions = function testGroupActions(answerTestType, matchArr, spinner) {
+var testGroupActions = function testGroupActions(answerTestType, matchArr, spinner, testConfig) {
 	var inquirer = require('inquirer');
 	var questionsTestGroup = require('./_questionsTestGroup');
 	var runBackstopCommand = require('./_runBackstopCommand');
@@ -50,7 +50,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								shortCircuit = true;
 
 								// run selected action on the test group
-								runBackstopCommand(answerTestType, answerTestGroup.testGroup)
+								runBackstopCommand(answerTestType, answerTestGroup.testGroup, testConfig)
 									.then(function() {
 										spinner.stop();
 										resolve('\n' + exitMessage + ' \n');
@@ -62,8 +62,6 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								deleteFolder('Test: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_test/' + answerTestGroup.testGroup, false)
 									.then(function() {
 										exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.';
-
-										resolve('');
 									});
 
 								break;
@@ -114,7 +112,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 						if(!shortCircuit) {
 							// run selected action on the test group
-							return runBackstopCommand(answerTestType, answerTestGroup.testGroup)
+							return runBackstopCommand(answerTestType, answerTestGroup.testGroup, testConfig)
 								.then(function() {
 									spinner.stop();
 									resolve('\n' + exitMessage + ' \n');
