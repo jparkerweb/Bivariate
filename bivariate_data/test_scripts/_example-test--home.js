@@ -18,10 +18,10 @@ var selectors = [							// selectors for elements to be "captured" (CSS selector
 ];
 var onBeforeScript = null;					// Runs before each scenario
 											// -- use for setting cookies or other env state
-											// (.js suffix is optional / looks for file in 'casper_script' dir)
+											// (.js suffix is optional / looks for file in 'engine_scripts' dir)
 var onReadyScript = 'onReady-Example.js';	// Runs after onReady event on all scenarios
 											// -- use for simulating interactions
-											// (.js suffix is optional / looks for file in 'casper_script' dir)
+											// (.js suffix is optional / looks for file in 'engine_scripts' dir)
 var hideSelectors = [];						// hide elements from view by changing its "visibility" to "hidden"
 var removeSelectors = [];					// remove elements from the DOM before screen capture
 

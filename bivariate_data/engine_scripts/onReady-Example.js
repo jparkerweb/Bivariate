@@ -4,7 +4,7 @@ module.exports = function (chromy, scenario, vp) {
 	const testData = require('./data/test-data.json');
 	
 	return chromy
-		.evaluate(`_testData = '" " + ${testData.sometext}'`)
+		.evaluate(`_testData = ' ${testData.sometext}'`)
 		.evaluate(function() {
 			console.log('This custom script is running inside your web app!');
 			document.querySelectorAll(".container > p")[3].append(_testData);
