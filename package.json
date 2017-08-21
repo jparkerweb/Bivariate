@@ -11,7 +11,7 @@
   "author": "jparkerweb",
   "license": "ISC",
   "dependencies": {
-    "backstopjs": "git+https://github.com/jparkerweb/BackstopJS#chromy-legacy-fix",
+    "backstopjs": "git+https://github.com/jparkerweb/BackstopJS#master-legacy-fix",
     "cli-spinner": "0.2.6",
     "colors": "1.1.2",
     "inquirer": "^3.2.1",
