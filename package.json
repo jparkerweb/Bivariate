@@ -1,6 +1,6 @@
 {
   "name": "bivariate",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "An opinionated interface for writing, running, and saving BackstopJS tests",
   "main": "app.js",
   "scripts": {
