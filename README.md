@@ -1,6 +1,6 @@
+# ![Bivariate](bivariate.png)
 
-![Bivariate](bivariate.png)
-##### *An opinionated interface for writing, running, and saving BackstopJS tests*
+***An opinionated interface for writing, running, and saving BackstopJS tests***
 
 
 ## Goal
@@ -17,7 +17,8 @@ This goal is achieved by enforcing an opinionated grouping structure, providing 
 
 * Download the Latest version of [Bivariate](https://github.com/jparkerweb/Bivariate/archive/master.zip)
 
-* Ensure you have the latest version of [Chrome](https://www.google.com/chrome/browser/) installed
+* Ensure you have version 59 or greater of [Chrome](https://www.google.com/chrome/browser/) installed.
+  Bivariate utilizes headless Chrome which started shipping in Chrome v59
 
 * Install [NodeJS](https://nodejs.org)
 
@@ -48,7 +49,7 @@ All configuration files are prefixed with a double underscore: \_\_
 
 ###### \_\_config-baseURLs.js
 holds the *base* URLs for all References and Tests to be run.  
-```
+```js
 ...
   // do not use a trailing slash in the base URLs
   theURLS.baseURL = "http://your-base-url";
