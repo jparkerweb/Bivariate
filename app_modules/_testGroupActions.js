@@ -6,7 +6,7 @@
 var testGroupActions = function testGroupActions(answerTestType, matchArr, spinner, testConfig) {
 	var inquirer = require('inquirer');
 	var questionsTestGroup = require('./_questionsTestGroup');
-	var runBackstopCommand = require('./_runBackstopCommand');
+	var backstopjs = require('backstopjs');
 	var deleteFolder = require('./_deleteFolder');
 	var blank = require('./_blankLine');
 	var cls = require('./_clearConsole');
@@ -50,7 +50,9 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								shortCircuit = true;
 
 								// run selected action on the test group
-								runBackstopCommand(answerTestType, answerTestGroup.testGroup, testConfig)
+								backstopjs(answerTestType, {
+										config: require('./../bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js')
+									})
 									.then(function() {
 										spinner.stop();
 										resolve('\n' + exitMessage + ' \n');
@@ -71,8 +73,8 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 								break;
 
-							case 'bless':
-								exitMessage = 'Finished BLESSing your existing Reference for group "' + answerTestGroup.testGroup + '".\nYou can now run a Test for this group.';
+							case 'approve':
+								exitMessage = 'Finished APPROVing your existing Reference for group "' + answerTestGroup.testGroup + '".\nYou can now run a Test for this group.';
 
 								break;
 
@@ -112,15 +114,16 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 						if(!shortCircuit) {
 							// run selected action on the test group
-							return runBackstopCommand(answerTestType, answerTestGroup.testGroup, testConfig)
+							backstopjs(answerTestType, {
+									config: require('./../bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js')
+								})
 								.then(function() {
 									spinner.stop();
 									resolve('\n' + exitMessage + ' \n');
 								})
 								.catch(function(err) {
 									spinner.stop();
-									console.log(('ERROR RUNNING BACKSTOPJS COMMAND').bgRed.white.bold);
-									reject();
+									resolve('\n' + ' Mismatch(es) Found > '.bgMagenta.white + '\n' + exitMessage + ' \n\n');
 								});
 						}
 					}

@@ -48,7 +48,8 @@ function checkForExistingReferences(logit) {
 
 
 					forEach(existingReferenceList, function(val){
-						console.log((' ' + val + ' ').bgBlue.white.bold);
+						var displayVal = ' ' + val + ' ';
+						console.log(displayVal.bgBlue.white);
 					});
 					blank();
 				} else {

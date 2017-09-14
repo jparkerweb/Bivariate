@@ -1,6 +1,12 @@
 // -------------------------------
 // - setup "Test Type" questions -
 // -------------------------------
+// TODO: Add back the following APPROVE option
+// {
+// 	name: '- APPROVE most recent Test',
+// 	value: 'approve'
+// },
+
 var questionsTestType = [
 	{
 		type: 'list',
@@ -46,10 +52,6 @@ var questionsTestType = [
 			{
 				name: '- UNLOCK current Reference',
 				value: 'unlock-reference'
-			},
-			{
-				name: '- BLESS existing Reference',
-				value: 'bless'
 			},
 			{
 				name: '- DELETE a Test Group from generated Tests',

@@ -38,12 +38,13 @@ function checkForExistingTests(logit) {
 			if (logit) {
 				if (existingTestList.length > 0) {
 					blank();
-					console.log(('-------------------').bgCyan.white);
-					console.log(('- Generated Tests -').bgCyan.white);
-					console.log(('-------------------').bgCyan.white);
+					console.log(('-------------------').bgBlue.white);
+					console.log(('- Generated Tests -').bgBlue.white);
+					console.log(('-------------------').bgBlue.white);
 
 					forEach(existingTestList, function(val){
-						console.log((' ' + val + ' ').bgCyan.white.bold);
+						var displayVal = ' ' + val + ' ';
+						console.log(displayVal.bgBlue.white);
 					});
 
 					blank();

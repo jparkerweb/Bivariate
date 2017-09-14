@@ -39,7 +39,8 @@ var checkForArchiveReferences = function checkForArchiveReferences(logit) {
 					console.log(('------------------' + '\n').bgCyan.white);
 
 					forEach(archiveReferenceList, function(val){
-						console.log((' ' + val + ' ').bgCyan.white.bold);
+						var displayVal = ' ' + val + ' ';
+						console.log(displayVal.bgCyan.white);
 					});
 
 					blank();

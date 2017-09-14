@@ -10,14 +10,14 @@ var lockReference = function lockReference(lockIt) {
 		if(lockIt) {
 			touch('./backstop_data/bitmaps_reference/LOCKED');
 			blank();
-			console.log(('\nReference is now LOCKED...').bgBlue.white.bold);
+			console.log('\nReference is now LOCKED...'.bgBlue.white);
 
 			resolve();
 		}
 		else {
 			cmd.get('rimraf backstop_data/bitmaps_reference/LOCKED', function(data) {
 				// console.log('', data);
-				console.log(('Reference is now UNLOCKED...').bgBlue.white.bold);
+				console.log('\nReference is now UNLOCKED...'.bgBlue.white);
 
 				resolve();
 			});
