@@ -25,14 +25,13 @@ var deleteFolder = function(friendlyName, path, confirm) {
 					return new Promise(function(resolve, reject) {
 						if(answer.confirmDelete) {
 							cmd.get('rimraf ./'+ path, function(data) {
-								//console.log('\n\n', data);
 								console.log((friendlyName + ' Deleted...').bgRed.white);
 
 								resolve();
 							});
 						} else {
 							blank();
-							console.log((friendlyName + ' ').bgCyan.white + ('NOT').bgCyan.white.bold + (' Deleted...').bgCyan.white);
+							console.log((friendlyName + ' ').bgBlue.white + 'NOT'.bgBlue.white + (' Deleted...').bgBlue.white);
 
 							resolve();
 						}

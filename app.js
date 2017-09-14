@@ -41,6 +41,7 @@ function abracadabra(msg) {
 	asciiLogo();
 
 	if (typeof msg === 'undefined' ) { msg = ''; }
+	console.log('-----------------------------------------'.bgWhite.black);
 	console.log((msg).bgWhite.black);
 
 	var questionsTestType = require('./app_modules/_questionsTestType');
@@ -173,7 +174,7 @@ function abracadabra(msg) {
 							pressEnterToContinue('press enter to continue...', abracadabra); // restart app
 						})
 						.catch(function(err) {
-							console.log((err).bgRed.white.bold);
+							console.log(err.bgRed.white);
 						});
 
 					break;
@@ -187,7 +188,7 @@ function abracadabra(msg) {
 							pressEnterToContinue('press enter to continue...', abracadabra); // restart app
 						})
 						.catch(function(err) {
-							console.log((err).bgRed.white.bold);
+							console.log(err.bgRed.white);
 						});
 
 					break;
@@ -237,8 +238,37 @@ function abracadabra(msg) {
 
 					break;
 
+				// RUN APPROVE
+				// -- TODO: FIX APPROVE --
+				case 'approve':
+					// test to see if a test exists
+					checkIfDirectroyExists('./backstop_data/bitmaps_test')
+					.then(function() {
+						// APPROVE
+						if(answerAction.testType === 'approve') {
+							console.log('When running this command, all images (with changes) from your');
+							console.log('most recent test batch will be promoted to your reference collection.');
+							console.log('Subsequent tests will be compared against your updated reference files.');
+
+							getTestGroups()
+								.then(function(testGroups) {
+									if(testGroups.length > 0) {
+										testGroupActions(answerAction.testType, testGroups, spinner, testConfig)
+											.then(function(message){
+												pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
+											});
+									}
+									else {
+										blank();
+										console.log(('You don\'t have any Test Groups to Approve.').bgRed.white);
+									}
+								});
+						}
+					});
+
+					break;
+
 				// RUN TEST
-				case 'bless':
 				case 'test':
 					// test to see if a reference exists
 					checkIfDirectroyExists('./backstop_data/bitmaps_reference')
@@ -246,29 +276,20 @@ function abracadabra(msg) {
 
 							checkForExistingReferences(false)
 								.then(function([existingReferenceList, isLocked]) {
-									// BLESS
-									if(answerAction.testType === 'bless') {
-										testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-											.then(function(message){
-												abracadabra(message);
-											});
-									}
 									// TEST
-									else {
-										getTestGroups()
-											.then(function(testGroups) {
-												if(testGroups.length > 0) {
-													testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-														.then(function(message){
-															pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
-														});
-												}
-												else {
-													blank();
-													console.log(('You don\'t have any Test Groups to run a Test from.').bgRed.white);
-												}
-											});
-									}
+									getTestGroups()
+										.then(function(testGroups) {
+											if(testGroups.length > 0) {
+												testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
+													.then(function(message){
+														pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
+													});
+											}
+											else {
+												blank();
+												console.log(('You don\'t have any Test Groups to run a Test from.').bgRed.white);
+											}
+										});
 								});
 						})
 						.catch(function() {
@@ -316,8 +337,8 @@ function abracadabra(msg) {
 				cls();
 				asciiLogo();
 
-				console.log(('\nThanks for using ').green + ('Bivariate').bold.cyan);
-				console.log(('Have a Great Day!\n').green);
+				console.log('\nThanks for using '.green + 'Bivariate'.cyan);
+				console.log('Have a Great Day!\n'.green);
 			});
 		}
 	});
