@@ -1,7 +1,17 @@
 {
   "name": "bivariate",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "An opinionated interface for writing, running, and saving BackstopJS tests",
+  "keywords": [
+      "BackstopJS",  
+      "css",
+      "test",
+      "testing",
+      "visual",
+      "regression",
+      "testing",
+      "visual regression testing"
+  ],
   "repository" : { 
       "type" : "git",
       "url" : "https://github.com/jparkerweb/bivariate.git"
