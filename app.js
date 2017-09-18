@@ -348,7 +348,16 @@ function abracadabra(msg) {
 // *************
 checkIfDirectroyExists(getPath('bivariate_data'))
 	.then(function() {
-		abracadabra();
+		var libsSrc = path.join(__dirname, 'init-bivariate-data/libs/');
+		var libsDest = path.join(process.cwd(), 'bivariate_data/libs/');
+		var copy = require('recursive-copy');
+
+		copy(libsSrc, libsDest, function(error, results) {
+			if (error) {
+				console.error('libs failed: ' + error);
+			} else {
+				abracadabra();
+			}
 	})
 	.catch(function() {
 		return inquirer.prompt(
@@ -412,3 +421,4 @@ checkIfDirectroyExists(getPath('bivariate_data'))
 				});
 			});
 	});
+});
