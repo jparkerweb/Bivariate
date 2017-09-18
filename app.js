@@ -210,13 +210,13 @@ function abracadabra(msg) {
 								.then(function() {
 									pressEnterToContinue('press enter to continue...', abracadabra);
 								});
-					})
-					.catch(function() {
-						blank();
-						console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white);
+						})
+						.catch(function() {
+							blank();
+							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white);
 
-						pressEnterToContinue('press enter to continue...', abracadabra);
-					});
+							pressEnterToContinue('press enter to continue...', abracadabra);
+						});
 
 					break;
 
