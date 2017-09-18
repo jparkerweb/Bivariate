@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // **********************************************
 // ** Bivariate is an opinionated interface    **
 // ** for writing and running BackstopJS tests **
