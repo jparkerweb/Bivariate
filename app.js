@@ -42,7 +42,7 @@ spinner.setSpinnerString(25);
 // ----------------------------
 function abracadabra(msg) {
 	testConfig = require(getPath('bivariate_data/test_scripts/__config-common.js'))();
-	
+
 	cls();
 	asciiLogo();
 
@@ -358,6 +358,7 @@ checkIfDirectroyExists(getPath('bivariate_data'))
 			} else {
 				abracadabra();
 			}
+		})
 	})
 	.catch(function() {
 		return inquirer.prompt(
@@ -396,7 +397,7 @@ checkIfDirectroyExists(getPath('bivariate_data'))
 								)
 								.then(function (answer) {
 									return new Promise(function(resolve, reject) {
-										if(answer.confirmStartapp) {					
+										if(answer.confirmStartapp) {
 											abracadabra();
 										} else {
 											cls();
@@ -408,9 +409,9 @@ checkIfDirectroyExists(getPath('bivariate_data'))
 											resolve();
 										}
 									});
-								});	
+								});
 							}
-						});						
+						});
 
 					} else {
 						blank();
@@ -421,4 +422,3 @@ checkIfDirectroyExists(getPath('bivariate_data'))
 				});
 			});
 	});
-});
