@@ -5,6 +5,7 @@
 var walk = require('walk');                     // file system walker (get file names)
 var forEach = require('mout/array/forEach');    // foreach array util
 var sort = require('mout/array/sort');          // sort array util
+var getPath = require('./_getPath');
 var blank = require('./_blankLine');
 
 
@@ -12,7 +13,7 @@ function checkForExistingReferences(logit) {
 	if (typeof logit === 'undefined' ) { logit = false; }
 
 	var existingReferenceList = [];
-	var baseDir = "./backstop_data/bitmaps_reference/";
+	var baseDir = getPath("backstop_data/bitmaps_reference");
 	var walker = walk.walk(baseDir, { followLinks: false });
 	var checkIfFileExists = require('./_checkIfFileExists');
 	var isLocked = false;
