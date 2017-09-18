@@ -5,6 +5,7 @@
 var walk = require('walk');                     // file system walker (get file names)
 var forEach = require('mout/array/forEach');    // foreach array util
 var sort = require('mout/array/sort');          // sort array util
+var getPath = require('./_getPath');
 var blank = require('./_blankLine');
 
 
@@ -12,7 +13,7 @@ var checkForArchiveReferences = function checkForArchiveReferences(logit) {
 	if (typeof logit === 'undefined' ) { logit = false; }
 
 	var archiveReferenceList = [];
-	var baseDir = "./bivariate_data/bitmaps_reference_archive/";
+	var baseDir = getPath("bivariate_data/bitmaps_reference_archive");
 	var walker = walk.walk(baseDir, { followLinks: false });
 	var checkIfFileExists = require('./_checkIfFileExists');
 

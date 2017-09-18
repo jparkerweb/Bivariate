@@ -10,6 +10,7 @@ var colors = require("colors");                 // pretty console colors
 var inquirer = require('inquirer');             // prompt questions and gather answers
 var Spinner = require('cli-spinner').Spinner;   // cool console spinner (progress indicator)
 var spawn = require('child_process').spawn;     // built in node module for spawing child processes
+var path = require('path');
 
 var pressEnterToContinue = require('./app_modules/_pressEnterToContinue');
 var cls = require('./app_modules/_clearConsole');
@@ -20,9 +21,10 @@ var checkForExistingTests = require('./app_modules/_checkForExistingTests');
 var checkForExistingReferences = require('./app_modules/_checkForExistingReferences');
 var testGroupActions = require('./app_modules/_testGroupActions');
 var getTestGroups = require('./app_modules/_getTestGroups');
+var getPath = require('./app_modules/_getPath');
 var deleteFolder = require('./app_modules/_deleteFolder');
 
-var testConfig = require('./bivariate_data/test_scripts/__config-common.js')();
+var testConfig;
 // options:
 //		runcmdoutput: true / false <-- log stdout/stderr
 
@@ -39,6 +41,8 @@ spinner.setSpinnerString(25);
 // - abracadabra - it's Magic -
 // ----------------------------
 function abracadabra(msg) {
+	testConfig = require(getPath('bivariate_data/test_scripts/__config-common.js'))();
+	
 	cls();
 	asciiLogo();
 
@@ -198,7 +202,7 @@ function abracadabra(msg) {
 				// LOCK / UNLOCK Current Reference
 				case 'lock-reference':
 				case 'unlock-reference':
-					checkIfDirectroyExists('./backstop_data/bitmaps_reference')
+					checkIfDirectroyExists(getPath('backstop_data/bitmaps_reference'))
 						.then(function() {
 							var lockIt = (answerAction.testType === 'lock-reference' ? true : false);
 
@@ -242,38 +246,38 @@ function abracadabra(msg) {
 
 				// RUN APPROVE
 				// -- TODO: FIX APPROVE --
-				case 'approve':
-					// test to see if a test exists
-					checkIfDirectroyExists('./backstop_data/bitmaps_test')
-					.then(function() {
-						// APPROVE
-						if(answerAction.testType === 'approve') {
-							console.log('When running this command, all images (with changes) from your');
-							console.log('most recent test batch will be promoted to your reference collection.');
-							console.log('Subsequent tests will be compared against your updated reference files.');
+				// case 'approve':
+				// 	// test to see if a test exists
+				// 	checkIfDirectroyExists(getPath('backstop_data/bitmaps_test'))
+				// 	.then(function() {
+				// 		// APPROVE
+				// 		if(answerAction.testType === 'approve') {
+				// 			console.log('When running this command, all images (with changes) from your');
+				// 			console.log('most recent test batch will be promoted to your reference collection.');
+				// 			console.log('Subsequent tests will be compared against your updated reference files.');
 
-							getTestGroups()
-								.then(function(testGroups) {
-									if(testGroups.length > 0) {
-										testGroupActions(answerAction.testType, testGroups, spinner, testConfig)
-											.then(function(message){
-												pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
-											});
-									}
-									else {
-										blank();
-										console.log(('You don\'t have any Test Groups to Approve.').bgRed.white);
-									}
-								});
-						}
-					});
+				// 			getTestGroups()
+				// 				.then(function(testGroups) {
+				// 					if(testGroups.length > 0) {
+				// 						testGroupActions(answerAction.testType, testGroups, spinner, testConfig)
+				// 							.then(function(message){
+				// 								pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
+				// 							});
+				// 					}
+				// 					else {
+				// 						blank();
+				// 						console.log(('You don\'t have any Test Groups to Approve.').bgRed.white);
+				// 					}
+				// 				});
+				// 		}
+				// 	});
 
-					break;
+				// 	break;
 
 				// RUN TEST
 				case 'test':
 					// test to see if a reference exists
-					checkIfDirectroyExists('./backstop_data/bitmaps_reference')
+					checkIfDirectroyExists(getPath('backstop_data/bitmaps_reference'))
 						.then(function() {
 
 							checkForExistingReferences(false)
@@ -325,23 +329,11 @@ function abracadabra(msg) {
 			} //\ end switch
 		}
 		else {
-			var npmRunStop = spawn('npm.cmd', ['run', 'stop'], {
-				cwd: './node_modules/backstopjs'
-			});
+			cls();
+			asciiLogo();
 
-			// -- error output --
-			npmRunStop.stderr.on('data', function (data) {
-				console.log(('stderr: ' + data).bgRed.white);
-			});
-
-			// -- exit --
-			npmRunStop.on('exit', function (code) {
-				cls();
-				asciiLogo();
-
-				console.log('\nThanks for using '.green + 'Bivariate'.cyan);
-				console.log('Have a Great Day!\n'.green);
-			});
+			console.log('\nThanks for using '.green + 'Bivariate'.cyan);
+			console.log('Have a Great Day!\n'.green);
 		}
 	});
 }
@@ -354,4 +346,69 @@ function abracadabra(msg) {
 // *************
 // ** Run App **
 // *************
-abracadabra();
+checkIfDirectroyExists(getPath('bivariate_data'))
+	.then(function() {
+		abracadabra();
+	})
+	.catch(function() {
+		return inquirer.prompt(
+				[{
+					type: 'confirm',
+					name: 'confirmInit',
+					message: 'No "bivariate_data" folder found.\nWould like like to generate the base/example test and configuration files?',
+					default: true
+				}]
+			)
+			.then(function (answer) {
+				return new Promise(function(resolve, reject) {
+					if(answer.confirmInit) {
+						var src = path.join(__dirname, 'init-bivariate-data');
+						var desc = path.join(process.cwd(), 'bivariate_data');
+
+						console.log("GENERATE DATA......");
+						// console.log("src", src);
+						// console.log("desc", desc);
+
+						var copy = require('recursive-copy');
+
+						copy(src, desc, function(error, results) {
+							if (error) {
+								console.error('config file generation failed: ' + error);
+							} else {
+								console.log('Generated base/example test and configuration files.');
+
+								return inquirer.prompt(
+									[{
+										type: 'confirm',
+										name: 'confirmStartapp',
+										message: 'Would you like to run Bivariate with the newly generated example tests and configuration?',
+										default: true
+									}]
+								)
+								.then(function (answer) {
+									return new Promise(function(resolve, reject) {
+										if(answer.confirmStartapp) {					
+											abracadabra();
+										} else {
+											cls();
+											asciiLogo();
+
+											console.log('\nThanks for using '.green + 'Bivariate'.cyan);
+											console.log('Have a Great Day!\n'.green);
+
+											resolve();
+										}
+									});
+								});	
+							}
+						});						
+
+					} else {
+						blank();
+						console.log('You can not run Bivariate without a "bivariate_data" folder containing your tests and configuration files');
+
+						resolve();
+					}
+				});
+			});
+	});

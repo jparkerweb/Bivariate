@@ -5,10 +5,12 @@
 
 var restoreReference = function restoreReference() {
 	var inquirer = require('inquirer');
+	var colors = require('colors');
 	var blank = require('./_blankLine');
 	var checkForExistingReferences = require('./_checkForExistingReferences');
 	var checkForArchiveReferences = require('./_checkForArchiveReferences');
 	var moveFolder = require('./_moveFolder');
+	var getPath = require('./_getPath');
 
 	return new Promise(function(resolve, reject) {
 
@@ -42,10 +44,13 @@ var restoreReference = function restoreReference() {
 										blank();
 										console.log(("Restoring Archive...").green);
 
-										var sourceFolder = './backstop_data/bitmaps_reference';
-										var archiveFolder = './bivariate_data/bitmaps_reference_archive';
+										var sourceFolder = 'backstop_data/bitmaps_reference/';
+										var archiveFolder = 'bivariate_data/bitmaps_reference_archive/';
 										archiveFolder += '/' + answer.restoreReference;
 										archiveFolder = archiveFolder.replace('[LOCKED]  ', '');
+										
+										sourceFolder = getPath(sourceFolder);
+										archiveFolder = getPath(archiveFolder);
 
 										return moveFolder(archiveFolder, sourceFolder, true)
 											.then(function() {
@@ -55,6 +60,9 @@ var restoreReference = function restoreReference() {
 												console.log(("--------------------").bgBlue.white);
 												blank();
 												resolve();
+											})
+											.catch(function(err) {
+												console.log(err.bgRed.white);
 											});
 									}
 								});

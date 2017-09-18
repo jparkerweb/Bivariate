@@ -1,10 +1,18 @@
 // -------------------------------
 // - setup "Test Type" questions -
 // -------------------------------
-// TODO: Add back the following APPROVE option
+// TODO: Add back the following options
 // {
 // 	name: '- APPROVE most recent Test',
 // 	value: 'approve'
+// },
+// {
+// 	name: '- DELETE a Test Group from generated Tests',
+// 	value: 'delete-testgroup-tests'
+// },
+// {
+// 	name: '- DELETE a Test Group from generated References',
+// 	value: 'delete-testgroup-reference'
 // },
 
 var questionsTestType = [
@@ -52,14 +60,6 @@ var questionsTestType = [
 			{
 				name: '- UNLOCK current Reference',
 				value: 'unlock-reference'
-			},
-			{
-				name: '- DELETE a Test Group from generated Tests',
-				value: 'delete-testgroup-tests'
-			},
-			{
-				name: '- DELETE a Test Group from generated References',
-				value: 'delete-testgroup-reference'
 			},
 			{
 				name: '- DELETE all Test data',

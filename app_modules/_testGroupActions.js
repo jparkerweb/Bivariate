@@ -11,6 +11,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 	var blank = require('./_blankLine');
 	var cls = require('./_clearConsole');
 	var asciiLogo = require('./_asciiLogo');
+	var getPath = require('./_getPath');
 	var colors = require("colors");
 
 	return new Promise(function(resolve, reject) {
@@ -51,7 +52,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 								// run selected action on the test group
 								backstopjs(answerTestType, {
-										config: require('./../bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js')
+										config: require(getPath('bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js'))
 									})
 									.then(function() {
 										spinner.stop();
@@ -115,7 +116,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 						if(!shortCircuit) {
 							// run selected action on the test group
 							backstopjs(answerTestType, {
-									config: require('./../bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js')
+									config: require(getPath('bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js'))
 								})
 								.then(function() {
 									spinner.stop();

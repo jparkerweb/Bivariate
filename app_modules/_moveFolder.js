@@ -11,6 +11,11 @@ var moveFolder = function moveit(fromLocation, toLocation, logit) {
 	return new Promise(function(resolve, reject){
 		if (typeof logit === 'undefined' ) { logit = false; }
 
+		if (logit) {
+			console.log("fromLocation", fromLocation);
+			console.log("toLocation", toLocation);
+		}
+		
 		mv(fromLocation, toLocation, {mkdirp: true}, function(err) {
 			// done. it first created all the necessary directories, and then
 			// tried fs.rename, then falls back to using ncp to copy the dir
