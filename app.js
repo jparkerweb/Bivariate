@@ -352,7 +352,7 @@ checkIfDirectroyExists(getPath('bivariate_data'))
 		var libsDest = path.join(process.cwd(), 'bivariate_data/libs/');
 		var copy = require('recursive-copy');
 
-		copy(libsSrc, libsDest, function(error, results) {
+		copy(libsSrc, libsDest, { overwrite: true }, function(error, results) {
 			if (error) {
 				console.error('libs failed: ' + error);
 			} else {
