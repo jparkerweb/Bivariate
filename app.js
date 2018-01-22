@@ -12,6 +12,7 @@ var Spinner = require('cli-spinner').Spinner;   // cool console spinner (progres
 var spawn = require('child_process').spawn;     // built in node module for spawing child processes
 var path = require('path');
 
+var pjson = require('./package.json');
 var pressEnterToContinue = require('./app_modules/_pressEnterToContinue');
 var cls = require('./app_modules/_clearConsole');
 var blank = require('./app_modules/_blankLine');
@@ -47,7 +48,7 @@ function abracadabra(msg) {
 	asciiLogo();
 
 	if (typeof msg === 'undefined' ) { msg = ''; }
-	console.log('-----------------------------------------'.bgWhite.black);
+	console.log('-----------------------------------'.bgWhite.black + pjson.version.bgWhite.black + '-'.bgWhite.black);
 	console.log((msg).bgWhite.black);
 
 	var questionsTestType = require('./app_modules/_questionsTestType');
