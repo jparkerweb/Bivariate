@@ -1,6 +1,6 @@
 {
   "name": "bivariate",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "An opinionated interface for writing, running, and saving BackstopJS tests",
   "keywords": [
     "BackstopJS",
@@ -29,7 +29,7 @@
     "backstopjs": "3.0.39",
     "cli-spinner": "0.2.7",
     "colors": "1.1.2",
-    "inquirer": "5.0.1",
+    "inquirer": "^5.1.0",
     "mout": "1.1.0",
     "mv": "2.1.1",
     "node-cmd": "3.0.0",
