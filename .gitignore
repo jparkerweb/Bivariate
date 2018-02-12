@@ -13,3 +13,6 @@ example-site/npm-debug.log
 
 # Other
 .vscode
+
+# Test init files
+bivariate_data/*
