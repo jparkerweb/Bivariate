@@ -2,6 +2,10 @@
 node_modules/**/*
 backstop_data/**/*
 
+# lock files
+yarn.lock
+package-lock.json
+
 # Windows image file caches
 Thumbs.db
 # Windows Folder config file
