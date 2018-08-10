@@ -46,7 +46,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 						switch(answerTestType) {
 							// Start Reporting Server
-							case 'openReport':
+							case 'open-report':
 								exitMessage = 'Opening Report for \"' + answerTestGroup.testGroup +'\" in your Browser.\nIf the Report displays zero results, rerun the Test for the selected Group.';
 								shortCircuit = true;
 

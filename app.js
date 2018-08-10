@@ -57,8 +57,20 @@ function abracadabra(msg) {
 		if (answerAction.testType !== '') {
 
 			switch(answerAction.testType) {
+				// CREATE NEW BLANK TEST
+				case 'create-new-test':
+					require('./app_modules/_createNewTestFile')()
+						.then(function() {
+							blank();
+							pressEnterToContinue('test created, press enter to continue...', abracadabra); // restart app
+						})
+						.catch(function(err) {
+							console.log(err.bgRed.white);
+						});
+					break;
+
 				// OPEN REPORT
-				case 'openReport':
+				case 'open-report':
 					checkForExistingReferences(false)
 						.then(function([existingReferenceList, isLocked]) {
 

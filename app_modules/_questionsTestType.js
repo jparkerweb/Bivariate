@@ -35,7 +35,7 @@ var questionsTestType = [
 			},
 			{
 				name: '- Open REPORT for existing Test',
-				value: 'openReport'
+				value: 'open-report'
 			},
 			{
 				name: '- LIST generated References',
@@ -68,6 +68,10 @@ var questionsTestType = [
 			{
 				name: '- DELETE all Reference data',
 				value: 'delete-reference'
+			},
+			{
+				name: '- CREATE new blank Test file',
+				value: 'create-new-test'
 			},
 			{
 				name: '- [-- EXIT --]',
