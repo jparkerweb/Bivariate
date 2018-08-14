@@ -6,10 +6,14 @@ module.exports = function(testGroup) {
 	return {
 		"id": testGroup,
 
-		// The Viewports
+		// -----------------
+		// - The Viewports -
+		// -----------------
 		"viewports": require('./__config-viewports'),
 
-		// Paths
+		// ---------
+		// - Paths -
+		// ---------
 		"paths": {
 			"bitmaps_reference": "./backstop_data/bitmaps_reference/" + testGroup,
 			"bitmaps_test": "./backstop_data/bitmaps_test/" + testGroup,
@@ -18,17 +22,21 @@ module.exports = function(testGroup) {
 			"ci_report": "./backstop_data/ci_report/" + testGroup
 		},
 
-		// report
+		// ----------
+		// - Report -
+		// ----------
 		"ci": {
 			"testSuiteName" :  testGroup
 		},
 
-		"engine": "chromy",
-		"report": ["browser"],
-		"debug": false,
-		"debugWindow": false,
+		"engine": "chromy",		// headless chrome browser
+		"report": ["browser"],	// open report in browser
+		"debug": false,			// command line verbose debug output
+		"debugWindow": false,	// show chrome windows during test
 		
-		// bivariate options
+		// ---------------------
+		// - Bivariate Options -
+		// ---------------------
 		"runcmdoutput": false
-	};
-};
+	}
+}

@@ -7,23 +7,57 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = "Example Test - Home Page";		// test name
-var route = "/index.html";					// the route for this test (start with a '/')
-var selectors = [							// selectors for elements to be "captured" (CSS selector syntax)
-	"document",
-	"h1",
-	".hero",
-	".nav",
-	".body-content"
-];
-var onBeforeScript = null;					// Runs before each scenario
-											// -- use for setting cookies or other env state
-											// (.js suffix is optional / looks for file in 'engine_scripts' dir)
-var onReadyScript = 'onReady-Example.js';	// Runs after onReady event on all scenarios
-											// -- use for simulating interactions
-											// (.js suffix is optional / looks for file in 'engine_scripts' dir)
-var hideSelectors = [];						// hide elements from view by changing its "visibility" to "hidden"
-var removeSelectors = [];					// remove elements from the DOM before screen capture
+var label = "Example Test - Home Page"
+var route = "/index.html"
+var selectors = [ "document", "h1", ".hero", ".nav", ".body-content" ]
+var onBeforeScript = null
+var onReadyScript = 'onReady-Example.js'
+var hideSelectors = []
+var removeSelectors = []
+
+// ---------
+// - label -
+// ---------
+// used on reports and screen shot file names (should be unique between tests)
+
+// ---------
+// - route -
+// ---------
+// the route for this test (start with a "/")
+
+// -------------
+// - selectors - (array or strings)
+// -------------
+// selectors for elements to be "captured" (CSS selector syntax)
+
+// ------------------
+// - onBeforeScript -
+// ------------------
+// Runs before each scenario
+// use for setting cookies or other env state
+// (.js suffix is optional / looks for file in "engine_scripts" dir)
+
+// -----------------
+// - onReadyScript -
+// -----------------
+// Runs after onReady event on all scenarios
+// use for simulating interactions
+// (.js suffix is optional / looks for file in "engine_scripts" dir)
+
+// -----------------
+// - readySelector -
+// -----------------
+// Selector to look for before continuing
+
+// -----------------
+// - hideSelectors -
+// -----------------
+// hide elements from view by changing its "visibility" to "hidden"
+
+// -------------------
+// - removeSelectors -
+// -------------------
+// remove elements from the DOM before screen capture
 
 
 
@@ -31,8 +65,8 @@ var removeSelectors = [];					// remove elements from the DOM before screen capt
 // - advanced options can be overwritten in the options object below -
 // -------------------------------------------------------------------
 module.exports = function(baseURLs) {
-	var url = (baseURLs.baseURL + route);
-	var referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route);
+	var url = (baseURLs.baseURL + route)
+	var referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route)
 	var options = {
 		"label": label,
 		"url": url,
@@ -46,11 +80,11 @@ module.exports = function(baseURLs) {
 		"misMatchThreshold" : 0.1,
 		"onBeforeScript": onBeforeScript,
 		"onReadyScript": onReadyScript
-	};
-
-	if(baseURLs.baseRefURL === null) {
-		delete options.referenceUrl;
 	}
 
-	return options;
-};
+	if(baseURLs.baseRefURL === null) {
+		delete options.referenceUrl
+	}
+
+	return options
+}

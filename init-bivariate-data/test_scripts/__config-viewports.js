@@ -23,6 +23,6 @@ var viewports = [
 	//	"width": 1024,
 	//	"height": 768
 	//}
-];
+]
 
-module.exports = viewports;
+module.exports = viewports
