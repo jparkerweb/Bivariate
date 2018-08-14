@@ -20,10 +20,12 @@ var createTestFile = function createTestFile() {
 				
 				var newTestDirectory = answerAction.newTestDirectory
 				var testRoute = answerAction.newTestRoute || 'index.html'
-				var testSelectors = answerAction.newTestSelectors || '"default"'
+				var testSelectors = answerAction.newTestSelectors || '"document"'
 
 				var testDelay = answerAction.newTestDelay || '300'
 					testDealy = testDelay.replace(/ms/, '')
+
+				var testDirectory = newTestDirectory.toLowerCase().length > 0 ? newTestDirectory.toLowerCase() + "/" : ""
 
 				var baseFolderTest = './bivariate_data/test_scripts/';
 				var baseFolderScript = './bivariate_data/engine_scripts/';
@@ -59,13 +61,15 @@ var createTestFile = function createTestFile() {
 										/_____name_____/g,
 										/_____route_____/g,
 										/_____selectors_____/g,
-										/_____delay_____/g
+										/_____delay_____/g,
+										/_____directory_____/g
 									],
 									to: [
 										testName,
 										testRoute,
 										testSelectors,
-										testDelay
+										testDelay,
+										testDirectory
 									]
 								}
 								try {
