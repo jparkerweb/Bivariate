@@ -26,6 +26,7 @@ var createTestFile = function createTestFile() {
 					testDealy = testDelay.replace(/ms/, '')
 
 				var testDirectory = newTestDirectory.toLowerCase().length > 0 ? newTestDirectory.toLowerCase() + "/" : ""
+					testDirectory = testDirectory.replace(/\/\//gm, '/')
 
 				var baseFolderTest = './bivariate_data/test_scripts/';
 				var baseFolderScript = './bivariate_data/engine_scripts/';
