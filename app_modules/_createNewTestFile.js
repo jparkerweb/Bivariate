@@ -28,7 +28,7 @@ var createTestFile = function createTestFile() {
 				var baseFolderTest = './bivariate_data/test_scripts/';
 				var baseFolderScript = './bivariate_data/engine_scripts/';
 				
-				var testFile = baseFolderTest + newTestDirectory.toLowerCase() + '/' + testName.toLowerCase() + '.js'
+				var testFile = baseFolderTest + newTestDirectory.toLowerCase() + '/_' + testName.toLowerCase() + '.js'
 					testFile = testFile.replace(/\/\//gm, '/')
 				
 				var scriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onReady-' + testName.toLowerCase() + '.js'
