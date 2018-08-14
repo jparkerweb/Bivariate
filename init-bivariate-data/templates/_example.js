@@ -2,22 +2,22 @@
 // - test definition -
 // -------------------
 
-// * tests should be saved as: '_test-name.js'
+// * tests should be saved as: "_test-name.js"
 //   if you have a lot of tests you can store
 //   related tests in named subdirectories
 //   for better organization
 
 var label = "_____label_____";		// test name
-var route = "/_____route_____";					// the route for this test (start with a '/')
+var route = "/_____route_____";					// the route for this test (start with a "/")
 var selectors = [								// selectors for elements to be "captured" (CSS selector syntax)
 	_____selectors_____
 ];
 var onBeforeScript = null;							// Runs before each scenario
 													// -- use for setting cookies or other env state
-													// (.js suffix is optional / looks for file in 'engine_scripts' dir)
-var onReadyScript = '_____directory_____onReady-_____name_____.js';	// Runs after onReady event on all scenarios
+													// (.js suffix is optional / looks for file in "engine_scripts" dir)
+var onReadyScript = "_____directory_____onReady-_____name_____.js";	// Runs after onReady event on all scenarios
 													// -- use for simulating interactions
-													// (.js suffix is optional / looks for file in 'engine_scripts' dir)
+													// (.js suffix is optional / looks for file in "engine_scripts" dir)
 var hideSelectors = [];								// hide elements from view by changing its "visibility" to "hidden"
 var removeSelectors = [];							// remove elements from the DOM before screen capture
 
