@@ -7,7 +7,7 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = "_____name_____ - Home Page";		// test name
+var label = "_____label_____";		// test name
 var route = "/_____route_____";					// the route for this test (start with a '/')
 var selectors = [								// selectors for elements to be "captured" (CSS selector syntax)
 	_____selectors_____

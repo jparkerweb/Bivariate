@@ -10,6 +10,11 @@ var questionsNewTest = [
 	},
 	{
 		type: 'input',
+		name: 'newTestLabel',
+		message: 'Provide a Label for your test that will be displayed in test reports [default is your Test Name]:'
+	},
+	{
+		type: 'input',
 		name: 'newTestDirectory',
 		message: 'Provide a sub-directroy for this test to be created in [default is none and will be placed in the root] (ex: search/form):'
 	},

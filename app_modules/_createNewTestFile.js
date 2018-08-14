@@ -18,6 +18,8 @@ var createTestFile = function createTestFile() {
 				var testName = answerAction.newTestName
 					testName = testName.replace(/ /gm, '-')
 				
+				var testLabel = answerAction.newTestLabel
+				
 				var newTestDirectory = answerAction.newTestDirectory
 				var testRoute = answerAction.newTestRoute || 'index.html'
 				var testSelectors = answerAction.newTestSelectors || '"document"'
@@ -60,6 +62,7 @@ var createTestFile = function createTestFile() {
 									],
 									from: [
 										/_____name_____/g,
+										/_____label_____/g,
 										/_____route_____/g,
 										/_____selectors_____/g,
 										/_____delay_____/g,
@@ -67,6 +70,7 @@ var createTestFile = function createTestFile() {
 									],
 									to: [
 										testName,
+										testLabel,
 										testRoute,
 										testSelectors,
 										testDelay,
