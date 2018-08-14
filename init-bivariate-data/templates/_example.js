@@ -18,6 +18,7 @@ var onBeforeScript = null;							// Runs before each scenario
 var onReadyScript = "_____directory_____onReady-_____name_____.js";	// Runs after onReady event on all scenarios
 													// -- use for simulating interactions
 													// (.js suffix is optional / looks for file in "engine_scripts" dir)
+var readySelector = "_____readySelector_____";		// wait for the selector to exist before continuing
 var hideSelectors = [];								// hide elements from view by changing its "visibility" to "hidden"
 var removeSelectors = [];							// remove elements from the DOM before screen capture
 
@@ -33,6 +34,7 @@ module.exports = function(baseURLs) {
 		"label": label,
 		"url": url,
 		"referenceUrl": referenceUrl,
+		"readySelector": readySelector,
 		"hideSelectors": hideSelectors,
 		"removeSelectors": removeSelectors,
 		"selectors": selectors,

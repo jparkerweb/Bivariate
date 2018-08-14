@@ -23,6 +23,7 @@ var createTestFile = function createTestFile() {
 				var newTestDirectory = answerAction.newTestDirectory
 				var testRoute = answerAction.newTestRoute || 'index.html'
 				var testSelectors = answerAction.newTestSelectors || '"document"'
+				var testReadySelector = answerAction.newTestReadySelector|| ""
 
 				var testDelay = answerAction.newTestDelay || '300'
 					testDealy = testDelay.replace(/ms/, '')
@@ -66,7 +67,8 @@ var createTestFile = function createTestFile() {
 										/_____route_____/g,
 										/_____selectors_____/g,
 										/_____delay_____/g,
-										/_____directory_____/g
+										/_____directory_____/g,
+										/_____readySelector_____/g
 									],
 									to: [
 										testName,
@@ -74,7 +76,8 @@ var createTestFile = function createTestFile() {
 										testRoute,
 										testSelectors,
 										testDelay,
-										testDirectory
+										testDirectory,
+										testReadySelector
 									]
 								}
 								try {
