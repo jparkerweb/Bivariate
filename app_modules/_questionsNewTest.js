@@ -30,6 +30,11 @@ var questionsNewTest = [
 	},
 	{
 		type: 'input',
+		name: 'newTestOnReadyScript',
+		message: '\n--------------------\n- ON READY SCRIPT? -\n--------------------\n Create an "onReady" script file? y\\N:\n'
+	},
+	{
+		type: 'input',
 		name: 'newTestReadySelector',
 		message: '\n------------------\n- READY SELECTOR -\n------------------\n Provide an optional Selector to wait for before\n allowing test to continue:\n'
 	},

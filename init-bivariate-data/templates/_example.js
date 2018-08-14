@@ -15,7 +15,7 @@ var selectors = [								// selectors for elements to be "captured" (CSS selecto
 var onBeforeScript = null;							// Runs before each scenario
 													// -- use for setting cookies or other env state
 													// (.js suffix is optional / looks for file in "engine_scripts" dir)
-var onReadyScript = "_____directory_____onReady-_____name_____.js";	// Runs after onReady event on all scenarios
+var onReadyScript = "_____onReadyScriptName_____";	// Runs after onReady event on all scenarios
 													// -- use for simulating interactions
 													// (.js suffix is optional / looks for file in "engine_scripts" dir)
 var readySelector = "_____readySelector_____";		// wait for the selector to exist before continuing
