@@ -12,6 +12,7 @@ var route = "/index.html"
 var selectors = [ "document", "h1", ".hero", ".nav", ".body-content" ]
 var onBeforeScript = 'onBefore-Example.js'
 var onReadyScript = 'onReady-Example.js'
+var readySelector = ""
 var hideSelectors = []
 var removeSelectors = []
 

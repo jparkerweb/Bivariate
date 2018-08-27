@@ -1,16 +1,9 @@
-module.exports = function (chromy, scenario, vp) {
-	console.log("onReady-_____name_____.js is running for: ", vp.label)
-
-	// // chrome script here to interact with page
-	// // docs here => https://github.com/OnetapInc/chromy
-	// return chromy
-		// .goto("http://mypage.com/login")
-		// .wait("input#username")
-		// .type("input#username", "user")
-		// .type("input#password", "somepassword")
-		// .click("button#loginButton", {waitLoadEvent: true})
-		// 	.evaluate(function() {
-		// 		console.log("This custom script is running inside your web app!")
-		// 		document.querySelector(".some-button").click()
-		// 	})
+module.exports = async (page, scenario, vp) => {
+	console.log('onReady-Example.js is running for: ', scenario.label)
+  
+	// // puppeteer script here to interact with page
+	// // docs here => https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md
+	// await page.waitFor("#someElementId")
+	// await page.type("#someinput", "some text to type")
+	// await page.click("button[type='submit']")
 }
