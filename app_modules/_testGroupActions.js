@@ -51,7 +51,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								shortCircuit = true;
 
 								// run selected action on the test group
-								backstopjs(answerTestType, {
+								backstopjs('openReport', {
 										config: require(getPath('bivariate_data/test_scripts/' + answerTestGroup.testGroup + '.js'))
 									})
 									.then(function() {
