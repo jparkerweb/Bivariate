@@ -9,7 +9,7 @@ module.exports = function(testGroup) {
 		// -----------------
 		// - The Viewports -
 		// -----------------
-		"viewports": require("./__config-viewports"),
+		"viewports": require('./__config-viewports'),
 
 		// ---------
 		// - Paths -
@@ -29,18 +29,14 @@ module.exports = function(testGroup) {
 			"testSuiteName" :  testGroup
 		},
 
+		"engine": "puppeteer",	// headless chrome browser
+		"report": ["browser"],	// open report in browser
+		"debug": false,			// command line verbose debug output
+		"debugWindow": true,	// show chrome windows during test
+		
 		// ---------------------
 		// - Bivariate Options -
 		// ---------------------
-		"runcmdoutput": false,
-
-		// -----------------
-		// - Other Options -
-		// -----------------
-		"asyncCaptureLimit": 3,	// number of concurrent browsers to run during capture
-		"engine": "chromy",		// headless chrome browser
-		"report": ["browser"],	// open report in browser
-		"debug": false,			// command line verbose debug output
-		"debugWindow": false	// show chrome windows during test
+		"runcmdoutput": false
 	}
 }
