@@ -50,7 +50,7 @@ It is *recommended* to install Bivariate *globaly*, but it can run locally if re
 |  
 +---- `test_scripts` holds user defined configuration and tests used to instruct BackstopJS  
 |  
-+---- `engine_scripts` holds user defined Chromy scripts for interacting with the Chrome DOM before saving a screen shot  
++---- `engine_scripts` holds user defined Puppeteer scripts for interacting with the Chrome DOM before saving a screen shot  
 |  
 +---- `bitmaps_reference_archive` holds archived *references* that can be restored and tested against  
 
@@ -185,7 +185,7 @@ module.exports = mixIn(
 
 ### engine_scripts
 
-engine scripts are used to interact with your web pages using the `before` and `on ready` events.  Each test you create has an optional parameter of `onBeforeScript` & `onReadyScript`.  These can simply point to script files in the 'engine_scripts' directory.  The two example scripts found in the `engine_scripts` directory should be self explanitory (`onBefore-Example.js` & `onReady-Example.js`).  In addition you can refer to the [Chromy Docs](https://github.com/OnetapInc/chromy/) for more advanced examples.
+engine scripts are used to interact with your web pages using the `before` and `on ready` events.  Each test you create has an optional parameter of `onBeforeScript` & `onReadyScript`.  These can simply point to script files in the 'engine_scripts' directory.  The two example scripts found in the `engine_scripts` directory should be self explanitory (`onBefore-Example.js` & `onReady-Example.js`).  In addition you can refer to the [Puppeteer Docs](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md) for more advanced examples.
 
 
 ### bitmaps_reference_archive
