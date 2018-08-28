@@ -30,6 +30,8 @@ module.exports = function(testGroup) {
 		},
 
 		"engine": "puppeteer",	// headless chrome browser
+		// "engine": "chromy",
+
 		"report": ["browser"],	// open report in browser
 		"debug": false,			// command line verbose debug output
 		"debugWindow": true,	// show chrome windows during test
