@@ -1,3 +1,4 @@
+// jshint ignore: start
 module.exports = async (page, scenario) => {
 	var hoverSelector = scenario.hoverSelectors || scenario.hoverSelector
 	var clickSelector = scenario.clickSelectors || scenario.clickSelector
