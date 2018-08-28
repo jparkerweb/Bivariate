@@ -1,6 +1,6 @@
 {
 	"name": "bivariate",
-	"version": "0.8.5",
+	"version": "0.8.6",
 	"description": "An opinionated interface for writing, running, and saving BackstopJS tests",
 	"keywords": [
 		"BackstopJS",
@@ -10,7 +10,8 @@
 		"visual",
 		"regression",
 		"testing",
-		"visual regression testing"
+		"visual regression testing",
+		"puppeteer"
 	],
 	"repository": {
 		"type": "git",
