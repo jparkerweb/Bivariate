@@ -24,6 +24,7 @@ var testGroupActions = require('./app_modules/_testGroupActions');
 var getTestGroups = require('./app_modules/_getTestGroups');
 var getPath = require('./app_modules/_getPath');
 var deleteFolder = require('./app_modules/_deleteFolder');
+var updateHeader = require('./app_modules/_updateHeader');
 
 var testConfig;
 // options:
@@ -300,9 +301,10 @@ function abracadabra(msg) {
 										.then(function(testGroups) {
 											if(testGroups.length > 0) {
 												testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-													.then(function(message){
+													.then(function([message, testPath]){
+														updateHeader(testPath);
 														pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
-													});
+													})
 											}
 											else {
 												blank();

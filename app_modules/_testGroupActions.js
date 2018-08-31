@@ -32,6 +32,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 				inquirer.prompt(question).then(function (answerTestGroup) {
 					var exitMessage = "";
+					var testPath = "";
 
 					//cleanup selected group
 					answerTestGroup.testGroup = answerTestGroup.testGroup.replace(matchedPrefix, '');
@@ -65,6 +66,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								deleteFolder('Test: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_test/' + answerTestGroup.testGroup, false)
 									.then(function() {
 										exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.';
+										testPath = answerTestGroup.testGroup;
 									});
 
 								break;
@@ -124,7 +126,7 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								})
 								.catch(function(err) {
 									spinner.stop();
-									resolve('\n' + ' Mismatch(es) Found > '.bgMagenta.white + '\n' + exitMessage + ' \n\n');
+									resolve(['\n' + ' Mismatch(es) Found > '.bgMagenta.white + '\n' + exitMessage + ' \n\n', testPath]);
 								});
 						}
 					}
