@@ -30,6 +30,11 @@ var questionsNewTest = [
 	},
 	{
 		type: 'input',
+		name: 'newTestOnBeforeScript',
+		message: '\n--------------------\n- ON BEFORE SCRIPT? -\n--------------------\n Create an "onBefore" script file? y\\N:\n'
+	},
+	{
+		type: 'input',
 		name: 'newTestOnReadyScript',
 		message: '\n--------------------\n- ON READY SCRIPT? -\n--------------------\n Create an "onReady" script file? y\\N:\n'
 	},

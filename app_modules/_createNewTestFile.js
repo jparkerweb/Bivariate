@@ -6,7 +6,6 @@
 var createTestFile = function createTestFile() {
 	var inquirer = require('inquirer');
 	var blank = require('./_blankLine');
-	var checkIfFileExists = require('./_checkIfFileExists');
 	var questionsNewTest = require('./_questionsNewTest');
 	var path = require('path');
 
@@ -23,6 +22,7 @@ var createTestFile = function createTestFile() {
 				var newTestDirectory = answerAction.newTestDirectory
 				var testRoute = answerAction.newTestRoute || 'index.html'
 				var testSelectors = answerAction.newTestSelectors || '"document"'
+				var testOnBeforeScript = answerAction.newTestOnBeforeScript.toLowerCase() === "y" ? true : false
 				var testOnReadyScript = answerAction.newTestOnReadyScript.toLowerCase() === "y" ? true : false
 				var testReadySelector = answerAction.newTestReadySelector|| ""
 
@@ -32,6 +32,7 @@ var createTestFile = function createTestFile() {
 				var testDirectory = newTestDirectory.toLowerCase().length > 0 ? newTestDirectory.toLowerCase() + "/" : ""
 					testDirectory = testDirectory.replace(/\/\//gm, '/')
 
+				var testOnBeforeScriptName = testOnBeforeScript ? testDirectory + "onBefore-" + testName + ".js" : ""
 				var testOnReadyScriptName = testOnReadyScript ? testDirectory + "onReady-" + testName + ".js" : ""
 
 				var baseFolderTest = './bivariate_data/test_scripts/';
@@ -44,7 +45,8 @@ var createTestFile = function createTestFile() {
 					scriptFile = scriptFile.replace(/\/\//gm, '/')
 				
 				var templateTest = path.join(__dirname, '../init-bivariate-data/templates/_example.js');
-				var templateScript = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js');
+				var templateScriptOnBefore = path.join(__dirname, '../init-bivariate-data/templates/onBefore-example.js');
+				var templateScriptOnReady = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js');
 
 				var destTest = path.join(process.cwd(), testFile);
 				var destScript = path.join(process.cwd(), scriptFile);
@@ -63,47 +65,37 @@ var createTestFile = function createTestFile() {
 							from: [
 								/_____name_____/g, /_____label_____/g, /_____route_____/g,
 								/_____selectors_____/g, /_____delay_____/g, /_____directory_____/g,
-								/_____onReadyScriptName_____/g, /_____readySelector_____/g
+								/_____onBeforeScriptName_____/g, /_____onReadyScriptName_____/g, /_____readySelector_____/g
 							],
 							to: [
 								testName, testLabel, testRoute,
 								testSelectors, testDelay, testDirectory,
-								testOnReadyScriptName, testReadySelector
+								testOnBeforeScriptName, testOnReadyScriptName, testReadySelector
 							]
 						}
 						try {
+							// update example script with users input selections
 							const changes = replaceInFile.sync(templateOptions);
 							// console.log('Modified files:', changes.join(', '));
-							if (testOnReadyScript) {
-								copy(templateScript, destScript, { overwrite: true }, function(error, results) {
+							
+							let copiedScripts = true
+							if (testOnBeforeScript) {
+								copy(templateScriptOnBefore, destScript, { overwrite: true }, function(error, results) {
 									if (error) {
-										console.error('failed to create Script file: ' + error);
-									}
-									else {
-										templateOptions = {
-											files: [destScript],
-											from: [
-												/_____name_____/g, /_____label_____/g, /_____route_____/g,
-												/_____selectors_____/g, /_____delay_____/g, /_____directory_____/g,
-												/_____onReadyScriptName_____/g, /_____readySelector_____/g
-											],
-											to: [
-												testName, testLabel, testRoute,
-												testSelectors, testDelay, testDirectory,
-												testOnReadyScriptName, testReadySelector
-											]
-										}
-										try {
-											const changes = replaceInFile.sync(templateOptions);
-											// console.log('Modified files:', changes.join(', '));
-											resolve('created new test');
-										}
-										catch (error) {
-											console.error('Error occurred:', error);
-										}
+										copiedScripts = false
+										console.error('failed to create onBefore Script file: ' + error);
 									}
 								})
-							} else {
+							}
+							if (testOnReadyScript) {
+								copy(templateScriptOnReady, destScript, { overwrite: true }, function(error, results) {
+									if (error) {
+										copiedScripts = false
+										console.error('failed to create onReady Script file: ' + error);
+									}
+								})
+							}
+							if (copiedScripts) {
 								resolve('created new test');
 							}
 						}

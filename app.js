@@ -63,7 +63,7 @@ function abracadabra(msg) {
 					require('./app_modules/_createNewTestFile')()
 						.then(function() {
 							blank();
-							pressEnterToContinue('test created, press enter to continue...', abracadabra); // restart app
+							pressEnterToContinue('test created, make sure to include it in the \n' + 'Scenarios'.yellow.bold + ' section of a ' + 'Test Group'.yellow.bold + ' to run it \n\n.press enter to continue...', abracadabra); // restart app
 						})
 						.catch(function(err) {
 							console.log(err.bgRed.white);
