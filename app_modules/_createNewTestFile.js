@@ -27,7 +27,7 @@ var createTestFile = function createTestFile() {
 				var testReadySelector = answerAction.newTestReadySelector|| ""
 
 				var testDelay = answerAction.newTestDelay || '300'
-					testDealy = testDelay.replace(/ms/, '')
+					testDelay = testDelay.replace(/ms/, '')
 
 				var testDirectory = newTestDirectory.toLowerCase().length > 0 ? newTestDirectory.toLowerCase() + "/" : ""
 					testDirectory = testDirectory.replace(/\/\//gm, '/')

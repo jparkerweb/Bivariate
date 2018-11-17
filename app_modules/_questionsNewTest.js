@@ -16,7 +16,7 @@ var questionsNewTest = [
 	{
 		type: 'input',
 		name: 'newTestDirectory',
-		message: '\n-------------\n- DIRECTORY -\n-------------\n Provide a sub-directroy for this test to be created in\n [if you don\'t provide a value it will be placed in the root]\n (ex: search/form):\n'
+		message: '\n-------------\n- DIRECTORY -\n-------------\n Provide a sub-directory for this test to be created in\n [if you don\'t provide a value it will be placed in the root]\n (ex: search/form):\n'
 	},
 	{
 		type: 'input',
@@ -26,7 +26,7 @@ var questionsNewTest = [
 	{
 		type: 'input',
 		name: 'newTestSelectors',
-		message: '\n-------------\n- SELECTORS -\n-------------\n Provide a comma seperate list of string as selectors for\n different screen shots [default if none provided\n will be "document"] (ex: "document", ".search-form", "#someId"):\n'
+		message: '\n-------------\n- SELECTORS -\n-------------\n Provide a comma separate list of string as selectors for\n different screen shots [default if none provided\n will be "document"] (ex: "document", ".search-form", "#someId"):\n'
 	},
 	{
 		type: 'input',

@@ -56,7 +56,7 @@ var archiveReference = function archiveReference() {
 				}
 				else {
 					blank();
-					console.log(('You must have and exisiting Reference to Archive it.').bgRed.white);
+					console.log(('You must have and existing Reference to Archive it.').bgRed.white);
 					console.log(('Either Restore or Create a Reference first.').bgRed.white);
 					resolve();
 				}

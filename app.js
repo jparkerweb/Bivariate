@@ -138,14 +138,14 @@ function abracadabra(msg) {
 							}
 
 							else if (isLocked) {
-								console.log(('The Current Refererence is Locked.').bgRed.white);
+								console.log(('The Current Reference is Locked.').bgRed.white);
 								console.log(('You must Unlock is before it can be Deleted or altered.').bgRed.white);
 
 								pressEnterToContinue('press enter to continue...', abracadabra);
 							}
 
 							else if(!isLocked && existingReferenceList.length > 0) {
-								// DELETE Refererence Group
+								// DELETE Reference Group
 								if(answerAction.testType === 'delete-testgroup-reference') {
 									testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 										.then(function(message){
@@ -251,7 +251,7 @@ function abracadabra(msg) {
 										pressEnterToContinue(message + "Press enter to return to the main menu...", abracadabra);
 									})
 									.catch(function(){
-										pressEnterToContinue('An Error Occured, press enter to return to the main menu...', abracadabra);
+										pressEnterToContinue('An Error Occurred, press enter to return to the main menu...', abracadabra);
 									});
 							}
 						});
