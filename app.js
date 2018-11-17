@@ -9,7 +9,7 @@
 var colors = require("colors");                 // pretty console colors
 var inquirer = require('inquirer');             // prompt questions and gather answers
 var Spinner = require('cli-spinner').Spinner;   // cool console spinner (progress indicator)
-var spawn = require('child_process').spawn;     // built in node module for spawing child processes
+var spawn = require('child_process').spawn;     // built in node module for spawning child processes
 var path = require('path');
 
 var pjson = require('./package.json');
@@ -17,7 +17,7 @@ var pressEnterToContinue = require('./app_modules/_pressEnterToContinue');
 var cls = require('./app_modules/_clearConsole');
 var blank = require('./app_modules/_blankLine');
 var asciiLogo = require('./app_modules/_asciiLogo');
-var checkIfDirectroyExists = require('./app_modules/_checkIfDirectoryExists');
+var checkIfDirectoryExists = require('./app_modules/_checkIfDirectoryExists');
 var checkForExistingTests = require('./app_modules/_checkForExistingTests');
 var checkForExistingReferences = require('./app_modules/_checkForExistingReferences');
 var testGroupActions = require('./app_modules/_testGroupActions');
@@ -216,7 +216,7 @@ function abracadabra(msg) {
 				// LOCK / UNLOCK Current Reference
 				case 'lock-reference':
 				case 'unlock-reference':
-					checkIfDirectroyExists(getPath('backstop_data/bitmaps_reference'))
+					checkIfDirectoryExists(getPath('backstop_data/bitmaps_reference'))
 						.then(function() {
 							var lockIt = (answerAction.testType === 'lock-reference' ? true : false);
 
@@ -262,7 +262,7 @@ function abracadabra(msg) {
 				// -- TODO: FIX APPROVE --
 				// case 'approve':
 				// 	// test to see if a test exists
-				// 	checkIfDirectroyExists(getPath('backstop_data/bitmaps_test'))
+				// 	checkIfDirectoryExists(getPath('backstop_data/bitmaps_test'))
 				// 	.then(function() {
 				// 		// APPROVE
 				// 		if(answerAction.testType === 'approve') {
@@ -291,7 +291,7 @@ function abracadabra(msg) {
 				// RUN TEST
 				case 'test':
 					// test to see if a reference exists
-					checkIfDirectroyExists(getPath('backstop_data/bitmaps_reference'))
+					checkIfDirectoryExists(getPath('backstop_data/bitmaps_reference'))
 						.then(function() {
 
 							checkForExistingReferences(false)
@@ -361,7 +361,7 @@ function abracadabra(msg) {
 // *************
 // ** Run App **
 // *************
-checkIfDirectroyExists(getPath('bivariate_data'))
+checkIfDirectoryExists(getPath('bivariate_data'))
 	.then(function() {
 		var libsSrc = path.join(__dirname, 'init-bivariate-data/libs/');
 		var libsDest = path.join(process.cwd(), 'bivariate_data/libs/');

@@ -7,7 +7,7 @@ var archiveReference = function archiveReference() {
 	var inquirer = require('inquirer');
 	var blank = require('./_blankLine');
 	var checkForExistingReferences = require('./_checkForExistingReferences');
-	var checkIfDirectroyExists = require('./_checkIfDirectoryExists');
+	var checkIfDirectoryExists = require('./_checkIfDirectoryExists');
 	var moveFolder = require('./_moveFolder');
 
 	return new Promise(function(resolve, reject) {
@@ -24,7 +24,7 @@ var archiveReference = function archiveReference() {
 							var archiveFolder = './bivariate_data/bitmaps_reference_archive';
 							archiveFolder += '/' + answerAction.archiveName;
 
-							return checkIfDirectroyExists(archiveFolder)
+							return checkIfDirectoryExists(archiveFolder)
 								.then(function() {
 									blank();
 									console.log(('Archive name is already in use, try again.').bgRed.white);
