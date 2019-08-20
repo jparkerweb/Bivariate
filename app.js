@@ -49,7 +49,7 @@ function abracadabra(msg) {
 	asciiLogo();
 
 	if (typeof msg === 'undefined' ) { msg = ''; }
-	console.log('-----------------------------------'.bgWhite.black + pjson.version.bgWhite.black + '-'.bgWhite.black);
+	console.log('----------------------------------'.bgWhite.black + pjson.version.bgWhite.black + '-'.bgWhite.black);
 	console.log((msg).bgWhite.black);
 
 	var questionsTestType = require('./app_modules/_questionsTestType');
