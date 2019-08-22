@@ -11,6 +11,7 @@ module.exports = function(testGroup) {
 		// -----------------
 		"viewports": require('./__config-viewports'),
 
+
 		// ---------
 		// - Paths -
 		// ---------
@@ -22,6 +23,7 @@ module.exports = function(testGroup) {
 			"ci_report": "./backstop_data/ci_report/" + testGroup
 		},
 
+
 		// ----------
 		// - Report -
 		// ----------
@@ -29,16 +31,30 @@ module.exports = function(testGroup) {
 			"testSuiteName" :  testGroup
 		},
 
-		"engine": "puppeteer",	// headless chrome browser
+
+		// ----------
+		// - Engine -
+		// ----------
+		"engine": "puppeteer",	// headless chrome browser (recommended)
 		// "engine": "chromy",
 
+
+		// ------------------
+		// - Engine Options -
+		// ------------------
+		"engineOptions": {
+			"ignoreDefaultArgs": ["--hide-scrollbars"]
+		},
+
+		"asyncCaptureLimit": 6, // number of simultaneous browser windows to use
 		"report": ["browser"],	// open report in browser
 		"debug": false,			// command line verbose debug output
 		"debugWindow": true,	// show chrome windows during test
-		
-		// ---------------------
-		// - Bivariate Options -
-		// ---------------------
+
+
+		// --------------------------
+		// - Bivariate Debug Option -
+		// --------------------------
 		"runcmdoutput": false
 	}
 }

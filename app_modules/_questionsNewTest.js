@@ -21,12 +21,12 @@ var questionsNewTest = [
 	{
 		type: 'input',
 		name: 'newTestRoute',
-		message: '\n---------\n- ROUTE -\n---------\n What Route is this test for?  (ex: search/search-form):\n'
+		message: '\n---------\n- ROUTE -\n---------\n What Route is this test for? do not start with a "/"\n  (ex: search/search-form):\n'
 	},
 	{
 		type: 'input',
 		name: 'newTestSelectors',
-		message: '\n-------------\n- SELECTORS -\n-------------\n Provide a comma separate list of string as selectors for\n different screen shots [default if none provided\n will be "document"] (ex: "document", ".search-form", "#someId"):\n'
+		message: '\n-------------\n- SELECTORS -\n-------------\n Provide a comma separate list of string as selectors for\n different screen shots [default if none provided\n will be "document"]\n Each selector must be in quotes!\n (ex: "document", ".search-form", "#someId"):\n'
 	},
 	{
 		type: 'input',

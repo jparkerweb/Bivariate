@@ -17,7 +17,7 @@ var createTestFile = function createTestFile() {
 				var testName = answerAction.newTestName
 					testName = testName.replace(/ /gm, '-')
 				
-				var testLabel = answerAction.newTestLabel
+				var testLabel = answerAction.newTestLabel || testName
 				
 				var newTestDirectory = answerAction.newTestDirectory
 				var testRoute = answerAction.newTestRoute || 'index.html'

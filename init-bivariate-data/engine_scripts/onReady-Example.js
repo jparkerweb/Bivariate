@@ -17,25 +17,11 @@ module.exports = async (page, scenario, vp) => {
 		console.log("This custom script is running inside your web app!", testData.sometext)
 		document.querySelectorAll(".container > p")[3].append(testData.sometext)
 	}, testData)
+
+	// other interaction examples:
+	// await page.waitForSelector('.some-selector-you-want-to-wait-to-appear-in-the-DOM')
+	// await page.click('.some-selector-you-want-clicked')
+	// await page.waitFor(500)
+	// await page.hover('.some-selector-you-want-to-hover-over)
+	// await page.type('input.some-input[type="text"]', 'text you want to type in the input', {delay: 20})
 }
-
-
-// ===========================
-// == chromy engine example ==
-// ===========================
-// module.exports = function (chromy, scenario, vp) {
-// 	console.log("onReady-Example.js is running for: ", vp.label)
-
-	// ------------------------------------------------------
-	// -- chrome script here to interact with page         --
-	// -- docs here => https://github.com/OnetapInc/chromy --
-	// ------------------------------------------------------
-	// const testData = require("./data/test-data.json")
-	
-	// return chromy
-	// 	.evaluate(`_testData = " ${testData.sometext}"`)
-	// 	.evaluate(function() {
-	// 		console.log("This custom script is running inside your web app!")
-	// 		document.querySelectorAll(".container > p")[3].append(_testData)
-	// 	})
-// }

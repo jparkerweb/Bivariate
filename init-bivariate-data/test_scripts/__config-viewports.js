@@ -3,11 +3,21 @@
 // ------------------------------------------------------
 
 var viewports = [
+	// {
+	// 	"name": "desktop_large",
+	// 	"width": 1920,
+	// 	"height": 1080
+	// },
 	{
-		"name": "desktop_small",
-		"width": 1024,
-		"height": 768
+		"name": "desktop",
+		"width": 1280,
+		"height": 1024
 	}//,
+	// {
+	// 	"name": "desktop_small",
+	// 	"width": 1024,
+	// 	"height": 768
+	// },
 	//{
 	//	"name": "phone",
 	//	"width": 320,
