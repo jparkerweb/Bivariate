@@ -19,6 +19,7 @@ var blank = require('./app_modules/_blankLine');
 var asciiLogo = require('./app_modules/_asciiLogo');
 var checkIfDirectoryExists = require('./app_modules/_checkIfDirectoryExists');
 var checkForExistingTests = require('./app_modules/_checkForExistingTests');
+var checkForExistingReports = require('./app_modules/_checkForExistingReports');
 var checkForExistingReferences = require('./app_modules/_checkForExistingReferences');
 var testGroupActions = require('./app_modules/_testGroupActions');
 var getTestGroups = require('./app_modules/_getTestGroups');
@@ -118,6 +119,26 @@ function abracadabra(msg) {
 							else {
 								blank();
 								console.log(('!!! No Test Data Exists !!!').bgRed.white);
+								pressEnterToContinue('press enter to continue...', abracadabra);
+							}
+						});
+
+					break;
+
+				// DELETE Report directories
+				case 'delete-reports':
+					spinner.stop();
+					checkForExistingReports(false)
+						.then(function(testList) {
+							if(testList.length > 0) {
+								deleteFolder('Reports', 'backstop_data/html_report', true)
+									.then(function() {
+										pressEnterToContinue('press enter to continue...', abracadabra);
+									});
+							}
+							else {
+								blank();
+								console.log(('!!! No Reports Exist !!!').bgRed.white);
 								pressEnterToContinue('press enter to continue...', abracadabra);
 							}
 						});

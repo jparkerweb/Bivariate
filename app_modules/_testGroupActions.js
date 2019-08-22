@@ -107,10 +107,6 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 								break;
 
-							case 'delete-testgroup-reference':
-
-								break;
-
 							default:
 							//statements
 						}

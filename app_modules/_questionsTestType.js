@@ -38,12 +38,20 @@ var questionsTestType = [
 				value: 'open-report'
 			},
 			{
+				name: '',
+				value: ''
+			},
+			{
 				name: '- LIST generated References',
 				value: 'list-references'
 			},
 			{
 				name: '- LIST generated Tests',
 				value: 'list-tests'
+			},
+			{
+				name: '',
+				value: ''
 			},
 			{
 				name: '- ARCHIVE current Reference',
@@ -62,6 +70,10 @@ var questionsTestType = [
 				value: 'unlock-reference'
 			},
 			{
+				name: '',
+				value: ''
+			},
+			{
 				name: '- DELETE all Test data',
 				value: 'delete-tests'
 			},
@@ -70,8 +82,20 @@ var questionsTestType = [
 				value: 'delete-reference'
 			},
 			{
+				name: '- DELETE all Report data',
+				value: 'delete-reports'
+			},
+			{
+				name: '',
+				value: ''
+			},
+			{
 				name: '- CREATE new blank Test file',
 				value: 'create-new-test'
+			},
+			{
+				name: '',
+				value: ''
 			},
 			{
 				name: '- [-- EXIT --]',
