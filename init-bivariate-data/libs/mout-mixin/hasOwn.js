@@ -1,8 +1,8 @@
 /**
  * Safer Object.hasOwnProperty
  */
-function hasOwn(obj, prop){
-	return Object.prototype.hasOwnProperty.call(obj, prop);
+function hasOwn(obj, prop) {
+	return Object.prototype.hasOwnProperty.call(obj, prop)
 }
 
-module.exports = hasOwn;
+module.exports = hasOwn

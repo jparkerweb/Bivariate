@@ -1,5 +1,5 @@
 var blankLine = console.blankLine = function () {
-	return process.stdout.write('\n');
-};
+	return process.stdout.write('\n')
+}
 
-module.exports = blankLine;
+module.exports = blankLine

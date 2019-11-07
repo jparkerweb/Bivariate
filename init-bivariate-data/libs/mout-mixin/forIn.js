@@ -1,9 +1,9 @@
-var hasOwn = require('./hasOwn');
+var hasOwn = require('./hasOwn')
 
 var _hasDontEnumBug,
-	_dontEnums;
+	_dontEnums
 
-function checkDontEnum(){
+function checkDontEnum() {
 	_dontEnums = [
 			'toString',
 			'toLocaleString',
@@ -12,12 +12,12 @@ function checkDontEnum(){
 			'isPrototypeOf',
 			'propertyIsEnumerable',
 			'constructor'
-		];
+		]
 
-	_hasDontEnumBug = true;
+	_hasDontEnumBug = true
 
 	for (var key in {'toString': null}) {
-		_hasDontEnumBug = false;
+		_hasDontEnumBug = false
 	}
 }
 
@@ -26,24 +26,24 @@ function checkDontEnum(){
  * Enum bug on IE.
  * based on: http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation
  */
-function forIn(obj, fn, thisObj){
-	var key, i = 0;
+function forIn(obj, fn, thisObj) {
+	var key, i = 0
 	// no need to check if argument is a real object that way we can use
 	// it for arrays, functions, date, etc.
 
 	//post-pone check till needed
-	if (_hasDontEnumBug == null) checkDontEnum();
+	if (_hasDontEnumBug == null) checkDontEnum()
 
 	for (key in obj) {
 		if (exec(fn, obj, key, thisObj) === false) {
-			break;
+			break
 		}
 	}
 
 
 	if (_hasDontEnumBug) {
 		var ctor = obj.constructor,
-			isProto = !!ctor && obj === ctor.prototype;
+			isProto = !!ctor && obj === ctor.prototype
 
 		while (key = _dontEnums[i++]) {
 			// For constructor, if it is a prototype object the constructor
@@ -60,15 +60,15 @@ function forIn(obj, fn, thisObj){
 				obj[key] !== Object.prototype[key]
 			) {
 				if (exec(fn, obj, key, thisObj) === false) {
-					break;
+					break
 				}
 			}
 		}
 	}
 }
 
-function exec(fn, obj, key, thisObj){
-	return fn.call(thisObj, obj[key], key, obj);
+function exec(fn, obj, key, thisObj) {
+	return fn.call(thisObj, obj[key], key, obj)
 }
 
-module.exports = forIn;
+module.exports = forIn

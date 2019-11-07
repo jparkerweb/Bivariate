@@ -2,7 +2,7 @@
 // - Configuration for BASE URLs used for all Tests -
 // --------------------------------------------------
 
-module.exports = function(){
+module.exports = function() {
 	var theURLS = {}
 
 	// * note *

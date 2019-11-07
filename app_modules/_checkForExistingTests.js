@@ -2,65 +2,65 @@
 // - get existing test data -
 // --------------------------
 
-var walk = require('walk');                     // file system walker (get file names)
-var forEach = require('mout/array/forEach');    // foreach array util
-var sort = require('mout/array/sort');          // sort array util
-var unique = require('mout/array/unique');      // unique array util
-var blank = require('./_blankLine');
+var walk = require('walk')                     // file system walker (get file names)
+var forEach = require('mout/array/forEach')    // foreach array util
+var sort = require('mout/array/sort')          // sort array util
+var unique = require('mout/array/unique')      // unique array util
+var blank = require('./_blankLine')
 
 function checkForExistingTests(logit) {
-	if (typeof logit === 'undefined' ) { logit = false; }
+	if (typeof logit === 'undefined' ) { logit = false }
 
-	var existingTestList = [];
-	var baseDir = "./backstop_data/bitmaps_test/";
-	var walker = walk.walk(baseDir, { followLinks: false });
+	var existingTestList = []
+	var baseDir = "./backstop_data/bitmaps_test/"
+	var walker = walk.walk(baseDir, { followLinks: false })
 
 	return new Promise(function(resolve, reject) {
-		var currentBase = '';
+		var currentBase = ''
 
 		walker.on('file', function(root, stat, next) {
-			var currentFile = stat.name;
-			var currentDir = root;
+			var currentFile = stat.name
+			var currentDir = root
 
 			if(currentFile.substr(-3) === 'png') {
-				currentDir = (currentDir.replace(baseDir + '\\', ''));
-				currentBase = currentDir;
-				existingTestList.push(currentBase);
+				currentDir = (currentDir.replace(baseDir + '\\', ''))
+				currentBase = currentDir
+				existingTestList.push(currentBase)
 			}
 
-			next();
-		});
+			next()
+		})
 
-		walker.on('end', function(){
-			existingTestList = unique(existingTestList);
-			existingTestList = sort(existingTestList);
+		walker.on('end', function() {
+			existingTestList = unique(existingTestList)
+			existingTestList = sort(existingTestList)
 
 			if (logit) {
 				if (existingTestList.length > 0) {
-					blank();
-					console.log(('-------------------').bgBlue.white);
-					console.log(('- Generated Tests -').bgBlue.white);
-					console.log(('-------------------').bgBlue.white);
+					blank()
+					console.log(('-------------------').bgBlue.white)
+					console.log(('- Generated Tests -').bgBlue.white)
+					console.log(('-------------------').bgBlue.white)
 
-					forEach(existingTestList, function(val){
-						var displayVal = ' ' + val + ' ';
-						console.log(displayVal.bgBlue.white);
-					});
+					forEach(existingTestList, function(val) {
+						var displayVal = ' ' + val + ' '
+						console.log(displayVal.bgBlue.white)
+					})
 
-					blank();
+					blank()
 				} else {
-					blank();
-					console.log(('!!! No Test Data Exits !!!').bgRed.white);
+					blank()
+					console.log(('!!! No Test Data Exits !!!').bgRed.white)
 				}
 			}
 
-			resolve(existingTestList);
-		});
-	});
+			resolve(existingTestList)
+		})
+	})
 }
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = checkForExistingTests;
+module.exports = checkForExistingTests

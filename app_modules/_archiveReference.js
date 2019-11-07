@@ -4,69 +4,70 @@
 // jshint esversion: 6
 
 var archiveReference = function archiveReference() {
-	var inquirer = require('inquirer');
-	var blank = require('./_blankLine');
-	var checkForExistingReferences = require('./_checkForExistingReferences');
-	var checkIfDirectoryExists = require('./_checkIfDirectoryExists');
-	var moveFolder = require('./_moveFolder');
+	var inquirer = require('inquirer')
+	var blank = require('./_blankLine')
+	var checkForExistingReferences = require('./_checkForExistingReferences')
+	var checkIfDirectoryExists = require('./_checkIfDirectoryExists')
+	var moveFolder = require('./_moveFolder')
 
 	return new Promise(function(resolve, reject) {
 		checkForExistingReferences(false)
 			.then(function([existingReferenceList, isLocked]) {
 
 				if(existingReferenceList.length > 0) {
-					blank();
-					var questionsReferenceArchiveName = require('./_questionsReferenceArchiveName');
+					blank()
+					var questionsReferenceArchiveName = require('./_questionsReferenceArchiveName')
 
+					// inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'))
 					inquirer.prompt(questionsReferenceArchiveName)
 						.then(function (answerAction) {
-							var sourceFolder = './backstop_data/bitmaps_reference';
-							var archiveFolder = './bivariate_data/bitmaps_reference_archive';
-							archiveFolder += '/' + answerAction.archiveName;
+							var sourceFolder = './backstop_data/bitmaps_reference'
+							var archiveFolder = './bivariate_data/bitmaps_reference_archive'
+							archiveFolder += '/' + answerAction.archiveName
 
 							return checkIfDirectoryExists(archiveFolder)
 								.then(function() {
-									blank();
-									console.log(('Archive name is already in use, try again.').bgRed.white);
-									return(false);
+									blank()
+									console.log(('Archive name is already in use, try again.').bgRed.white)
+									return(false)
 								})
 								.catch(function() {
 									return moveFolder(sourceFolder, archiveFolder, true)
-									.then(function(){
-										return(true);
-									});
-								});
+									.then(function() {
+										return(true)
+									})
+								})
 						})
-						.then(function(proceed){
+						.then(function(proceed) {
 							if(proceed) {
-								blank();
-								console.log(('--------------------').bgBlue.white);
-								console.log(('- ARCHIVE complete -').bgBlue.white);
-								console.log(('--------------------').bgBlue.white);
-								blank();
+								blank()
+								console.log(('--------------------').bgBlue.white)
+								console.log(('- ARCHIVE complete -').bgBlue.white)
+								console.log(('--------------------').bgBlue.white)
+								blank()
 							}
 
-							resolve();
+							resolve()
 						})
-						.catch(function(err){
-							blank();
-							console.log((err + '').bgRed.white);
-							resolve();
-						});
+						.catch(function(err) {
+							blank()
+							console.log((err + '').bgRed.white)
+							resolve()
+						})
 				}
 				else {
-					blank();
-					console.log(('You must have and existing Reference to Archive it.').bgRed.white);
-					console.log(('Either Restore or Create a Reference first.').bgRed.white);
-					resolve();
+					blank()
+					console.log(('You must have and existing Reference to Archive it.').bgRed.white)
+					console.log(('Either Restore or Create a Reference first.').bgRed.white)
+					resolve()
 				}
-			});
-	});
+			})
+	})
 
-};
+}
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = archiveReference;
+module.exports = archiveReference

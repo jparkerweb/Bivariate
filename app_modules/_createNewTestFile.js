@@ -4,15 +4,15 @@
 // jshint esversion: 6
 
 var createTestFile = function createTestFile() {
-	var inquirer = require('inquirer');
-	var blank = require('./_blankLine');
-	var questionsNewTest = require('./_questionsNewTest');
-	var path = require('path');
+	var inquirer = require('inquirer')
+	var blank = require('./_blankLine')
+	var questionsNewTest = require('./_questionsNewTest')
+	var path = require('path')
 
 	return new Promise(function(resolve, reject) {
 		inquirer.prompt(questionsNewTest)
 			.then(function (answerAction) {
-				var copy = require('recursive-copy');
+				var copy = require('recursive-copy')
 
 				var testName = answerAction.newTestName
 					testName = testName.replace(/ /gm, '-')
@@ -35,8 +35,8 @@ var createTestFile = function createTestFile() {
 				var testOnBeforeScriptName = testOnBeforeScript ? testDirectory + "onBefore-" + testName + ".js" : ""
 				var testOnReadyScriptName = testOnReadyScript ? testDirectory + "onReady-" + testName + ".js" : ""
 
-				var baseFolderTest = './bivariate_data/test_scripts/';
-				var baseFolderScript = './bivariate_data/engine_scripts/';
+				var baseFolderTest = './bivariate_data/test_scripts/'
+				var baseFolderScript = './bivariate_data/engine_scripts/'
 				
 				var testFile = baseFolderTest + newTestDirectory.toLowerCase() + '/_' + testName.toLowerCase() + '.js'
 					testFile = testFile.replace(/\/\//gm, '/')
@@ -44,20 +44,20 @@ var createTestFile = function createTestFile() {
 				var scriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onReady-' + testName.toLowerCase() + '.js'
 					scriptFile = scriptFile.replace(/\/\//gm, '/')
 				
-				var templateTest = path.join(__dirname, '../init-bivariate-data/templates/_example.js');
-				var templateScriptOnBefore = path.join(__dirname, '../init-bivariate-data/templates/onBefore-example.js');
-				var templateScriptOnReady = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js');
+				var templateTest = path.join(__dirname, '../init-bivariate-data/templates/_example.js')
+				var templateScriptOnBefore = path.join(__dirname, '../init-bivariate-data/templates/onBefore-example.js')
+				var templateScriptOnReady = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js')
 
-				var destTest = path.join(process.cwd(), testFile);
-				var destScript = path.join(process.cwd(), scriptFile);
+				var destTest = path.join(process.cwd(), testFile)
+				var destScript = path.join(process.cwd(), scriptFile)
 
-				const replaceInFile = require('replace-in-file');
+				const replaceInFile = require('replace-in-file')
 				let templateOptions = ""
 
 
 				copy(templateTest, destTest, { overwrite: true }, function(error, results) {
 					if (error) {
-						console.error('failed to create Test file: ' + error);
+						console.error('failed to create Test file: ' + error)
 					}
 					else {
 						templateOptions = {
@@ -75,15 +75,15 @@ var createTestFile = function createTestFile() {
 						}
 						try {
 							// update example script with users input selections
-							const changes = replaceInFile.sync(templateOptions);
-							// console.log('Modified files:', changes.join(', '));
+							const changes = replaceInFile.sync(templateOptions)
+							// console.log('Modified files:', changes.join(', '))
 							
 							let copiedScripts = true
 							if (testOnBeforeScript) {
 								copy(templateScriptOnBefore, destScript, { overwrite: true }, function(error, results) {
 									if (error) {
 										copiedScripts = false
-										console.error('failed to create onBefore Script file: ' + error);
+										console.error('failed to create onBefore Script file: ' + error)
 									}
 								})
 							}
@@ -91,25 +91,25 @@ var createTestFile = function createTestFile() {
 								copy(templateScriptOnReady, destScript, { overwrite: true }, function(error, results) {
 									if (error) {
 										copiedScripts = false
-										console.error('failed to create onReady Script file: ' + error);
+										console.error('failed to create onReady Script file: ' + error)
 									}
 								})
 							}
 							if (copiedScripts) {
-								resolve('created new test');
+								resolve('created new test')
 							}
 						}
 						catch (error) {
-							console.error('Error occurred:', error);
+							console.error('Error occurred:', error)
 						}
 					}
 				})
 			})
-			.catch(function(err){
-				blank();
-				console.log((err + '').bgRed.white);
-				resolve();
-			});
+			.catch(function(err) {
+				blank()
+				console.log((err + '').bgRed.white)
+				resolve()
+			})
 	})
 }
 
@@ -117,4 +117,4 @@ var createTestFile = function createTestFile() {
 // *************
 // ** Exports **
 // *************
-module.exports = createTestFile;
+module.exports = createTestFile

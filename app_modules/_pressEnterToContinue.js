@@ -4,21 +4,21 @@
 // -------------------------------------------------------------
 
 var pressEnterToContinue = function(message, cb) {
-	var readline = require('readline');
+	var readline = require('readline')
 
 	var rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout,
-	});
+	})
 
 	rl.question(message, function (answer) {
-		rl.close();
+		rl.close()
 		if(cb) { cb(); }
-	});
-};
+	})
+}
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = pressEnterToContinue;
+module.exports = pressEnterToContinue

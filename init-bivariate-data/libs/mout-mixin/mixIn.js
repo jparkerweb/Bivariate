@@ -1,4 +1,4 @@
-var forOwn = require('./forOwn');
+var forOwn = require('./forOwn')
 
 /**
 * Combine properties from all the objects into first one.
@@ -7,21 +7,21 @@ var forOwn = require('./forOwn');
 * @param {...object} objects    Objects to be combined (0...n objects).
 * @return {object} Target Object.
 */
-function mixIn(target, objects){
+function mixIn(target, objects) {
 	var i = 0,
 		n = arguments.length,
-		obj;
-	while(++i < n){
-		obj = arguments[i];
+		obj
+	while(++i < n) {
+		obj = arguments[i]
 		if (obj != null) {
-			forOwn(obj, copyProp, target);
+			forOwn(obj, copyProp, target)
 		}
 	}
-	return target;
+	return target
 }
 
-function copyProp(val, key){
-	this[key] = val;
+function copyProp(val, key) {
+	this[key] = val
 }
 
-module.exports = mixIn;
+module.exports = mixIn

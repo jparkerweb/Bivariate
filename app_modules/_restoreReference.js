@@ -4,82 +4,82 @@
 // jshint esversion: 6
 
 var restoreReference = function restoreReference() {
-	var inquirer = require('inquirer');
-	var colors = require('colors');
-	var blank = require('./_blankLine');
-	var checkForExistingReferences = require('./_checkForExistingReferences');
-	var checkForArchiveReferences = require('./_checkForArchiveReferences');
-	var moveFolder = require('./_moveFolder');
-	var getPath = require('./_getPath');
+	var inquirer = require('inquirer')
+	var colors = require('colors')
+	var blank = require('./_blankLine')
+	var checkForExistingReferences = require('./_checkForExistingReferences')
+	var checkForArchiveReferences = require('./_checkForArchiveReferences')
+	var moveFolder = require('./_moveFolder')
+	var getPath = require('./_getPath')
 
 	return new Promise(function(resolve, reject) {
 
 		return checkForExistingReferences(false)
-			.then(function([returnedReferenceList, isLocked]){
+			.then(function([returnedReferenceList, isLocked]) {
 				return new Promise(function(resolve, reject) {
 					if(returnedReferenceList.length > 0) {
-						blank();
-						var errorMsg = "You must ARCHIVE or DELETE your existing Reference before Restoring";
-						console.log(errorMsg.bgRed.white);
+						blank()
+						var errorMsg = "You must ARCHIVE or DELETE your existing Reference before Restoring"
+						console.log(errorMsg.bgRed.white)
 
-						reject(errorMsg);
+						reject(errorMsg)
 					} else {
-						resolve();
+						resolve()
 					}
-				});
+				})
 			})
 			.then(function() {
 				return checkForArchiveReferences(false)
 					.then(function(returnedReferenceList) {
 						if(returnedReferenceList.length > 0) {
-							var questionsRestoreArchiveReference = require('./_questionsRestoreArchiveReference')(returnedReferenceList);
+							var questionsRestoreArchiveReference = require('./_questionsRestoreArchiveReference')(returnedReferenceList)
 
 							return inquirer.prompt(questionsRestoreArchiveReference)
 								.then(function (answer) {
 									if(answer.restoreReference === '<<-- Back --') {
-										resolve();
+										resolve()
 									}
 									else {
 										// Do Restore
-										blank();
-										console.log(("Restoring Archive...").green);
+										blank()
+										console.log(("Restoring Archive...").green)
 
-										var sourceFolder = 'backstop_data/bitmaps_reference/';
-										var archiveFolder = 'bivariate_data/bitmaps_reference_archive/';
-										archiveFolder += '/' + answer.restoreReference;
-										archiveFolder = archiveFolder.replace('[LOCKED]  ', '');
+										var sourceFolder = 'backstop_data/bitmaps_reference/'
+										var archiveFolder = 'bivariate_data/bitmaps_reference_archive/'
+										archiveFolder += '/' + answer.restoreReference
+										archiveFolder = archiveFolder.replace('[LOCKED]  ', '')
 										
-										sourceFolder = getPath(sourceFolder);
-										archiveFolder = getPath(archiveFolder);
+										sourceFolder = getPath(sourceFolder)
+										archiveFolder = getPath(archiveFolder)
 
 										return moveFolder(archiveFolder, sourceFolder, true)
 											.then(function() {
-												blank();
-												console.log(("--------------------").bgBlue.white);
-												console.log(("- RESTORE complete -").bgBlue.white);
-												console.log(("--------------------").bgBlue.white);
-												blank();
-												resolve();
+												blank()
+												console.log(("--------------------").bgBlue.white)
+												console.log(("- RESTORE complete -").bgBlue.white)
+												console.log(("--------------------").bgBlue.white)
+												blank()
+												resolve()
 											})
 											.catch(function(err) {
-												console.log(err.bgRed.white);
-											});
+												console.log(err.bgRed.white)
+											})
 									}
-								});
+								})
 						} else {
-							blank();
-							console.log(("You do not have any Archive References to Restore").bgRed.white);
+							blank()
+							console.log(("You do not have any Archive References to Restore").bgRed.white)
 
-							resolve();
+							resolve()
 						}
-					});
+					})
 			})
-			.catch(resolve);
-	});
-};
+			.catch(resolve)
+	})
+}
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = restoreReference;
+module.exports = restoreReference
