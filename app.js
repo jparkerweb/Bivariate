@@ -6,28 +6,28 @@
 // **********************************************
 // jshint esversion: 6
 
-var colors = require("colors");                 // pretty console colors
-var inquirer = require('inquirer');             // prompt questions and gather answers
-var Spinner = require('cli-spinner').Spinner;   // cool console spinner (progress indicator)
-var spawn = require('child_process').spawn;     // built in node module for spawning child processes
-var path = require('path');
+var colors = require("colors")                 // pretty console colors
+var inquirer = require('inquirer')             // prompt questions and gather answers
+var Spinner = require('cli-spinner').Spinner   // cool console spinner (progress indicator)
+var spawn = require('child_process').spawn     // built in node module for spawning child processes
+var path = require('path')
 
-var pjson = require('./package.json');
-var pressEnterToContinue = require('./app_modules/_pressEnterToContinue');
-var cls = require('./app_modules/_clearConsole');
-var blank = require('./app_modules/_blankLine');
-var asciiLogo = require('./app_modules/_asciiLogo');
-var checkIfDirectoryExists = require('./app_modules/_checkIfDirectoryExists');
-var checkForExistingTests = require('./app_modules/_checkForExistingTests');
-var checkForExistingReports = require('./app_modules/_checkForExistingReports');
-var checkForExistingReferences = require('./app_modules/_checkForExistingReferences');
-var testGroupActions = require('./app_modules/_testGroupActions');
-var getTestGroups = require('./app_modules/_getTestGroups');
-var getPath = require('./app_modules/_getPath');
-var deleteFolder = require('./app_modules/_deleteFolder');
-var updateHeader = require('./app_modules/_updateHeader');
+var pjson = require('./package.json')
+var pressEnterToContinue = require('./app_modules/_pressEnterToContinue')
+var cls = require('./app_modules/_clearConsole')
+var blank = require('./app_modules/_blankLine')
+var asciiLogo = require('./app_modules/_asciiLogo')
+var checkIfDirectoryExists = require('./app_modules/_checkIfDirectoryExists')
+var checkForExistingTests = require('./app_modules/_checkForExistingTests')
+var checkForExistingReports = require('./app_modules/_checkForExistingReports')
+var checkForExistingReferences = require('./app_modules/_checkForExistingReferences')
+var testGroupActions = require('./app_modules/_testGroupActions')
+var getTestGroups = require('./app_modules/_getTestGroups')
+var getPath = require('./app_modules/_getPath')
+var deleteFolder = require('./app_modules/_deleteFolder')
+var updateHeader = require('./app_modules/_updateHeader')
 
-var testConfig;
+var testConfig
 // options:
 //		runcmdoutput: true / false <-- log stdout/stderr
 
@@ -36,24 +36,24 @@ var testConfig;
 // -----------------
 // - setup spinner -
 // -----------------
-var spinner = new Spinner(' ');
-spinner.setSpinnerString(25);
+var spinner = new Spinner(' ')
+spinner.setSpinnerString(25)
 
 
 // ----------------------------
 // - abracadabra - it's Magic -
 // ----------------------------
 function abracadabra(msg) {
-	testConfig = require(getPath('bivariate_data/test_scripts/__config-common.js'))();
+	testConfig = require(getPath('bivariate_data/test_scripts/__config-common.js'))()
 
-	cls();
-	asciiLogo();
+	cls()
+	asciiLogo()
 
-	if (typeof msg === 'undefined' ) { msg = ''; }
-	console.log('----------------------------------'.bgWhite.black + pjson.version.bgWhite.black + '-'.bgWhite.black);
-	console.log((msg).bgWhite.black);
+	if (typeof msg === 'undefined' ) { msg = '' }
+	console.log('----------------------------------'.bgWhite.black + pjson.version.bgWhite.black + '-'.bgWhite.black)
+	console.log((msg).bgWhite.black)
 
-	var questionsTestType = require('./app_modules/_questionsTestType');
+	var questionsTestType = require('./app_modules/_questionsTestType')
 
 	inquirer.prompt(questionsTestType).then(function (answerAction) {
 		if (answerAction.testType !== '') {
@@ -63,13 +63,13 @@ function abracadabra(msg) {
 				case 'create-new-test':
 					require('./app_modules/_createNewTestFile')()
 						.then(function() {
-							blank();
-							pressEnterToContinue('test created, make sure to include it in the \n' + 'Scenarios'.yellow.bold + ' section of a ' + 'Test Group'.yellow.bold + ' to run it \n\n.press enter to continue...', abracadabra); // restart app
+							blank()
+							pressEnterToContinue('test created, make sure to include it in the \n' + 'Scenarios'.yellow.bold + ' section of a ' + 'Test Group'.yellow.bold + ' to run it \n\n.press enter to continue...', abracadabra) // restart app
 						})
 						.catch(function(err) {
-							console.log(err.bgRed.white);
-						});
-					break;
+							console.log(err.bgRed.white)
+						})
+					break
 
 				// OPEN REPORT
 				case 'open-report':
@@ -81,88 +81,88 @@ function abracadabra(msg) {
 									if(testList.length > 0) {
 										testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 											.then(function(message){
-												abracadabra(message);
-											});
+												abracadabra(message)
+											})
 									}
 									else {
-										blank();
-										console.log(('Please run a Test before attempting to open a Report.').bgRed.white);
-										blank();
+										blank()
+										console.log(('Please run a Test before attempting to open a Report.').bgRed.white)
+										blank()
 
-										pressEnterToContinue('press enter to continue...', abracadabra);
+										pressEnterToContinue('press enter to continue...', abracadabra)
 									}
-								});
+								})
 
 							}
 							else {
-								blank();
-								console.log(('Please create a Reference and run a Test before attempting to open a Report.').bgRed.white);
-								blank();
+								blank()
+								console.log(('Please create a Reference and run a Test before attempting to open a Report.').bgRed.white)
+								blank()
 
-								pressEnterToContinue('press enter to continue...', abracadabra);
+								pressEnterToContinue('press enter to continue...', abracadabra)
 							}
-						});
+						})
 
-					break;
+					break
 
 				// DELETE Test directories
 				case 'delete-tests':
-					spinner.stop();
+					spinner.stop()
 					checkForExistingTests(false)
 						.then(function(testList) {
 							if(testList.length > 0) {
 								deleteFolder('Test Results', 'backstop_data/bitmaps_test')
 									.then(function() {
-										pressEnterToContinue('press enter to continue...', abracadabra);
-									});
+										pressEnterToContinue('press enter to continue...', abracadabra)
+									})
 							}
 							else {
-								blank();
-								console.log(('!!! No Test Data Exists !!!').bgRed.white);
-								pressEnterToContinue('press enter to continue...', abracadabra);
+								blank()
+								console.log(('!!! No Test Data Exists !!!').bgRed.white)
+								pressEnterToContinue('press enter to continue...', abracadabra)
 							}
-						});
+						})
 
-					break;
+					break
 
 				// DELETE Report directories
 				case 'delete-reports':
-					spinner.stop();
+					spinner.stop()
 					checkForExistingReports(false)
 						.then(function(testList) {
 							if(testList.length > 0) {
 								deleteFolder('Reports', 'backstop_data/html_report', true)
 									.then(function() {
-										pressEnterToContinue('press enter to continue...', abracadabra);
-									});
+										pressEnterToContinue('press enter to continue...', abracadabra)
+									})
 							}
 							else {
-								blank();
-								console.log(('!!! No Reports Exist !!!').bgRed.white);
-								pressEnterToContinue('press enter to continue...', abracadabra);
+								blank()
+								console.log(('!!! No Reports Exist !!!').bgRed.white)
+								pressEnterToContinue('press enter to continue...', abracadabra)
 							}
-						});
+						})
 
-					break;
+					break
 
 				// DELETE REFERENCES
 				case 'delete-reference':
 				case 'delete-testgroup-reference':
 					checkForExistingReferences(false)
 						.then(function([existingReferenceList, isLocked]) {
-							blank();
+							blank()
 
 							if (existingReferenceList.length === 0) {
-								console.log(('You do not have a Current Reference to Delete.').bgRed.white);
+								console.log(('You do not have a Current Reference to Delete.').bgRed.white)
 
-								pressEnterToContinue('press enter to continue...', abracadabra);
+								pressEnterToContinue('press enter to continue...', abracadabra)
 							}
 
 							else if (isLocked) {
-								console.log(('The Current Reference is Locked.').bgRed.white);
-								console.log(('You must Unlock is before it can be Deleted or altered.').bgRed.white);
+								console.log(('The Current Reference is Locked.').bgRed.white)
+								console.log(('You must Unlock is before it can be Deleted or altered.').bgRed.white)
 
-								pressEnterToContinue('press enter to continue...', abracadabra);
+								pressEnterToContinue('press enter to continue...', abracadabra)
 							}
 
 							else if(!isLocked && existingReferenceList.length > 0) {
@@ -171,113 +171,112 @@ function abracadabra(msg) {
 									testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 										.then(function(message){
 											pressEnterToContinue('press enter to continue...', function(){
-												abracadabra(message);
-											});
-										});
+												abracadabra(message)
+											})
+										})
 								}
 								// DELETE Reference directories
 								else {
-									console.log("deleting references:", existingReferenceList);
+									console.log("deleting references:", existingReferenceList)
 									deleteFolder('Current References', 'backstop_data/bitmaps_reference', true)
 										.then(function() {
-											pressEnterToContinue('Press enter to continue...', abracadabra);
-										});
+											pressEnterToContinue('Press enter to continue...', abracadabra)
+										})
 								}
 							}
-						});
+						})
 
-
-					break;
+					break
 
 				// LIST existing references
 				case 'list-references':
 					checkForExistingReferences(true)
 						.then(function() {
-							pressEnterToContinue('press enter to continue...', abracadabra); // restart app
-						});
+							pressEnterToContinue('press enter to continue...', abracadabra) // restart app
+						})
 
-					break;
+					break
 
 				// LIST existing tests
 				case 'list-tests':
 					checkForExistingTests(true)
 						.then(function(){
-							pressEnterToContinue('press enter to continue...', abracadabra); // restart app
-						});
+							pressEnterToContinue('press enter to continue...', abracadabra) // restart app
+						})
 
-					break;
+					break
 
 				// ARCHIVE current References
 				case 'archive-reference':
 					require('./app_modules/_archiveReference')()
 						.then(function() {
-							blank();
-							pressEnterToContinue('press enter to continue...', abracadabra); // restart app
+							blank()
+							pressEnterToContinue('press enter to continue...', abracadabra) // restart app
 						})
 						.catch(function(err) {
-							console.log(err.bgRed.white);
-						});
+							console.log(err.bgRed.white)
+						})
 
-					break;
+					break
 
 				// RESTORE an Archived Reference
 				case 'restore-reference':
-					var restoreReference = require('./app_modules/_restoreReference');
+					var restoreReference = require('./app_modules/_restoreReference')
 					restoreReference()
 						.then(function() {
-							blank();
-							pressEnterToContinue('press enter to continue...', abracadabra); // restart app
+							blank()
+							pressEnterToContinue('press enter to continue...', abracadabra) // restart app
 						})
 						.catch(function(err) {
-							console.log(err.bgRed.white);
-						});
+							console.log(err.bgRed.white)
+						})
 
-					break;
+					break
 
 				// LOCK / UNLOCK Current Reference
 				case 'lock-reference':
 				case 'unlock-reference':
 					checkIfDirectoryExists(getPath('backstop_data/bitmaps_reference'))
 						.then(function() {
-							var lockIt = (answerAction.testType === 'lock-reference' ? true : false);
+							var lockIt = (answerAction.testType === 'lock-reference' ? true : false)
 
 							require('./app_modules/_lockReference')(lockIt)
 								.then(function() {
-									pressEnterToContinue('press enter to continue...', abracadabra);
-								});
+									pressEnterToContinue('press enter to continue...', abracadabra)
+								})
 						})
 						.catch(function() {
-							blank();
-							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white);
+							blank()
+							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white)
 
-							pressEnterToContinue('press enter to continue...', abracadabra);
-						});
+							pressEnterToContinue('press enter to continue...', abracadabra)
+						})
 
-					break;
+					break
 
 				// CREATE REFERENCE
 				case 'reference':
 					checkForExistingReferences(false)
 						.then(function([existingReferenceList, isLocked]) {
 							if(isLocked) {
-								blank();
-								console.log(('You must first Unlock the Reference before').bgRed.white);
-								console.log(('adding additional Test Groups to it.').bgRed.white);
+								blank()
+								console.log(('You must first Unlock the Reference before').bgRed.white)
+								console.log(('adding additional Test Groups to it.').bgRed.white)
 
-								pressEnterToContinue('press enter to continue...', abracadabra);
+								pressEnterToContinue('press enter to continue...', abracadabra)
 							}
 							else {
 								testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 									.then(function(message){
-										pressEnterToContinue(message + "Press enter to return to the main menu...", abracadabra);
+										pressEnterToContinue(message + "Press enter to return to the main menu...", abracadabra)
 									})
 									.catch(function(){
-										pressEnterToContinue('An Error Occurred, press enter to return to the main menu...', abracadabra);
-									});
+										pressEnterToContinue('An Error Occurred, press enter to return to the main menu...', abracadabra)
+									})
 							}
-						});
+						})
 
-					break;
+					break
 
 				// RUN APPROVE
 				// -- TODO: FIX APPROVE --
@@ -287,27 +286,27 @@ function abracadabra(msg) {
 				// 	.then(function() {
 				// 		// APPROVE
 				// 		if(answerAction.testType === 'approve') {
-				// 			console.log('When running this command, all images (with changes) from your');
-				// 			console.log('most recent test batch will be promoted to your reference collection.');
-				// 			console.log('Subsequent tests will be compared against your updated reference files.');
+				// 			console.log('When running this command, all images (with changes) from your')
+				// 			console.log('most recent test batch will be promoted to your reference collection.')
+				// 			console.log('Subsequent tests will be compared against your updated reference files.')
 
 				// 			getTestGroups()
 				// 				.then(function(testGroups) {
 				// 					if(testGroups.length > 0) {
 				// 						testGroupActions(answerAction.testType, testGroups, spinner, testConfig)
 				// 							.then(function(message){
-				// 								pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
-				// 							});
+				// 								pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
+				// 							})
 				// 					}
 				// 					else {
-				// 						blank();
-				// 						console.log(('You don\'t have any Test Groups to Approve.').bgRed.white);
+				// 						blank()
+				// 						console.log(('You don\'t have any Test Groups to Approve.').bgRed.white)
 				// 					}
-				// 				});
+				// 				})
 				// 		}
-				// 	});
+				// 	})
 
-				// 	break;
+				// 	break
 
 				// RUN TEST
 				case 'test':
@@ -323,25 +322,25 @@ function abracadabra(msg) {
 											if(testGroups.length > 0) {
 												testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 													.then(function([message, testPath]){
-														updateHeader(testPath);
-														pressEnterToContinue(message + '"Press enter to continue...', abracadabra);
+														updateHeader(testPath)
+														pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
 													})
 											}
 											else {
-												blank();
-												console.log(('You don\'t have any Test Groups to run a Test from.').bgRed.white);
+												blank()
+												console.log(('You don\'t have any Test Groups to run a Test from.').bgRed.white)
 											}
-										});
-								});
+										})
+								})
 						})
 						.catch(function() {
-							blank();
-							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white);
+							blank()
+							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white)
 
-							pressEnterToContinue('press enter to continue...', abracadabra);
-						});
+							pressEnterToContinue('press enter to continue...', abracadabra)
+						})
 
-					break;
+					break
 
 				case 'delete-testgroup-tests':
 					checkForExistingTests(false)
@@ -350,28 +349,28 @@ function abracadabra(msg) {
 							testGroupActions(answerAction.testType, existingTests, spinner, testConfig)
 								.then(function(message){
 									pressEnterToContinue('press enter to continue...', function(){
-										abracadabra(message);
-									});
-								});
-						});
+										abracadabra(message)
+									})
+								})
+						})
 
-					break;
+					break
 
 				default:
 					testGroupActions(answerAction.testType, [], spinner, testConfig)
 						.then(function(message){
-							abracadabra(message);
-						});
+							abracadabra(message)
+						})
 			} //\ end switch
 		}
 		else {
-			cls();
-			asciiLogo();
+			cls()
+			asciiLogo()
 
-			console.log('\nThanks for using '.green + 'Bivariate'.cyan);
-			console.log('Have a Great Day!\n'.green);
+			console.log('\nThanks for using '.green + 'Bivariate'.cyan)
+			console.log('Have a Great Day!\n'.green)
 		}
-	});
+	})
 }
 
 
@@ -384,15 +383,15 @@ function abracadabra(msg) {
 // *************
 checkIfDirectoryExists(getPath('bivariate_data'))
 	.then(function() {
-		var libsSrc = path.join(__dirname, 'init-bivariate-data/libs/');
-		var libsDest = path.join(process.cwd(), 'bivariate_data/libs/');
-		var copy = require('recursive-copy');
+		var libsSrc = path.join(__dirname, 'init-bivariate-data/libs/')
+		var libsDest = path.join(process.cwd(), 'bivariate_data/libs/')
+		var copy = require('recursive-copy')
 
 		copy(libsSrc, libsDest, { overwrite: true }, function(error, results) {
 			if (error) {
-				console.error('libs failed: ' + error);
+				console.error('libs failed: ' + error)
 			} else {
-				abracadabra();
+				abracadabra()
 			}
 		})
 	})
@@ -408,20 +407,20 @@ checkIfDirectoryExists(getPath('bivariate_data'))
 			.then(function (answer) {
 				return new Promise(function(resolve, reject) {
 					if(answer.confirmInit) {
-						var src = path.join(__dirname, 'init-bivariate-data');
-						var desc = path.join(process.cwd(), 'bivariate_data');
+						var src = path.join(__dirname, 'init-bivariate-data')
+						var desc = path.join(process.cwd(), 'bivariate_data')
 
-						console.log("GENERATE DATA......");
-						// console.log("src", src);
-						// console.log("desc", desc);
+						console.log("GENERATE DATA......")
+						// console.log("src", src)
+						// console.log("desc", desc)
 
-						var copy = require('recursive-copy');
+						var copy = require('recursive-copy')
 
 						copy(src, desc, function(error, results) {
 							if (error) {
-								console.error('config file generation failed: ' + error);
+								console.error('config file generation failed: ' + error)
 							} else {
-								console.log('Generated base/example test and configuration files.');
+								console.log('Generated base/example test and configuration files.')
 
 								return inquirer.prompt(
 									[{
@@ -434,27 +433,27 @@ checkIfDirectoryExists(getPath('bivariate_data'))
 								.then(function (answer) {
 									return new Promise(function(resolve, reject) {
 										if(answer.confirmStartapp) {
-											abracadabra();
+											abracadabra()
 										} else {
-											cls();
-											asciiLogo();
+											cls()
+											asciiLogo()
 
-											console.log('\nThanks for using '.green + 'Bivariate'.cyan);
-											console.log('Have a Great Day!\n'.green);
+											console.log('\nThanks for using '.green + 'Bivariate'.cyan)
+											console.log('Have a Great Day!\n'.green)
 
-											resolve();
+											resolve()
 										}
-									});
-								});
+									})
+								})
 							}
-						});
+						})
 
 					} else {
-						blank();
-						console.log('You can not run Bivariate without a "bivariate_data" folder containing your tests and configuration files');
+						blank()
+						console.log('You can not run Bivariate without a "bivariate_data" folder containing your tests and configuration files')
 
-						resolve();
+						resolve()
 					}
-				});
-			});
-	});
+				})
+			})
+	})
