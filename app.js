@@ -77,10 +77,10 @@ function abracadabra(msg) {
 						.then(function([existingReferenceList, isLocked]) {
 
 							if(existingReferenceList.length > 0) {
-								checkForExistingTests(false).then(function(testList){
+								checkForExistingTests(false).then(function(testList) {
 									if(testList.length > 0) {
 										testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-											.then(function(message){
+											.then(function(message) {
 												abracadabra(message)
 											})
 									}
@@ -169,8 +169,8 @@ function abracadabra(msg) {
 								// DELETE Reference Group
 								if(answerAction.testType === 'delete-testgroup-reference') {
 									testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-										.then(function(message){
-											pressEnterToContinue('press enter to continue...', function(){
+										.then(function(message) {
+											pressEnterToContinue('press enter to continue...', function() {
 												abracadabra(message)
 											})
 										})
@@ -200,7 +200,7 @@ function abracadabra(msg) {
 				// LIST existing tests
 				case 'list-tests':
 					checkForExistingTests(true)
-						.then(function(){
+						.then(function() {
 							pressEnterToContinue('press enter to continue...', abracadabra) // restart app
 						})
 
@@ -267,10 +267,10 @@ function abracadabra(msg) {
 							}
 							else {
 								testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-									.then(function(message){
+									.then(function(message) {
 										pressEnterToContinue(message + "Press enter to return to the main menu...", abracadabra)
 									})
-									.catch(function(){
+									.catch(function() {
 										pressEnterToContinue('An Error Occurred, press enter to return to the main menu...', abracadabra)
 									})
 							}
@@ -294,7 +294,7 @@ function abracadabra(msg) {
 				// 				.then(function(testGroups) {
 				// 					if(testGroups.length > 0) {
 				// 						testGroupActions(answerAction.testType, testGroups, spinner, testConfig)
-				// 							.then(function(message){
+				// 							.then(function(message) {
 				// 								pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
 				// 							})
 				// 					}
@@ -321,7 +321,7 @@ function abracadabra(msg) {
 										.then(function(testGroups) {
 											if(testGroups.length > 0) {
 												testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
-													.then(function([message, testPath]){
+													.then(function([message, testPath]) {
 														updateHeader(testPath)
 														pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
 													})
@@ -347,8 +347,8 @@ function abracadabra(msg) {
 						.then(function(existingTests) {
 
 							testGroupActions(answerAction.testType, existingTests, spinner, testConfig)
-								.then(function(message){
-									pressEnterToContinue('press enter to continue...', function(){
+								.then(function(message) {
+									pressEnterToContinue('press enter to continue...', function() {
 										abracadabra(message)
 									})
 								})
@@ -358,7 +358,7 @@ function abracadabra(msg) {
 
 				default:
 					testGroupActions(answerAction.testType, [], spinner, testConfig)
-						.then(function(message){
+						.then(function(message) {
 							abracadabra(message)
 						})
 			} //\ end switch

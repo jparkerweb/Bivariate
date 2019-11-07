@@ -2,18 +2,18 @@
 // - Move Folder -
 // ---------------
 
-var blank = require('./_blankLine');
+var blank = require('./_blankLine')
 
 var moveFolder = function moveit(fromLocation, toLocation, logit) {
-	var mv = require('mv');
-	var colors = require('colors');
+	var mv = require('mv')
+	var colors = require('colors')
 
-	return new Promise(function(resolve, reject){
+	return new Promise(function(resolve, reject) {
 		if (typeof logit === 'undefined' ) { logit = false; }
 
 		if (logit) {
-			console.log("fromLocation", fromLocation);
-			console.log("toLocation", toLocation);
+			console.log("fromLocation", fromLocation)
+			console.log("toLocation", toLocation)
 		}
 		
 		mv(fromLocation, toLocation, {mkdirp: true}, function(err) {
@@ -22,20 +22,20 @@ var moveFolder = function moveit(fromLocation, toLocation, logit) {
 			// to dest and then rimraf to remove the source dir
 
 			if(err) {
-				reject(err);
+				reject(err)
 			} else {
 				if (logit) {
-					blank();
-					console.log(('moved: "' + fromLocation + '" to "' + toLocation + '"').bgWhite.black);
+					blank()
+					console.log(('moved: "' + fromLocation + '" to "' + toLocation + '"').bgWhite.black)
 				}
-				resolve();
+				resolve()
 			}
-		});
-	});
-};
+		})
+	})
+}
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = moveFolder;
+module.exports = moveFolder

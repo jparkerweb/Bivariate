@@ -48,10 +48,10 @@ var questionsNewTest = [
 		name: 'newTestDelay',
 		message: '\n---------\n- DELAY -\n---------\n Delay in milliseconds before capture [default is 300]:\n'
 	}
-];
+]
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = questionsNewTest;
+module.exports = questionsNewTest

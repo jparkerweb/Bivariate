@@ -5,7 +5,7 @@
 
 var updateHeader = function updateHeader(testPath) {
 	// return new Promise(function(resolve, reject) {
-		const replaceInFile = require('replace-in-file');
+		const replaceInFile = require('replace-in-file')
 		testPath = "backstop_data/html_report/" + testPath + "/index.html"
 
 		// let find1 = ".ReactModal__Body--open {"
@@ -26,7 +26,7 @@ var updateHeader = function updateHeader(testPath) {
 		}
 		try {
 			const changes = replaceInFile.sync(templateOptions)
-			// console.log('Modified files:', changes.join(', '));
+			// console.log('Modified files:', changes.join(', '))
 		}
 		catch (error) {
 			console.error('error updating header:', error)

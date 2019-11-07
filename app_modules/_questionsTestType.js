@@ -107,13 +107,13 @@ var questionsTestType = [
 			}
 		],
 		filter: function (val) {
-			return val;
+			return val
 		}
 	}
-];
+]
 
 
 // *************
 // ** Exports **
 // *************
-module.exports = questionsTestType;
+module.exports = questionsTestType
