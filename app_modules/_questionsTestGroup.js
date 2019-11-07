@@ -7,6 +7,7 @@ var xor = require('mout/array/xor');
 var forEach = require('mout/array/forEach');
 var sort = require('mout/array/sort');
 var getTestGroups = require('./_getTestGroups');
+var fuzzy = require('fuzzy')
 
 var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
 	return new Promise(function(resolve, reject) {
@@ -40,12 +41,25 @@ var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
 
 				testGroupFileNames = testGroupFileNames.concat(testGroups);
 
+
 				var questionsTestGroup = [
 					{
-						type: 'list',
+						type: 'autocomplete',
 						name: 'testGroup',
 						message: 'Select a Test Group:',
-						choices: testGroupFileNames
+						source: function(answerTestGroup, input) {
+							input = input || ''
+							return new Promise(function(resolve) {
+								setTimeout(function() {
+									var fuzzyResult = fuzzy.filter(input, testGroupFileNames);
+									resolve(
+										fuzzyResult.map(function(el) {
+											return el.original
+										})
+									)
+								}, 300)
+							})
+						}
 					}
 				];
 

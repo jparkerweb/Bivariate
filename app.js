@@ -11,7 +11,6 @@ var inquirer = require('inquirer')             // prompt questions and gather an
 var Spinner = require('cli-spinner').Spinner   // cool console spinner (progress indicator)
 var spawn = require('child_process').spawn     // built in node module for spawning child processes
 var path = require('path')
-var fuzzy = require('fuzzy')
 
 var pjson = require('./package.json')
 var pressEnterToContinue = require('./app_modules/_pressEnterToContinue')
