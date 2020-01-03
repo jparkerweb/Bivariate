@@ -1,6 +1,6 @@
-var hasOwn = require('./hasOwn')
+let hasOwn = require('./hasOwn')
 
-var _hasDontEnumBug,
+let _hasDontEnumBug,
 	_dontEnums
 
 function checkDontEnum() {
@@ -16,7 +16,7 @@ function checkDontEnum() {
 
 	_hasDontEnumBug = true
 
-	for (var key in {'toString': null}) {
+	for (let key in {'toString': null}) {
 		_hasDontEnumBug = false
 	}
 }
@@ -27,7 +27,7 @@ function checkDontEnum() {
  * based on: http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation
  */
 function forIn(obj, fn, thisObj) {
-	var key, i = 0
+	let key, i = 0
 	// no need to check if argument is a real object that way we can use
 	// it for arrays, functions, date, etc.
 
@@ -42,7 +42,7 @@ function forIn(obj, fn, thisObj) {
 
 
 	if (_hasDontEnumBug) {
-		var ctor = obj.constructor,
+		let ctor = obj.constructor,
 			isProto = !!ctor && obj === ctor.prototype
 
 		while (key = _dontEnums[i++]) {

@@ -2,25 +2,25 @@
 // - get existing reports -
 // ------------------------
 
-var walk = require('walk')                     // file system walker (get file names)
-var forEach = require('mout/array/forEach')    // foreach array util
-var sort = require('mout/array/sort')          // sort array util
-var unique = require('mout/array/unique')      // unique array util
-var blank = require('./_blankLine')
+let walk = require('walk')                     // file system walker (get file names)
+let forEach = require('mout/array/forEach')    // foreach array util
+let sort = require('mout/array/sort')          // sort array util
+let unique = require('mout/array/unique')      // unique array util
+let blank = require('./_blankLine')
 
 function checkForExistingReports(logit) {
 	if (typeof logit === 'undefined' ) { logit = false }
 
-	var existingReportList = []
-	var baseDir = "./backstop_data/html_report/"
-	var walker = walk.walk(baseDir, { followLinks: false })
+	let existingReportList = []
+	let baseDir = "./backstop_data/html_report/"
+	let walker = walk.walk(baseDir, { followLinks: false })
 
 	return new Promise(function(resolve, reject) {
-		var currentBase = ''
+		let currentBase = ''
 
 		walker.on('file', function(root, stat, next) {
-			var currentFile = stat.name
-			var currentDir = root
+			let currentFile = stat.name
+			let currentDir = root
 
 			if(currentFile.substr(-3) === 'png') {
 				currentDir = (currentDir.replace(baseDir + '\\', ''))
@@ -38,13 +38,13 @@ function checkForExistingReports(logit) {
 			if (logit) {
 				if (existingReportList.length > 0) {
 					blank()
-					console.log(('--------------------').bgBlue.white)
-					console.log(('- Existing Reports -').bgBlue.white)
-					console.log(('--------------------').bgBlue.white)
+					console.log(('--------------------').bgGray.white)
+					console.log(('- Existing Reports -').bgGray.white)
+					console.log(('--------------------').bgGray.white)
 
 					forEach(existingReportList, function(val) {
-						var displayVal = ' ' + val + ' '
-						console.log(displayVal.bgBlue.white)
+						let displayVal = ' ' + val + ' '
+						console.log(displayVal.bgGray.white)
 					})
 
 					blank()

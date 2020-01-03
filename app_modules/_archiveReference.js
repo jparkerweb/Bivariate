@@ -3,12 +3,12 @@
 // -----------------------------------
 // jshint esversion: 6
 
-var archiveReference = function archiveReference() {
-	var inquirer = require('inquirer')
-	var blank = require('./_blankLine')
-	var checkForExistingReferences = require('./_checkForExistingReferences')
-	var checkIfDirectoryExists = require('./_checkIfDirectoryExists')
-	var moveFolder = require('./_moveFolder')
+let archiveReference = function archiveReference() {
+	let inquirer = require('inquirer')
+	let blank = require('./_blankLine')
+	let checkForExistingReferences = require('./_checkForExistingReferences')
+	let checkIfDirectoryExists = require('./_checkIfDirectoryExists')
+	let moveFolder = require('./_moveFolder')
 
 	return new Promise(function(resolve, reject) {
 		checkForExistingReferences(false)
@@ -16,13 +16,13 @@ var archiveReference = function archiveReference() {
 
 				if(existingReferenceList.length > 0) {
 					blank()
-					var questionsReferenceArchiveName = require('./_questionsReferenceArchiveName')
+					let questionsReferenceArchiveName = require('./_questionsReferenceArchiveName')
 
 					// inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'))
 					inquirer.prompt(questionsReferenceArchiveName)
 						.then(function (answerAction) {
-							var sourceFolder = './backstop_data/bitmaps_reference'
-							var archiveFolder = './bivariate_data/bitmaps_reference_archive'
+							let sourceFolder = './backstop_data/bitmaps_reference'
+							let archiveFolder = './bivariate_data/bitmaps_reference_archive'
 							archiveFolder += '/' + answerAction.archiveName
 
 							return checkIfDirectoryExists(archiveFolder)
@@ -41,9 +41,9 @@ var archiveReference = function archiveReference() {
 						.then(function(proceed) {
 							if(proceed) {
 								blank()
-								console.log(('--------------------').bgBlue.white)
-								console.log(('- ARCHIVE complete -').bgBlue.white)
-								console.log(('--------------------').bgBlue.white)
+								console.log(('--------------------').bgGray.white)
+								console.log(('- ARCHIVE complete -').bgGray.white)
+								console.log(('--------------------').bgGray.white)
 								blank()
 							}
 

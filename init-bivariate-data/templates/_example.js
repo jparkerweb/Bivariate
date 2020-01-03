@@ -128,9 +128,9 @@ let viewports = [_____customViewportObject_____]
 // - advanced options can be overwritten in the options object below -
 // -------------------------------------------------------------------
 module.exports = function(baseURLs) {
-	var url = (baseURLs.baseURL + route)
-	var referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route)
-	var options = {
+	let url = (baseURLs.baseURL + route)
+	let referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route)
+	let options = {
 		"label": label,									// [required] Tag saved with your reference images
 		"url": url,										// [required] Tag saved with your reference images
 		"referenceUrl": referenceUrl,					// Specify a different state or environment when creating reference.

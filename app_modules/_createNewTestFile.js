@@ -3,55 +3,55 @@
 // ----------------------------
 // jshint esversion: 6
 
-var createTestFile = function createTestFile() {
-	var inquirer = require('inquirer')
-	var blank = require('./_blankLine')
-	var questionsNewTest = require('./_questionsNewTest')
-	var path = require('path')
+let createTestFile = function createTestFile() {
+	let inquirer = require('inquirer')
+	let blank = require('./_blankLine')
+	let questionsNewTest = require('./_questionsNewTest')
+	let path = require('path')
 
 	return new Promise(function(resolve, reject) {
 		inquirer.prompt(questionsNewTest)
 			.then(function (answerAction) {
-				var copy = require('recursive-copy')
+				let copy = require('recursive-copy')
 
-				var testName = answerAction.newTestName
+				let testName = answerAction.newTestName
 					testName = testName.replace(/ /gm, '-')
 				
-				var testLabel = answerAction.newTestLabel || testName
+				let testLabel = answerAction.newTestLabel || testName
 				
-				var newTestDirectory = answerAction.newTestDirectory
-				var testRoute = answerAction.newTestRoute || 'index.html'
-				var testSelectors = answerAction.newTestSelectors || '"document"'
-				var testOnBeforeScript = answerAction.newTestOnBeforeScript.toLowerCase() === "y" ? true : false
-				var testOnReadyScript = answerAction.newTestOnReadyScript.toLowerCase() === "y" ? true : false
-				var testReadySelector = answerAction.newTestReadySelector|| ""
-				var testCustomViewportObject = answerAction.newTestCustomViewportObject.toLowerCase() === "y" ?
+				let newTestDirectory = answerAction.newTestDirectory
+				let testRoute = answerAction.newTestRoute || 'index.html'
+				let testSelectors = answerAction.newTestSelectors || '"document"'
+				let testOnBeforeScript = answerAction.newTestOnBeforeScript.toLowerCase() === "y" ? true : false
+				let testOnReadyScript = answerAction.newTestOnReadyScript.toLowerCase() === "y" ? true : false
+				let testReadySelector = answerAction.newTestReadySelector|| ""
+				let testCustomViewportObject = answerAction.newTestCustomViewportObject.toLowerCase() === "y" ?
 					" { \"name\": \"custom-viewport\", \"width\": 1280, \"height\": 2000 } " : ""
 
-				var testDelay = answerAction.newTestDelay || '300'
+				let testDelay = answerAction.newTestDelay || '300'
 					testDelay = testDelay.replace(/ms/, '')
 
-				var testDirectory = newTestDirectory.toLowerCase().length > 0 ? newTestDirectory.toLowerCase() + "/" : ""
+				let testDirectory = newTestDirectory.toLowerCase().length > 0 ? newTestDirectory.toLowerCase() + "/" : ""
 					testDirectory = testDirectory.replace(/\/\//gm, '/')
 
-				var testOnBeforeScriptName = testOnBeforeScript ? testDirectory + "onBefore-" + testName + ".js" : ""
-				var testOnReadyScriptName = testOnReadyScript ? testDirectory + "onReady-" + testName + ".js" : ""
+				let testOnBeforeScriptName = testOnBeforeScript ? testDirectory + "onBefore-" + testName + ".js" : ""
+				let testOnReadyScriptName = testOnReadyScript ? testDirectory + "onReady-" + testName + ".js" : ""
 
-				var baseFolderTest = './bivariate_data/test_scripts/'
-				var baseFolderScript = './bivariate_data/engine_scripts/'
+				let baseFolderTest = './bivariate_data/test_scripts/'
+				let baseFolderScript = './bivariate_data/engine_scripts/'
 				
-				var testFile = baseFolderTest + newTestDirectory.toLowerCase() + '/_' + testName.toLowerCase() + '.js'
+				let testFile = baseFolderTest + newTestDirectory.toLowerCase() + '/_' + testName.toLowerCase() + '.js'
 					testFile = testFile.replace(/\/\//gm, '/')
 				
-				var scriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onReady-' + testName.toLowerCase() + '.js'
+				let scriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onReady-' + testName.toLowerCase() + '.js'
 					scriptFile = scriptFile.replace(/\/\//gm, '/')
 				
-				var templateTest = path.join(__dirname, '../init-bivariate-data/templates/_example.js')
-				var templateScriptOnBefore = path.join(__dirname, '../init-bivariate-data/templates/onBefore-example.js')
-				var templateScriptOnReady = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js')
+				let templateTest = path.join(__dirname, '../init-bivariate-data/templates/_example.js')
+				let templateScriptOnBefore = path.join(__dirname, '../init-bivariate-data/templates/onBefore-example.js')
+				let templateScriptOnReady = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js')
 
-				var destTest = path.join(process.cwd(), testFile)
-				var destScript = path.join(process.cwd(), scriptFile)
+				let destTest = path.join(process.cwd(), testFile)
+				let destScript = path.join(process.cwd(), scriptFile)
 
 				const replaceInFile = require('replace-in-file')
 				let templateOptions = ""

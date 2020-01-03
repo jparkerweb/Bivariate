@@ -2,24 +2,24 @@
 // - setup "Test Group" questions -
 // --------------------------------
 
-var intersection = require('mout/array/intersection')
-var xor = require('mout/array/xor')
-var forEach = require('mout/array/forEach')
-var sort = require('mout/array/sort')
-var getTestGroups = require('./_getTestGroups')
-var fuzzy = require('fuzzy')
+let intersection = require('mout/array/intersection')
+let xor = require('mout/array/xor')
+let forEach = require('mout/array/forEach')
+let sort = require('mout/array/sort')
+let getTestGroups = require('./_getTestGroups')
+let fuzzy = require('fuzzy')
 
-var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
+let questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
 	return new Promise(function(resolve, reject) {
-		var testGroupFileNames = ['<<-- Back --']
+		let testGroupFileNames = ['<<-- Back --']
 
 		getTestGroups()
 			.then(function(testGroups) {
 				if(matchArr.length > 0) {
 					if(!onlyShowMatch) {
-						var arrCommon = intersection(testGroups, matchArr)
-						var arrPrefixed = []
-						var arrUnique = xor(testGroups, matchArr)
+						let arrCommon = intersection(testGroups, matchArr)
+						let arrPrefixed = []
+						let arrUnique = xor(testGroups, matchArr)
 
 						forEach(arrCommon, function(val) {
 							arrPrefixed.push(matchPrefix + val)
@@ -28,7 +28,6 @@ var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
 						arrUnique = sort(arrUnique)
 						arrPrefixed = sort(arrPrefixed)
 						testGroups = arrUnique.concat(arrPrefixed)
-
 					}
 					else {
 						testGroups = intersection(testGroups, matchArr)
@@ -41,8 +40,7 @@ var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
 
 				testGroupFileNames = testGroupFileNames.concat(testGroups)
 
-
-				var questionsTestGroup = [
+				let questionsTestGroup = [
 					{
 						type: 'autocomplete',
 						name: 'testGroup',
@@ -51,7 +49,7 @@ var questionsTestGroup = function(matchArr, matchPrefix, onlyShowMatch) {
 							input = input || ''
 							return new Promise(function(resolve) {
 								setTimeout(function() {
-									var fuzzyResult = fuzzy.filter(input, testGroupFileNames)
+									let fuzzyResult = fuzzy.filter(input, testGroupFileNames)
 									resolve(
 										fuzzyResult.map(function(el) {
 											return el.original

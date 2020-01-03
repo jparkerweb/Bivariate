@@ -3,10 +3,6 @@
 // -------------------------------
 // TODO: Add back the following options
 // {
-// 	name: '- APPROVE most recent Test',
-// 	value: 'approve'
-// },
-// {
 // 	name: '- DELETE a Test Group from generated Tests',
 // 	value: 'delete-testgroup-tests'
 // },
@@ -15,7 +11,7 @@
 // 	value: 'delete-testgroup-reference'
 // },
 
-var questionsTestType = [
+let questionsTestType = [
 	{
 		type: 'list',
 		name: 'testType',
@@ -28,6 +24,10 @@ var questionsTestType = [
 			{
 				name: '- Run TEST on Reference',
 				value: 'test'
+			},
+			{
+				name: '- APPROVE an existing Test',
+				value: 'approve'
 			},
 			{
 				name: '- Create REFERENCE',
@@ -85,6 +85,10 @@ var questionsTestType = [
 				name: '- DELETE all Report data',
 				value: 'delete-reports'
 			},
+			// {
+			// 	name: '- DELETE ALL data (Test, Reference, Report)',
+			// 	value: 'delete-all-data'
+			// },
 			{
 				name: '',
 				value: ''

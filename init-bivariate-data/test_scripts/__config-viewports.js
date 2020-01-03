@@ -2,7 +2,7 @@
 // - Configuration for the Viewports used for all Tests -
 // ------------------------------------------------------
 
-var viewports = [
+let viewports = [
 	// {
 	// 	"name": "desktop_large",
 	// 	"width": 1920,

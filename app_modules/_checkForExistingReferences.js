@@ -2,21 +2,21 @@
 // - get existing reference data -
 // -------------------------------
 
-var walk = require('walk')                     // file system walker (get file names)
-var forEach = require('mout/array/forEach')    // foreach array util
-var sort = require('mout/array/sort')          // sort array util
-var getPath = require('./_getPath')
-var blank = require('./_blankLine')
+let walk = require('walk')                     // file system walker (get file names)
+let forEach = require('mout/array/forEach')    // foreach array util
+let sort = require('mout/array/sort')          // sort array util
+let getPath = require('./_getPath')
+let blank = require('./_blankLine')
 
 
 function checkForExistingReferences(logit) {
 	if (typeof logit === 'undefined' ) { logit = false; }
 
-	var existingReferenceList = []
-	var baseDir = getPath("backstop_data/bitmaps_reference")
-	var walker = walk.walk(baseDir, { followLinks: false })
-	var checkIfFileExists = require('./_checkIfFileExists')
-	var isLocked = false
+	let existingReferenceList = []
+	let baseDir = getPath("backstop_data/bitmaps_reference")
+	let walker = walk.walk(baseDir, { followLinks: false })
+	let checkIfFileExists = require('./_checkIfFileExists')
+	let isLocked = false
 
 	return new Promise(function(resolve, reject) {
 		walker.on('directories', function (root, dirStatsArray, next) {
@@ -37,20 +37,20 @@ function checkForExistingReferences(logit) {
 			if (logit) {
 				if (existingReferenceList.length > 0) {
 					blank()
-					console.log(('------------------------').bgBlue.white)
-					console.log(('- Generated References -').bgBlue.white)
+					console.log(('------------------------').bgGray.white)
+					console.log(('- Generated References -').bgGray.white)
 
 					if(isLocked) {
-						console.log(('-                     -').bgBlue.white)
-						console.log(('-       ').bgBlue.white + ('LOCKED').bgRed.white + ('        -').bgBlue.white)
+						console.log(('-                     -').bgGray.white)
+						console.log(('-       ').bgGray.white + ('LOCKED').bgRed.white + ('        -').bgGray.white)
 					}
 
-					console.log(('------------------------').bgBlue.white)
+					console.log(('------------------------').bgGray.white)
 
 
 					forEach(existingReferenceList, function(val) {
-						var displayVal = ' ' + val + ' '
-						console.log(displayVal.bgBlue.white)
+						let displayVal = ' ' + val + ' '
+						console.log(displayVal.bgGray.white)
 					})
 					blank()
 				} else {

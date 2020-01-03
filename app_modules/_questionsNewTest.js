@@ -2,7 +2,7 @@
 // - setup "New Test" name question -
 // ----------------------------------
 
-var questionsNewTest = [
+let questionsNewTest = [
 	{
 		type: 'input',
 		name: 'newTestName',

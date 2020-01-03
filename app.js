@@ -6,28 +6,29 @@
 // **********************************************
 // jshint esversion: 6
 
-var colors = require("colors")                 // pretty console colors
-var inquirer = require('inquirer')             // prompt questions and gather answers
-var Spinner = require('cli-spinner').Spinner   // cool console spinner (progress indicator)
-var spawn = require('child_process').spawn     // built in node module for spawning child processes
-var path = require('path')
+let colors = require("colors")                 // pretty console colors
+let inquirer = require('inquirer')             // prompt questions and gather answers
+let Spinner = require('cli-spinner').Spinner   // cool console spinner (progress indicator)
+let spawn = require('child_process').spawn     // built in node module for spawning child processes
+let path = require('path')
 
-var pjson = require('./package.json')
-var pressEnterToContinue = require('./app_modules/_pressEnterToContinue')
-var cls = require('./app_modules/_clearConsole')
-var blank = require('./app_modules/_blankLine')
-var asciiLogo = require('./app_modules/_asciiLogo')
-var checkIfDirectoryExists = require('./app_modules/_checkIfDirectoryExists')
-var checkForExistingTests = require('./app_modules/_checkForExistingTests')
-var checkForExistingReports = require('./app_modules/_checkForExistingReports')
-var checkForExistingReferences = require('./app_modules/_checkForExistingReferences')
-var testGroupActions = require('./app_modules/_testGroupActions')
-var getTestGroups = require('./app_modules/_getTestGroups')
-var getPath = require('./app_modules/_getPath')
-var deleteFolder = require('./app_modules/_deleteFolder')
-var updateHeader = require('./app_modules/_updateHeader')
+let pjson = require('./package.json')
+let pressEnterToContinue = require('./app_modules/_pressEnterToContinue')
+let cls = require('./app_modules/_clearConsole')
+let blank = require('./app_modules/_blankLine')
+let asciiLogo = require('./app_modules/_asciiLogo')
+let checkIfDirectoryExists = require('./app_modules/_checkIfDirectoryExists')
+let checkForExistingTests = require('./app_modules/_checkForExistingTests')
+let checkForExistingReports = require('./app_modules/_checkForExistingReports')
+let checkForExistingReferences = require('./app_modules/_checkForExistingReferences')
+let testGroupActions = require('./app_modules/_testGroupActions')
+let getTestGroups = require('./app_modules/_getTestGroups')
+let getApproveGroups = require('./app_modules/_getApproveGroups')
+let getPath = require('./app_modules/_getPath')
+let deleteFolder = require('./app_modules/_deleteFolder')
+let updateHeader = require('./app_modules/_updateHeader')
 
-var testConfig
+let testConfig
 // options:
 //		runcmdoutput: true / false <-- log stdout/stderr
 
@@ -36,7 +37,7 @@ var testConfig
 // -----------------
 // - setup spinner -
 // -----------------
-var spinner = new Spinner(' ')
+let spinner = new Spinner(' ')
 spinner.setSpinnerString(25)
 
 
@@ -53,7 +54,7 @@ function abracadabra(msg) {
 	console.log('----------------------------------'.bgWhite.black + pjson.version.bgWhite.black + '-'.bgWhite.black)
 	console.log((msg).bgWhite.black)
 
-	var questionsTestType = require('./app_modules/_questionsTestType')
+	let questionsTestType = require('./app_modules/_questionsTestType')
 
 	inquirer.prompt(questionsTestType).then(function (answerAction) {
 		if (answerAction.testType !== '') {
@@ -221,7 +222,7 @@ function abracadabra(msg) {
 
 				// RESTORE an Archived Reference
 				case 'restore-reference':
-					var restoreReference = require('./app_modules/_restoreReference')
+					let restoreReference = require('./app_modules/_restoreReference')
 					restoreReference()
 						.then(function() {
 							blank()
@@ -238,7 +239,7 @@ function abracadabra(msg) {
 				case 'unlock-reference':
 					checkIfDirectoryExists(getPath('backstop_data/bitmaps_reference'))
 						.then(function() {
-							var lockIt = (answerAction.testType === 'lock-reference' ? true : false)
+							let lockIt = (answerAction.testType === 'lock-reference' ? true : false)
 
 							require('./app_modules/_lockReference')(lockIt)
 								.then(function() {
@@ -247,7 +248,7 @@ function abracadabra(msg) {
 						})
 						.catch(function() {
 							blank()
-							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white)
+							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a REFERENCE first.').bgRed.white)
 
 							pressEnterToContinue('press enter to continue...', abracadabra)
 						})
@@ -279,34 +280,41 @@ function abracadabra(msg) {
 					break
 
 				// RUN APPROVE
-				// -- TODO: FIX APPROVE --
-				// case 'approve':
-				// 	// test to see if a test exists
-				// 	checkIfDirectoryExists(getPath('backstop_data/bitmaps_test'))
-				// 	.then(function() {
-				// 		// APPROVE
-				// 		if(answerAction.testType === 'approve') {
-				// 			console.log('When running this command, all images (with changes) from your')
-				// 			console.log('most recent test batch will be promoted to your reference collection.')
-				// 			console.log('Subsequent tests will be compared against your updated reference files.')
+				case 'approve':
+					// test to see if a test exists
+					console.log(getPath('backstop_data/bitmaps_test'))
+					checkIfDirectoryExists(getPath('backstop_data/bitmaps_test'))
+						.then(function() {
+							// APPROVE
+							if(answerAction.testType === 'approve') {
+								getApproveGroups()
+									.then(function(approveGroups) {
+										// console.log("approveGroups", approveGroups)
+										if(approveGroups.length > 0) {
+											console.log(('When running this command, all images (with changes) from your').bgWhite.black)
+											console.log(('most recent test batch will be promoted to your reference collection.').bgWhite.black)
+											console.log(('Subsequent tests will be compared against your updated reference files.').bgWhite.black)
 
-				// 			getTestGroups()
-				// 				.then(function(testGroups) {
-				// 					if(testGroups.length > 0) {
-				// 						testGroupActions(answerAction.testType, testGroups, spinner, testConfig)
-				// 							.then(function(message) {
-				// 								pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
-				// 							})
-				// 					}
-				// 					else {
-				// 						blank()
-				// 						console.log(('You don\'t have any Test Groups to Approve.').bgRed.white)
-				// 					}
-				// 				})
-				// 		}
-				// 	})
+											testGroupActions(answerAction.testType, approveGroups, spinner, testConfig)
+												.then(function(message) {
+													pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
+												})
+										}
+										else {
+											blank()
+											console.log(('You don\'t have any matching REFERENCE & TEST Groups to Approve.').bgRed.white)
+											pressEnterToContinue('"Press enter to continue...', abracadabra)
+										}
+									})
+							}
+						})
+						.catch(function() {
+							blank()
+							console.log(('You don\'t have any matching REFERENCE & TEST Groups to Approve.').bgRed.white)
+							pressEnterToContinue('"Press enter to continue...', abracadabra)
+						})
 
-				// 	break
+					break
 
 				// RUN TEST
 				case 'test':
@@ -323,6 +331,7 @@ function abracadabra(msg) {
 												testGroupActions(answerAction.testType, existingReferenceList, spinner, testConfig)
 													.then(function([message, testPath]) {
 														updateHeader(testPath)
+														message = (typeof message === "undefined") ? "" : message
 														pressEnterToContinue(message + '"Press enter to continue...', abracadabra)
 													})
 											}
@@ -335,7 +344,7 @@ function abracadabra(msg) {
 						})
 						.catch(function() {
 							blank()
-							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a Reference first.').bgRed.white)
+							console.log(('No Reference exists to ' + answerAction.testType.toUpperCase() + ', please Create or Restore a REFERENCE first.').bgRed.white)
 
 							pressEnterToContinue('press enter to continue...', abracadabra)
 						})
@@ -383,9 +392,9 @@ function abracadabra(msg) {
 // *************
 checkIfDirectoryExists(getPath('bivariate_data'))
 	.then(function() {
-		var libsSrc = path.join(__dirname, 'init-bivariate-data/libs/')
-		var libsDest = path.join(process.cwd(), 'bivariate_data/libs/')
-		var copy = require('recursive-copy')
+		let libsSrc = path.join(__dirname, 'init-bivariate-data/libs/')
+		let libsDest = path.join(process.cwd(), 'bivariate_data/libs/')
+		let copy = require('recursive-copy')
 
 		copy(libsSrc, libsDest, { overwrite: true }, function(error, results) {
 			if (error) {
@@ -407,14 +416,14 @@ checkIfDirectoryExists(getPath('bivariate_data'))
 			.then(function (answer) {
 				return new Promise(function(resolve, reject) {
 					if(answer.confirmInit) {
-						var src = path.join(__dirname, 'init-bivariate-data')
-						var desc = path.join(process.cwd(), 'bivariate_data')
+						let src = path.join(__dirname, 'init-bivariate-data')
+						let desc = path.join(process.cwd(), 'bivariate_data')
 
 						console.log("GENERATE DATA......")
 						// console.log("src", src)
 						// console.log("desc", desc)
 
-						var copy = require('recursive-copy')
+						let copy = require('recursive-copy')
 
 						copy(src, desc, function(error, results) {
 							if (error) {

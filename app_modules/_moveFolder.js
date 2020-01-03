@@ -2,11 +2,11 @@
 // - Move Folder -
 // ---------------
 
-var blank = require('./_blankLine')
+let blank = require('./_blankLine')
 
-var moveFolder = function moveit(fromLocation, toLocation, logit) {
-	var mv = require('mv')
-	var colors = require('colors')
+let moveFolder = function moveit(fromLocation, toLocation, logit) {
+	let mv = require('mv')
+	let colors = require('colors')
 
 	return new Promise(function(resolve, reject) {
 		if (typeof logit === 'undefined' ) { logit = false; }

@@ -2,7 +2,7 @@
 // - setup "Archive Reference" destination question -
 // --------------------------------------------------
 
-var questionsReferenceArchiveName = [
+let questionsReferenceArchiveName = [
 	{
 		type: 'input',
 		name: 'archiveName',

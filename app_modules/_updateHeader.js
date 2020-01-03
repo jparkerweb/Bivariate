@@ -3,7 +3,7 @@
 // -------------------
 // jshint esversion: 6
 
-var updateHeader = function updateHeader(testPath) {
+let updateHeader = function updateHeader(testPath) {
 	// return new Promise(function(resolve, reject) {
 		const replaceInFile = require('replace-in-file')
 		testPath = "backstop_data/html_report/" + testPath + "/index.html"

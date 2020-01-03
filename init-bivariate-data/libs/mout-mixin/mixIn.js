@@ -1,4 +1,4 @@
-var forOwn = require('./forOwn')
+let forOwn = require('./forOwn')
 
 /**
 * Combine properties from all the objects into first one.
@@ -8,7 +8,7 @@ var forOwn = require('./forOwn')
 * @return {object} Target Object.
 */
 function mixIn(target, objects) {
-	var i = 0,
+	let i = 0,
 		n = arguments.length,
 		obj
 	while(++i < n) {

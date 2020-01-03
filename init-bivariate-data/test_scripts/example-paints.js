@@ -2,10 +2,10 @@
 // -- Test Group --
 // ----------------
 
-var mixIn = require("./../libs/mout-mixin/mixIn")
-var testGroup = __filename.slice(__dirname.length + 1, -3)
-var configCommon = require('./__config-common')(testGroup)
-var baseURLs = require("./__config-baseURLs")
+let mixIn = require("./../libs/mout-mixin/mixIn")
+let testGroup = __filename.slice(__dirname.length + 1, -3)
+let configCommon = require('./__config-common')(testGroup)
+let baseURLs = require("./__config-baseURLs")
 
 
 module.exports = mixIn(

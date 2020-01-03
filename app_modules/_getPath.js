@@ -2,10 +2,10 @@
 // - resolve file path -
 // ---------------------
 
-var path = require('path')
+let path = require('path')
 
-var getPath = function(localPath) {
-	var fullPath = path.join(process.cwd(), localPath)
+let getPath = function(localPath) {
+	let fullPath = path.join(process.cwd(), localPath)
 	return(fullPath)
 }
 

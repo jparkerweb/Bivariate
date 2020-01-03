@@ -3,14 +3,14 @@
 // -----------------------------------
 // jshint esversion: 6
 
-var restoreReference = function restoreReference() {
-	var inquirer = require('inquirer')
-	var colors = require('colors')
-	var blank = require('./_blankLine')
-	var checkForExistingReferences = require('./_checkForExistingReferences')
-	var checkForArchiveReferences = require('./_checkForArchiveReferences')
-	var moveFolder = require('./_moveFolder')
-	var getPath = require('./_getPath')
+let restoreReference = function restoreReference() {
+	let inquirer = require('inquirer')
+	let colors = require('colors')
+	let blank = require('./_blankLine')
+	let checkForExistingReferences = require('./_checkForExistingReferences')
+	let checkForArchiveReferences = require('./_checkForArchiveReferences')
+	let moveFolder = require('./_moveFolder')
+	let getPath = require('./_getPath')
 
 	return new Promise(function(resolve, reject) {
 
@@ -19,7 +19,7 @@ var restoreReference = function restoreReference() {
 				return new Promise(function(resolve, reject) {
 					if(returnedReferenceList.length > 0) {
 						blank()
-						var errorMsg = "You must ARCHIVE or DELETE your existing Reference before Restoring"
+						let errorMsg = "You must ARCHIVE or DELETE your existing Reference before Restoring"
 						console.log(errorMsg.bgRed.white)
 
 						reject(errorMsg)
@@ -32,7 +32,7 @@ var restoreReference = function restoreReference() {
 				return checkForArchiveReferences(false)
 					.then(function(returnedReferenceList) {
 						if(returnedReferenceList.length > 0) {
-							var questionsRestoreArchiveReference = require('./_questionsRestoreArchiveReference')(returnedReferenceList)
+							let questionsRestoreArchiveReference = require('./_questionsRestoreArchiveReference')(returnedReferenceList)
 
 							return inquirer.prompt(questionsRestoreArchiveReference)
 								.then(function (answer) {
@@ -44,8 +44,8 @@ var restoreReference = function restoreReference() {
 										blank()
 										console.log(("Restoring Archive...").green)
 
-										var sourceFolder = 'backstop_data/bitmaps_reference/'
-										var archiveFolder = 'bivariate_data/bitmaps_reference_archive/'
+										let sourceFolder = 'backstop_data/bitmaps_reference/'
+										let archiveFolder = 'bivariate_data/bitmaps_reference_archive/'
 										archiveFolder += '/' + answer.restoreReference
 										archiveFolder = archiveFolder.replace('[LOCKED]  ', '')
 										
@@ -55,9 +55,9 @@ var restoreReference = function restoreReference() {
 										return moveFolder(archiveFolder, sourceFolder, true)
 											.then(function() {
 												blank()
-												console.log(("--------------------").bgBlue.white)
-												console.log(("- RESTORE complete -").bgBlue.white)
-												console.log(("--------------------").bgBlue.white)
+												console.log(("--------------------").bgGray.white)
+												console.log(("- RESTORE complete -").bgGray.white)
+												console.log(("--------------------").bgGray.white)
 												blank()
 												resolve()
 											})

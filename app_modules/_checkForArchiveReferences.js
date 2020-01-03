@@ -2,20 +2,20 @@
 // - get existing reference data -
 // -------------------------------
 
-var walk = require('walk')                     // file system walker (get file names)
-var forEach = require('mout/array/forEach')    // foreach array util
-var sort = require('mout/array/sort')          // sort array util
-var getPath = require('./_getPath')
-var blank = require('./_blankLine')
+let walk = require('walk')                     // file system walker (get file names)
+let forEach = require('mout/array/forEach')    // foreach array util
+let sort = require('mout/array/sort')          // sort array util
+let getPath = require('./_getPath')
+let blank = require('./_blankLine')
 
 
-var checkForArchiveReferences = function checkForArchiveReferences(logit) {
+let checkForArchiveReferences = function checkForArchiveReferences(logit) {
 	if (typeof logit === 'undefined' ) { logit = false; }
 
-	var archiveReferenceList = []
-	var baseDir = getPath("bivariate_data/bitmaps_reference_archive")
-	var walker = walk.walk(baseDir, { followLinks: false })
-	var checkIfFileExists = require('./_checkIfFileExists')
+	let archiveReferenceList = []
+	let baseDir = getPath("bivariate_data/bitmaps_reference_archive")
+	let walker = walk.walk(baseDir, { followLinks: false })
+	let checkIfFileExists = require('./_checkIfFileExists')
 
 	return new Promise(function(resolve, reject) {
 		walker.on('directory', function (path, stat, next) {
@@ -35,13 +35,13 @@ var checkForArchiveReferences = function checkForArchiveReferences(logit) {
 			if (logit) {
 				if (archiveReferenceList.length > 0) {
 					blank()
-					console.log(('------------------' + '\n').bgCyan.white)
-					console.log(('Archive References' + '\n').bgCyan.white)
-					console.log(('------------------' + '\n').bgCyan.white)
+					console.log(('------------------' + '\n').bgGray.white)
+					console.log(('Archive References' + '\n').bgGray.white)
+					console.log(('------------------' + '\n').bgGray.white)
 
 					forEach(archiveReferenceList, function(val) {
-						var displayVal = ' ' + val + ' '
-						console.log(displayVal.bgCyan.white)
+						let displayVal = ' ' + val + ' '
+						console.log(displayVal.bgGray.white)
 					})
 
 					blank()

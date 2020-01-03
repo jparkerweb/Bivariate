@@ -1,4 +1,4 @@
-var cls = console.reset = function () {
+let cls = console.reset = function () {
 	return process.stdout.write('\033c')
 }
 

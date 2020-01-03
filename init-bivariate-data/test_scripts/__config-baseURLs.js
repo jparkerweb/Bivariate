@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 module.exports = function() {
-	var theURLS = {}
+	let theURLS = {}
 
 	// * note *
 	// leave off the trailing slash on the baseURL and baseRefURL values

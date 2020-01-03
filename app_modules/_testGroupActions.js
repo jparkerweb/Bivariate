@@ -3,20 +3,20 @@
 // --------------------------------------------------------
 // jshint esversion: 6
 
-var testGroupActions = function testGroupActions(answerTestType, matchArr, spinner, testConfig) {
-	var inquirer = require('inquirer')
-	var questionsTestGroup = require('./_questionsTestGroup')
-	var backstopjs = require('backstopjs')
-	var deleteFolder = require('./_deleteFolder')
-	var blank = require('./_blankLine')
-	var cls = require('./_clearConsole')
-	var asciiLogo = require('./_asciiLogo')
-	var getPath = require('./_getPath')
-	var colors = require("colors")
+let testGroupActions = function testGroupActions(answerTestType, matchArr, spinner, testConfig) {
+	let inquirer = require('inquirer')
+	let questionsTestGroup = require('./_questionsTestGroup')
+	let backstopjs = require('backstopjs')
+	let deleteFolder = require('./_deleteFolder')
+	let blank = require('./_blankLine')
+	let cls = require('./_clearConsole')
+	let asciiLogo = require('./_asciiLogo')
+	let getPath = require('./_getPath')
+	let colors = require("colors")
 
 	return new Promise(function(resolve, reject) {
-		var matchPrefix = ''
-		var onlyShowMatch = true
+		let matchPrefix = ''
+		let onlyShowMatch = true
 
 		if(answerTestType === 'reference') {
 			matchPrefix = '[EXISTING]  '
@@ -32,18 +32,17 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 				inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 				inquirer.prompt(question).then(function (answerTestGroup) {
-					var exitMessage = ""
-					var testPath = ""
+					let exitMessage = ""
+					let testPath = ""
 
 					//cleanup selected group
 					answerTestGroup.testGroup = answerTestGroup.testGroup.replace(matchedPrefix, '')
-
 					if (answerTestGroup.testGroup !== '<<-- Back --') {
 						// run test type
-						var shortCircuit = false
+						let shortCircuit = false
 
 						blank()
-						console.log(("\n\n------- please wait, running \'" + answerTestType + "\' -------").bgBlue.white)
+						console.log(("\n\n------- please wait, running \'" + answerTestType + "\' -------").bgGray.white)
 						spinner.start()
 
 						switch(answerTestType) {
@@ -79,9 +78,14 @@ var testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 
 								break
 
-							// approve reference
+							// approve test
 							case 'approve':
-								exitMessage = 'Finished APPROVing your existing Reference for group "' + answerTestGroup.testGroup + '".\nYou can now run a Test for this group.'
+								deleteFolder('Test: ' + answerTestGroup.testGroup, 'backstop_data/bitmaps_test/' + answerTestGroup.testGroup, false)
+									.then(function() {
+										exitMessage = 'Finished APPROVing your existing Test for group "' + answerTestGroup.testGroup + '".'
+										// exitMessage = 'Finished running TEST on "' + answerTestGroup.testGroup + '".\nOpening the Report in your Browser.'
+										testPath = answerTestGroup.testGroup
+									})
 
 								break
 

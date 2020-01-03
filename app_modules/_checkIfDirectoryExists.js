@@ -2,14 +2,15 @@
 // - check to see if the passed directory exists -
 // -----------------------------------------------
 
-var walk = require('walk') // file system walker (get file names)
+let walk = require('walk') // file system walker (get file names)
 
 function checkForExistingDirectory(checkDir) {
-	var walker = walk.walk(checkDir, { followLinks: false })
-	var exists = false
+	let walker = walk.walk(checkDir, { followLinks: false })
+	let exists = false
 
 	return new Promise(function(resolve, reject) {
 		walker.on('directories', function (root, dirStatsArray, next) {
+			// console.log("directory exists")
 			exists = true
 			next()
 		})

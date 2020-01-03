@@ -7,12 +7,12 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = "Example Test - Home Page"
-var route = "/index.html"
-var readySelector = ""
-var hideSelectors = []
-var removeSelectors = []
-var selectors = [ "document", ".body-content" ]
+let label = "Example Test - Home Page"
+let route = "/index.html"
+let readySelector = ""
+let hideSelectors = []
+let removeSelectors = []
+let selectors = [ "document", ".body-content" ]
 let hoverSelector = null
 let hoverSelectors = []
 let clickSelector = null
@@ -20,8 +20,8 @@ let clickSelectors = []
 let postInteractionWait = 100
 let scrollToSelector = null
 let delay = 300
-var onBeforeScript = null
-var onReadyScript = null
+let onBeforeScript = null
+let onReadyScript = null
 let viewports = []
 
 // ---------
@@ -127,9 +127,9 @@ let viewports = []
 // - advanced options can be overwritten in the options object below -
 // -------------------------------------------------------------------
 module.exports = function(baseURLs) {
-	var url = (baseURLs.baseURL + route)
-	var referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route)
-	var options = {
+	let url = (baseURLs.baseURL + route)
+	let referenceUrl = baseURLs.baseRefURL === null ? null : (baseURLs.baseRefURL + route)
+	let options = {
 		"label": label,									// [required] Tag saved with your reference images
 		"url": url,										// [required] Tag saved with your reference images
 		"referenceUrl": referenceUrl,					// Specify a different state or environment when creating reference.

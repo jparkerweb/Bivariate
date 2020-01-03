@@ -2,11 +2,11 @@
 // - setup "Restore Reference" question -
 // --------------------------------------
 
-var questionsRestoreArchiveReference = function(archiveReferenceList) {
-	var referenceList = ['<<-- Back --']
+let questionsRestoreArchiveReference = function(archiveReferenceList) {
+	let referenceList = ['<<-- Back --']
 	referenceList = referenceList.concat(archiveReferenceList)
 
-	var questionsList = [
+	let questionsList = [
 		{
 			type: 'list',
 			name: 'restoreReference',

@@ -1,5 +1,5 @@
-var hasOwn = require('./hasOwn')
-var forIn = require('./forIn')
+let hasOwn = require('./hasOwn')
+let forIn = require('./forIn')
 
 /**
  * Similar to Array/forEach but works over object properties and fixes Don't

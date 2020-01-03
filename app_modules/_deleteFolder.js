@@ -1,15 +1,15 @@
 // -----------------
 // - delete folder -
 // -----------------
-var blank = require('./_blankLine')
+let blank = require('./_blankLine')
 
-var deleteFolder = function(friendlyName, path, confirm) {
-	var inquirer = require('inquirer')
-	var cmd = require('node-cmd')
+let deleteFolder = function(friendlyName, path, confirm) {
+	let inquirer = require('inquirer')
+	let cmd = require('node-cmd')
 
 	return new Promise(function(resolve, reject) {
 		// DELETE Test directories
-		var questionsConfirmTestDelete = [
+		let questionsConfirmTestDelete = [
 			{
 				type: 'confirm',
 				name: 'confirmDelete',
@@ -31,7 +31,7 @@ var deleteFolder = function(friendlyName, path, confirm) {
 							})
 						} else {
 							blank()
-							console.log((friendlyName + ' ').bgBlue.white + 'NOT'.bgBlue.white + (' Deleted...').bgBlue.white)
+							console.log((friendlyName + ' ').bgGray.white + 'NOT'.bgGray.white + (' Deleted...').bgGray.white)
 
 							resolve()
 						}

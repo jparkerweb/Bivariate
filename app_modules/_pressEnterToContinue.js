@@ -3,10 +3,10 @@
 // -- user to press an key (accepts a message and a callback) --
 // -------------------------------------------------------------
 
-var pressEnterToContinue = function(message, cb) {
-	var readline = require('readline')
+let pressEnterToContinue = function(message, cb) {
+	let readline = require('readline')
 
-	var rl = readline.createInterface({
+	let rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout,
 	})
