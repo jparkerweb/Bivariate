@@ -1,6 +1,6 @@
 {
   "name": "example-site",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "5.0.0",
+    "concurrently": "5.0.2",
     "local-web-server": "3.0.7"
   }
 }
