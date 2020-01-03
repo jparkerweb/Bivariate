@@ -7,14 +7,22 @@
 //   related tests in named subdirectories
 //   for better organization
 
-var label = 'Example Test - Paints'
-var route = '/paints.html'
-var selectors = [ "document", ".body-content" ]
-var onBeforeScript = null
-var onReadyScript = null
+var label = "Example Test - Home Page"
+var route = "/index.html"
 var readySelector = ""
 var hideSelectors = []
 var removeSelectors = []
+var selectors = [ "document", ".body-content" ]
+let hoverSelector = null
+let hoverSelectors = []
+let clickSelector = null
+let clickSelectors = []
+let postInteractionWait = 100
+let scrollToSelector = null
+let delay = 300
+var onBeforeScript = null
+var onReadyScript = null
+let viewports = []
 
 // ---------
 // - label -
