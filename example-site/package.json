@@ -1,17 +1,17 @@
 {
-  "name": "example-site",
-  "version": "1.0.4",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "example-reference-site": "ws -p 2222 -d ./unchanged",
-    "example-test-site": "ws -p 4444 -d ./changed",
-    "example": "concurrently --kill-others \"ws -p 2222 -d ./unchanged\" \"ws -p 4444 -d ./changed\""
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "concurrently": "5.0.2",
-    "local-web-server": "3.0.7"
-  }
+	"name": "example-site",
+	"version": "1.0.4",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"example-reference-site": "ws -p 2222 -d ./unchanged",
+		"example-test-site": "ws -p 4444 -d ./changed",
+		"example": "concurrently --kill-others \"ws -p 2222 -d ./unchanged\" \"ws -p 4444 -d ./changed\""
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "5.0.2",
+		"local-web-server": "3.0.7"
+	}
 }
