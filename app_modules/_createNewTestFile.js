@@ -25,6 +25,8 @@ var createTestFile = function createTestFile() {
 				var testOnBeforeScript = answerAction.newTestOnBeforeScript.toLowerCase() === "y" ? true : false
 				var testOnReadyScript = answerAction.newTestOnReadyScript.toLowerCase() === "y" ? true : false
 				var testReadySelector = answerAction.newTestReadySelector|| ""
+				var testCustomViewportObject = answerAction.newTestCustomViewportObject.toLowerCase() === "y" ?
+					" { \"name\": \"custom-viewport\", \"width\": 1280, \"height\": 2000 } " : ""
 
 				var testDelay = answerAction.newTestDelay || '300'
 					testDelay = testDelay.replace(/ms/, '')
@@ -65,12 +67,14 @@ var createTestFile = function createTestFile() {
 							from: [
 								/_____name_____/g, /_____label_____/g, /_____route_____/g,
 								/_____selectors_____/g, /_____delay_____/g, /_____directory_____/g,
-								/_____onBeforeScriptName_____/g, /_____onReadyScriptName_____/g, /_____readySelector_____/g
+								/_____onBeforeScriptName_____/g, /_____onReadyScriptName_____/g,
+								/_____readySelector_____/g, /_____customViewportObject_____/g
 							],
 							to: [
 								testName, testLabel, testRoute,
 								testSelectors, testDelay, testDirectory,
-								testOnBeforeScriptName, testOnReadyScriptName, testReadySelector
+								testOnBeforeScriptName, testOnReadyScriptName,
+								testReadySelector, testCustomViewportObject
 							]
 						}
 						try {

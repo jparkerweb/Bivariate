@@ -47,6 +47,11 @@ var questionsNewTest = [
 		type: 'input',
 		name: 'newTestDelay',
 		message: '\n---------\n- DELAY -\n---------\n Delay in milliseconds before capture [default is 300]:\n'
+	},
+	{
+		type: 'input',
+		name: 'newTestCustomViewportObject',
+		message: '\n---------\n- CUSTOM VIEWPORT -\n---------\n Create a custom "viewports" object for this test? y\\N:\n'
 	}
 ]
 

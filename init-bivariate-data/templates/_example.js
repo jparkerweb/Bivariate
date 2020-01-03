@@ -22,6 +22,7 @@ let scrollToSelector = null
 let delay = _____delay_____
 let onBeforeScript = null
 let onReadyScript = "_____onReadyScriptName_____"
+let viewports = [_____customViewportObject_____]
 
 // ---------
 // - label -
@@ -109,6 +110,19 @@ let onReadyScript = "_____onReadyScriptName_____"
 // use for simulating interactions
 // (.js suffix is optional / looks for file in "engine_scripts" dir)
 
+// -------------
+// - viewports -
+// -------------
+// overwrite array of viewports
+// example:
+// let viewports = [
+//    {
+//        name: "huge-vertical-space",
+//        width: 1920,
+//        height: 4500
+//    }
+// ]
+
 
 // -------------------------------------------------------------------
 // - advanced options can be overwritten in the options object below -
@@ -136,7 +150,8 @@ module.exports = function(baseURLs) {
 		"misMatchThreshold": 0.1,						// Percentage of different pixels allowed to pass test
 		"onBeforeScript": onBeforeScript,				// Used to set up browser state e.g. cookies.
 		"onReadyScript": onReadyScript,					// After the above conditions are met -- use this script to modify UI state prior to screen shots e.g. hovers, clicks etc.
-		"requireSameDimensions": false					// If set to true -- any change in selector size will trigger a test failure.
+		"requireSameDimensions": false,					// If set to true -- any change in selector size will trigger a test failure.
+		"viewports": viewports							// An array of screen size objects your DOM will be tested against. This configuration will override the viewports property assigned at the config root.
 	}
 
 	if (baseURLs.baseRefURL === null) {
