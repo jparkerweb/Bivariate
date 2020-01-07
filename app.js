@@ -72,6 +72,18 @@ function abracadabra(msg) {
 						})
 					break
 
+				// UPDATE -all- TEST GROUP WITH EXISTING TEST FILES
+				case 'update-all-test-group':
+					require('./app_modules/_updateAllTestGroup')()
+						.then(function() {
+							// blank()
+							pressEnterToContinue('-all-tests-.js'.yellow.bold + ' scenario was updated/created with all ' + 'test files'.yellow.bold + '\n\n.press enter to continue...', abracadabra) // restart app
+						})
+						.catch(function(err) {
+							console.log(err.bgRed.white)
+						})
+					break
+
 				// OPEN REPORT
 				case 'open-report':
 					checkForExistingReferences(false)

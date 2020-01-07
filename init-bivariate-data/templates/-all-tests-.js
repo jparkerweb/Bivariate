@@ -1,8 +1,8 @@
-// ----------------
-// -- Test Group --
-// ----------------
+// ----------------------
+// -- -all- Test Group --
+// ----------------------
 
-let mixIn = require("./../libs/mout-mixin/mixIn")
+let mixIn = require("../libs/mout-mixin/mixIn")
 let testGroup = __filename.slice(__dirname.length + 1, -3)
 let configCommon = require('./__config-common')(testGroup)
 let baseURLs = require("./__config-baseURLs")

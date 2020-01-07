@@ -98,6 +98,10 @@ let questionsTestType = [
 				value: 'create-new-test'
 			},
 			{
+				name: '- UPDATE/CREATE `-all-tests-` test group with all existing test files',
+				value: 'update-all-test-group'
+			},
+			{
 				name: '',
 				value: ''
 			},
