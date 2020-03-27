@@ -6,7 +6,7 @@
 let updateHeader = function updateHeader(testPath) {
 	// return new Promise(function(resolve, reject) {
 		const replaceInFile = require('replace-in-file')
-		testPath = "backstop_data/html_report/" + testPath + "/index.html"
+		testPath = testPath + "/index.html"
 
 		// let find1 = ".ReactModal__Body--open {"
 		let replacement1 = "a[href=\"https://garris.github.io/BackstopJS/\"] { display:none !important; } \n .ReactModal__Body--open {"
@@ -16,6 +16,7 @@ let updateHeader = function updateHeader(testPath) {
 		
 		
 		templateOptions = {
+			cwd: "backstop_data/html_report/",
 			files: [testPath],
 			from: [
 				/BackstopJS/g,
