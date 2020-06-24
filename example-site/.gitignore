@@ -1,12 +1,9 @@
-#################
-## NPM
-#################
+# NPM
 node_modules/**/*
 
-
-############
-## Windows
-############
+# lock files
+yarn.lock
+package-lock.json
 
 # Windows image file caches
 Thumbs.db
@@ -14,9 +11,5 @@ Thumbs.db
 # Folder config file
 Desktop.ini
 
-
-#######
-## Mac
-#######
 # Mac crap
 .DS_Store
