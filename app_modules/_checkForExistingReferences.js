@@ -24,7 +24,7 @@ function checkForExistingReferences(logit) {
 				existingReferenceList.push(val.name)
 			})
 
-			checkIfFileExists(baseDir + 'LOCKED')
+			checkIfFileExists(baseDir + '/LOCKED')
 				.then(function(lock) {
 					isLocked = lock
 					next()
@@ -39,13 +39,12 @@ function checkForExistingReferences(logit) {
 					blank()
 					console.log(('------------------------').bgGray.white)
 					console.log(('- Generated References -').bgGray.white)
+					console.log(('------------------------').bgGray.white)
 
 					if(isLocked) {
-						console.log(('-                     -').bgGray.white)
-						console.log(('-       ').bgGray.white + ('LOCKED').bgRed.white + ('        -').bgGray.white)
+						console.log(('-        ').bgRed.white + ('LOCKED').bgRed.white + ('        -').bgRed.white)
 					}
 
-					console.log(('------------------------').bgGray.white)
 
 
 					forEach(existingReferenceList, function(val) {

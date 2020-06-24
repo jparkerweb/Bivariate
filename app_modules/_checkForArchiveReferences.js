@@ -20,7 +20,7 @@ let checkForArchiveReferences = function checkForArchiveReferences(logit) {
 	return new Promise(function(resolve, reject) {
 		walker.on('directory', function (path, stat, next) {
 			if (path === baseDir) {
-				checkIfFileExists(baseDir + stat.name + '/LOCKED')
+				checkIfFileExists(baseDir + '/' + stat.name + '/LOCKED')
 					.then(function(isLocked) {
 						archiveReferenceList.push((isLocked ? '[LOCKED]  ' : '') + stat.name)
 					})
