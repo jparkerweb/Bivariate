@@ -10,7 +10,7 @@ module.exports = async (page, scenario, vp) => {
 	// -- docs here => https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md --
 	// ------------------------------------------------------------------------------------
 	// await require('./helpers/clickAndHoverHelper')(page, scenario)
-  
+
 	// await page.waitForSelector('#someinput')
 	// await page.type("#someinput", "some text to type", {delay: 20})
 	// await page.click("button[type='submit']")
