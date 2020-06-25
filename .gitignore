@@ -1,0 +1,5 @@
+node_modules
+backstop_data
+bivariate_data
+package-lock.json
+.vscode
