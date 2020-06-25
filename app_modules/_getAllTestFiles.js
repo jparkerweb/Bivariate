@@ -11,13 +11,14 @@ let getAllTestFiles = function() {
 
 		walker.on('file', function(root, stat, next) {
 			let currentFile = stat.name
-			if(currentFile.charAt(0) === "_" && currentFile.charAt(1) !== "_") {
+			if(currentFile.charAt(0) === "_" && currentFile.charAt(1) !== "_" && currentFile.slice(-2) === "js") {
 				currentFile = currentFile.slice(0, -3)
 				currentFile = root + '\/' + currentFile
 				currentFile = currentFile.replace(/\\/g, "/")
 				currentFile = currentFile.replace(/\.\/bivariate_data\/test_scripts\//g, "")
 				allTestFileNames.push(currentFile)
 			}
+			allTestFileNames.sort()
 			next()
 		})
 
