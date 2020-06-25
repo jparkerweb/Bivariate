@@ -6,7 +6,7 @@
 	"scripts": {
 		"example-reference-site": "ws -p 2222 -d ./unchanged",
 		"example-test-site": "ws -p 4444 -d ./changed",
-		"example": "concurrently --kill-others \"ws -p 2222 -d ./unchanged\" \"ws -p 4444 -d ./changed\""
+		"example": "concurrently --kill-others \"ws -p 2222 -d ./site/unchanged\" \"ws -p 4444 -d ./site/changed\""
 	},
 	"author": "",
 	"license": "ISC",

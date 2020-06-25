@@ -1,6 +1,6 @@
 # Example Site
 
-This directory contains a sample site in its original state (`unchanged`), as well as with some css changes applied (`changed`).
+This directory contains a sample site in its original state (`site/unchanged`), as well as with some css changes applied (`site/changed`).
 
 The example site is a simple, straight-forward two page site.  
 
