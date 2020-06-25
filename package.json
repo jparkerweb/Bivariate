@@ -1,6 +1,6 @@
 {
 	"name": "bivariate",
-	"version": "0.14.7",
+	"version": "0.14.8",
 	"description": "An opinionated interface for writing, running, and saving BackstopJS tests",
 	"keywords": [
 		"BackstopJS",
@@ -22,7 +22,8 @@
 	"scripts": {
 		"start": "node app",
 		"app": "node app",
-		"main": "node app"
+		"main": "node app",
+		"deploy-gh-pages": "gh-pages -d example-site/site"
 	},
 	"author": "jparkerweb",
 	"license": "ISC",
@@ -45,5 +46,7 @@
 		"touch": "3.1.0",
 		"walk": "2.3.14"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"gh-pages": "3.1.0"
+	}
 }
