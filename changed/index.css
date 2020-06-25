@@ -1,114 +1,126 @@
 @import url(http://fonts.googleapis.com/css?family=Hind);
 
 html {
-    height: 100%;
-    font-size: 62.5%;
+	height: 100%;
+	font-size: 62.5%;
 }
 
 body {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    font-size: 2.2rem;
-    font-family: 'Hind', sans-serif;
-    font-weight: 400;
-    color: #333;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-size: 2.2rem;
+	font-family: 'Hind', sans-serif;
+	font-weight: 400;
+	color: #333;
 }
+
 body.nav-fixed-top {
-    padding-top: 45px;
+	padding-top: 45px;
 }
 
 a {
-    text-decoration: none;
-    color: #00b7d6;
-    text-transform: uppercase;
-    transition: color .35s ease;
+	text-decoration: none;
+	color: #00b7d6;
+	text-transform: uppercase;
+	transition: color .35s ease;
 }
-a:hover, a:focus, a:visited {
-    outline: 0;
-    color: #00b7d6;
+
+a:hover,
+a:focus,
+a:visited {
+	outline: 0;
+	color: #00b7d6;
 }
 
 .container {
-    max-width: 960px;
-    width: 95%;
-    margin: 0 auto;
+	max-width: 960px;
+	width: 95%;
+	margin: 0 auto;
 }
 
 .hero {
-    margin: 0;
-    padding: 50px 40px;
-    text-align: center;
-    font-size: 7.0rem;
-    background: #2baac0;
-    color: #fefefe;
+	margin: 0;
+	padding: 50px 40px;
+	text-align: center;
+	font-size: 7.0rem;
+	background: #2baac0;
+	color: #fefefe;
 }
 
 .logo {
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    background: #cef1ff;
-    position: relative;
-    border-radius: 10px;
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	background: #cef1ff;
+	position: relative;
+	border-radius: 10px;
 }
+
 .logo:after {
-    display: inline-block;
-    content: '';
-    background: #5bd7e4;
-    border: 3px solid white;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    border-radius: 10px;
+	display: inline-block;
+	content: '';
+	background: #5bd7e4;
+	border: 3px solid white;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	right: 20px;
+	top: 15px;
+	border-radius: 10px;
 }
 
 .nav {
-    margin: 0;
-    padding: 20px 0;
-    background: #f2f2f2;
-    list-style: none;
-    text-align: center;
-    transition: all .15s ease;
+	margin: 0;
+	padding: 20px 0;
+	background: #f2f2f2;
+	list-style: none;
+	text-align: center;
+	transition: all .15s ease;
 }
+
 .nav.nav-fixed-top {
-    top: 0;
-    z-index: 100;
-    position: fixed;
-    width: 100%;
-    background: #c0392b;
-    padding: 0;
+	top: 0;
+	z-index: 100;
+	position: fixed;
+	width: 100%;
+	background: #c0392b;
+	padding: 0;
 }
+
 .nav.nav-fixed-top a {
-    color: white;
+	color: white;
 }
+
 .nav.nav-fixed-top a:visited {
-    color: white;
+	color: white;
 }
-.nav.nav-fixed-top a:hover, .nav.nav-fixed-top a:focus {
-    outline: 0;
-    color: #f2c9c5;
+
+.nav.nav-fixed-top a:hover,
+.nav.nav-fixed-top a:focus {
+	outline: 0;
+	color: #f2c9c5;
 }
+
 .nav ul {
-    padding: 0;
-    margin: 5px 0;
+	padding: 0;
+	margin: 5px 0;
 }
+
 .nav ul li {
-    display: inline-block;
-    padding: 0 20px;
+	display: inline-block;
+	padding: 0 20px;
 }
 
 .body-content {
-    margin: 0;
-    padding: 15px 0;
-    font-size: 1.8rem;
-    line-height: 1.38;
+	margin: 0;
+	padding: 15px 0;
+	font-size: 1.8rem;
+	line-height: 1.38;
 }
 
 .text-align-center {
-    text-align: center;
+	text-align: center;
 }
 
 .swatch {
@@ -118,125 +130,151 @@ a:hover, a:focus, a:visited {
 	padding: 15px;
 	border-radius: 20px;
 }
+
 .dark {
 	color: #FFF;
 }
+
 .sap-green {
-  background-color: #0A3410;
+	background-color: #0A3410;
 }
+
 .sap-green-text {
-  color: #0A3410;
+	color: #0A3410;
 }
+
 .sap-green-border {
-  border-color: #0A3410;
+	border-color: #0A3410;
 }
 
 .alizarin-crimson {
-  background-color: #4E1500;
+	background-color: #4E1500;
 }
+
 .alizarin-crimson-text {
-  color: #4E1500;
+	color: #4E1500;
 }
+
 .alizarin-crimson-border {
-  border-color: #4E1500;
+	border-color: #4E1500;
 }
 
 .van-dyke-brown {
-  background-color: #221B15;
+	background-color: #221B15;
 }
+
 .van-dyke-brown-text {
-  color: #221B15;
+	color: #221B15;
 }
+
 .van-dyke-brown-border {
-  border-color: #221B15;
+	border-color: #221B15;
 }
 
 .dark-sienna {
-  background-color: #5F2E1F;
+	background-color: #5F2E1F;
 }
+
 .dark-sienna-text {
-  color: #5F2E1F;
+	color: #5F2E1F;
 }
+
 .dark-sienna-border {
-  border-color: #5F2E1F;
+	border-color: #5F2E1F;
 }
 
 .midnight-black {
-  background-color: #000000;
+	background-color: #000000;
 }
+
 .midnight-black-text {
-  color: #000000;
+	color: #000000;
 }
+
 .midnight-black-border {
-  border-color: #000000;
+	border-color: #000000;
 }
 
 .prussian-blue {
-  background-color: #021E44;
+	background-color: #021E44;
 }
+
 .prussian-blue-text {
-  color: #021E44;
+	color: #021E44;
 }
+
 .prussian-blue-border {
-  border-color: #021E44;
+	border-color: #021E44;
 }
 
 .phthalo-blue {
-  background-color: #0C0040;
+	background-color: #0C0040;
 }
+
 .phthalo-blue-text {
-  color: #0C0040;
+	color: #0C0040;
 }
+
 .phthalo-blue-border {
-  border-color: #0C0040;
+	border-color: #0C0040;
 }
 
 .phthalo-green {
-  background-color: #102E3C;
+	background-color: #102E3C;
 }
+
 .phthalo-green-text {
-  color: #102E3C;
+	color: #102E3C;
 }
+
 .phthalo-green-border {
-  border-color: #102E3C;
+	border-color: #102E3C;
 }
 
 .cadmium-yellow {
-  background-color: #FFEC00;
+	background-color: #FFEC00;
 }
+
 .cadmium-yellow-text {
-  color: #FFEC00;
+	color: #FFEC00;
 }
+
 .cadmium-yellow-border {
-  border-color: #FFEC00;
+	border-color: #FFEC00;
 }
 
 .yellow-ochre {
-  background-color: #C79B00;
+	background-color: #C79B00;
 }
+
 .yellow-ochre-text {
-  color: #C79B00;
+	color: #C79B00;
 }
+
 .yellow-ochre-border {
-  border-color: #C79B00;
+	border-color: #C79B00;
 }
 
 .indian-yellow {
-  background-color: #FFB800;
+	background-color: #FFB800;
 }
+
 .indian-yellow-text {
-  color: #FFB800;
+	color: #FFB800;
 }
+
 .indian-yellow-border {
-  border-color: #FFB800;
+	border-color: #FFB800;
 }
 
 .bright-red {
-  background-color: #DB0000;
+	background-color: #DB0000;
 }
+
 .bright-red-text {
-  color: #DB0000;
+	color: #DB0000;
 }
+
 .bright-red-border {
-  border-color: #DB0000;
+	border-color: #DB0000;
 }
