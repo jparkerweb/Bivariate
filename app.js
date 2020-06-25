@@ -72,6 +72,18 @@ function abracadabra(msg) {
 						})
 					break
 
+				// CREATE NEW BLANK TEST
+				case 'create-new-test-group':
+					require('./app_modules/_createNewTestGroupFile')()
+						.then(function() {
+							blank()
+							pressEnterToContinue('blank test group created, make sure to include any tests you want it to run in the \n' + 'Scenarios'.yellow.bold + ' section. \n\n.press enter to continue...', abracadabra) // restart app
+						})
+						.catch(function(err) {
+							console.log(err.bgRed.white)
+						})
+					break
+
 				// UPDATE -all- TEST GROUP WITH EXISTING TEST FILES
 				case 'update-all-test-group':
 					require('./app_modules/_updateAllTestGroup')()
