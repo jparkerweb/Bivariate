@@ -3,7 +3,7 @@
 // == puppeteer engine example ==
 // ==============================
 module.exports = async (page, scenario, vp) => {
-	console.log("onBefore-Example.js is running for: ", scenario.label)
+	console.log("onBefore script is running for: ", scenario.label)
 
 	// ------------------------------------------------------------------------------------
 	// -- puppeteer script here to interact with page                                    --

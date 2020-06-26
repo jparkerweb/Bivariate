@@ -43,15 +43,19 @@ let createTestFile = function createTestFile() {
 				let testFile = baseFolderTest + newTestDirectory.toLowerCase() + '/_' + testName.toLowerCase() + '.js'
 					testFile = testFile.replace(/\/\//gm, '/')
 				
-				let scriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onReady-' + testName.toLowerCase() + '.js'
-					scriptFile = scriptFile.replace(/\/\//gm, '/')
+				let onBeforeScriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onBefore-' + testName.toLowerCase() + '.js'
+					onBeforeScriptFile = onBeforeScriptFile.replace(/\/\//gm, '/')
+				
+				let onReadyScriptFile = baseFolderScript + newTestDirectory.toLowerCase() + '/onReady-' + testName.toLowerCase() + '.js'
+					onReadyScriptFile = onReadyScriptFile.replace(/\/\//gm, '/')
 				
 				let templateTest = path.join(__dirname, '../init-bivariate-data/templates/_example.js')
 				let templateScriptOnBefore = path.join(__dirname, '../init-bivariate-data/templates/onBefore-example.js')
 				let templateScriptOnReady = path.join(__dirname, '../init-bivariate-data/templates/onReady-example.js')
 
 				let destTest = path.join(process.cwd(), testFile)
-				let destScript = path.join(process.cwd(), scriptFile)
+				let destOnBeforeScript = path.join(process.cwd(), onBeforeScriptFile)
+				let destOnReadyScript = path.join(process.cwd(), onReadyScriptFile)
 
 				const replaceInFile = require('replace-in-file')
 				let templateOptions = ""
@@ -84,7 +88,8 @@ let createTestFile = function createTestFile() {
 							
 							let copiedScripts = true
 							if (testOnBeforeScript) {
-								copy(templateScriptOnBefore, destScript, { overwrite: true }, function(error, results) {
+								console.log("creating onBeforeScript")
+								copy(templateScriptOnBefore, destOnBeforeScript, { overwrite: true }, function(error, results) {
 									if (error) {
 										copiedScripts = false
 										console.error('failed to create onBefore Script file: ' + error)
@@ -92,7 +97,8 @@ let createTestFile = function createTestFile() {
 								})
 							}
 							if (testOnReadyScript) {
-								copy(templateScriptOnReady, destScript, { overwrite: true }, function(error, results) {
+								console.log("creating onReadyScript")
+								copy(templateScriptOnReady, destOnReadyScript, { overwrite: true }, function(error, results) {
 									if (error) {
 										copiedScripts = false
 										console.error('failed to create onReady Script file: ' + error)

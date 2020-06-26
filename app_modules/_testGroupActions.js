@@ -128,7 +128,7 @@ let testGroupActions = function testGroupActions(answerTestType, matchArr, spinn
 								})
 								.then(function() {
 									spinner.stop()
-									resolve('\n' + exitMessage + ' \n')
+									resolve(['\n' + exitMessage + ' \n', testPath])
 								})
 								.catch(function(err) {
 									spinner.stop()

@@ -20,7 +20,7 @@ let clickSelectors = []
 let postInteractionWait = 100
 let scrollToSelector = null
 let delay = _____delay_____
-let onBeforeScript = null
+let onBeforeScript = "_____onBeforeScriptName_____"
 let onReadyScript = "_____onReadyScriptName_____"
 let viewports = [_____customViewportObject_____]
 
