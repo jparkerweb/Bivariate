@@ -1,7 +1,7 @@
 // jshint ignore: start
-// ==============================
-// == puppeteer engine example ==
-// ==============================
+// =============================
+// == puppeteer engine script ==
+// =============================
 module.exports = async (page, scenario, vp) => {
 	console.log('onReady script is running for: ', scenario.label)
 
