@@ -311,9 +311,3 @@ For more info, reference `example-site` README for a walk through example of **B
 ### [Example Site Docs](./example-site/README.md)
 
 Detailed docs for what the `reference`, `test`, and `approve` commands do under the hood can be found on the BackstopJS Github page: [BackstopJS](https://github.com/garris/BackstopJS).
-
-## Bookmarklet
-
-You can add a class list selector and Puppeteer script generator Javascript Bookmarklet here (drag and drop the link below into your browser's bookmark bar):
-
-<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='https://raw.githubusercontent.com/jparkerweb/Bivariate/master/bookmarklet.js';})();">Bookmarklet</a>
