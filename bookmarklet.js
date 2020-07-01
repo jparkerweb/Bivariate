@@ -36,11 +36,18 @@ let toolboxStyle = `
 }
 
 .toolbox-markup button {
-	padding: 2px 10px;
-	text-transform: uppercase;
-	border: 1px solid #777;
-	margin-bottom: 6px;
-	margin-right: 5px;
+	text-transform: uppercase !important;
+	margin-bottom: 6px !important;
+	margin-right: 5px !important;
+	background: #efefef !important;
+	color: #333 !important;
+	font-size: 11px !important;
+	box-shadow: none !important;
+	border: 1px solid #777 !important;
+	padding: 0px 10px !important;
+	height: 20px !important;
+	max-height: 20px !important;
+	line-height: 1 !important;
 }
 
 .toolbox-markup__message {
@@ -84,6 +91,7 @@ let toolboxStyle = `
 	white-space: nowrap;
 }
 `
+
 let documentHead = document.head || document.getElementsByTagName('head')[0]
 let newStyle = document.createElement('style')
 documentHead.appendChild(newStyle)
