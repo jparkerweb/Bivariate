@@ -20,6 +20,7 @@ let toolboxStyle = `
 	flex-direction: column;
 	box-sizing: border-box;
 	opacity: .875;
+	z-index: 9999999;
 	font-family:
 		"SFMono-Regular",
 		Consolas,
