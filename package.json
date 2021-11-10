@@ -1,6 +1,6 @@
 {
 	"name": "bivariate",
-	"version": "0.14.13",
+	"version": "0.14.14",
 	"description": "An opinionated interface for writing, running, and saving BackstopJS tests",
 	"keywords": [
 		"BackstopJS",
@@ -28,23 +28,23 @@
 	"author": "jparkerweb",
 	"license": "ISC",
 	"dependencies": {
-		"backstopjs": "5.3.4",
+		"backstopjs": "5.4.4",
 		"cli-spinner": "0.2.10",
 		"colors": "1.4.0",
 		"fuzzy": "0.1.3",
-		"inquirer": "8.1.1",
+		"inquirer": "8.2.0",
 		"inquirer-autocomplete-prompt": "1.4.0",
 		"install": "0.13.0",
-		"mout": "1.2.2",
+		"mout": "1.2.3",
 		"mv": "2.1.1",
-		"node-cmd": "4.0.0",
-		"npm": "7.19.1",
+		"node-cmd": "5.0.0",
+		"npm": "8.1.3",
 		"readline": "1.3.0",
 		"recursive-copy": "2.0.13",
-		"replace-in-file": "6.2.0",
+		"replace-in-file": "6.3.2",
 		"rimraf": "3.0.2",
 		"touch": "3.1.0",
-		"walk": "2.3.14"
+		"walk": "2.3.15"
 	},
 	"devDependencies": {
 		"gh-pages": "3.2.3"

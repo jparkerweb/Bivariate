@@ -24,7 +24,7 @@ let deleteFolder = function(friendlyName, path, confirm) {
 				.then(function (answer) {
 					return new Promise(function(resolve, reject) {
 						if(answer.confirmDelete) {
-							cmd.get('rimraf ./'+ path, function(data) {
+							cmd.run('rimraf ./'+ path, function(data) {
 								console.log((friendlyName + ' Deleted...').bgRed.white)
 
 								resolve()
@@ -42,7 +42,7 @@ let deleteFolder = function(friendlyName, path, confirm) {
 				})
 		}
 		else {
-			cmd.get('rimraf ./'+ path)
+			cmd.run('rimraf ./'+ path)
 			resolve()
 		}
 	})
