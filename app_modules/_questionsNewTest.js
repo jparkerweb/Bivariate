@@ -31,7 +31,7 @@ let questionsNewTest = [
 	{
 		type: 'input',
 		name: 'newTestOnBeforeScript',
-		message: '\n--------------------\n- ON BEFORE SCRIPT? -\n--------------------\n Create an "onBefore" script file? y\\N:\n'
+		message: '\n---------------------\n- ON BEFORE SCRIPT? -\n---------------------\n Create an "onBefore" script file? y\\N:\n'
 	},
 	{
 		type: 'input',
@@ -51,7 +51,7 @@ let questionsNewTest = [
 	{
 		type: 'input',
 		name: 'newTestCustomViewportObject',
-		message: '\n---------\n- CUSTOM VIEWPORT -\n---------\n Create a custom "viewports" object for this test? y\\N:\n'
+		message: '\n-------------------\n- CUSTOM VIEWPORT -\n-------------------\n Create a custom "viewports" object for this test? y\\N:\n'
 	}
 ]
 
